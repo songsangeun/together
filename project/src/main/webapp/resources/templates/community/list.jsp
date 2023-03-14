@@ -5,30 +5,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
+<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+<script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <style type="text/css">
-.pageTopWrap{
-  position:relative;
-  width:100%;
-  padding: 0 0 0;
-  margin: 0 0;
-  background-color: white;
-}
-.pageNav ul{
-  position:relative;
-  left:250px;
-  display: inline-block;
-  text-align: center;
-}
-.pageNav ul li{
-  margin: 0 auto;
-  padding: 0;
-  list-style: none;
-  display: inline-block;
-}
-.pageNav ul li a{
+.btn3{
   position: relative;
   display: block;
   margin: 0 5px;
@@ -37,15 +26,11 @@
   line-height: 35px;
   font-size: 15px;
   font-weight: 500;
-  background-color: #f3f3f3;
-  color:#477A7B;
+  background-color: #477A7B;
+  color:#f3f3f3;
   list-style: none;
   border-radius: 50px;
-}
-.pageNav ul li a:hover{
-  background-color: #477A7B;
-  color: #fff;
-}
+} 
 </style>
 <body>
 <jsp:include page="../fragments/header.jsp"/>
@@ -64,26 +49,16 @@
       </td>
     </tr>
    </table>
-  <div class="pageTopWrap">
-   <nav class="pageNav">
-    <ul id="navigation">
-    <li>
-      <a href="/">유머나라</a>
-     </li>
-     <li>
-      <a href="/">여행후기</a>
-     </li>
-     <li>
-      <a href="/">맛집추천</a>
-     </li>
-     <li>
-      <a href="/">장소추천</a>
-     </li>
-     <li>
-      <a href="/">내반려견</a>
-     </li>
-    </ul>
-   </nav> 
+  </div>
+   
+  <div class="row rows"> 
+   <div class="inline text-center">
+    <button class="btn" v-on:click="change(1)">유머나라</button>
+    <button class="btn" v-on:click="change(2)">여행후기</button>
+    <button class="btn" v-on:click="change(3)">장소추천</button>
+    <button class="btn" v-on:click="change(4)">맛집추천</button>
+    <button class="btn" v-on:click="change(5)">내반려견</button>  
+   </div>  
   </div> 
   <div class="container containers">
   <div class="communityArea">
@@ -91,18 +66,22 @@
     <thead>
      <tr>
       <th width=10% class="text-center">번호</th>
-      <th width=45% class="text-center">제목</th>
+      <th width=15% class="text-center">타입</th>
+      <th width=20% class="text-center">제목</th>
       <th width=15% class="text-center">이름</th>
       <th width=20% class="text-center">작성일</th>
+      <th width=10% class="text-center">파일</th>
       <th width=10% class="text-center">조회수</th>
      </tr>
     </thead>
     <tbody>
      <tr>
       <td width=10% class="text-center">{{vo.cno}}</td>
-      <td width=45%><a :href="'../community/detail.do?no='+vo.cno">{{vo.title}}</a></td>
+      <td width=15% class="text-center">{{vo.type}}</td>
+      <td width=20%><a :href="'/community/detail?cno='+vo.cno">{{vo.title}}</a></td>
       <td width=15% class="text-center">{{vo.name}}</td>
       <td width=20% class="text-center">{{vo.dbday}}</td>
+      <td width=10% class="text-center">{{vo.filesize}}</td>
       <td width=10% class="text-center">{{vo.hit}}</td>
      </tr>
      <tr> 
@@ -117,10 +96,30 @@
   </div>
   </div>
  </div>
-</div>
 <script>
 new Vue({
-	   el:'.containers',
+	el:'.rows',
+	data:{
+		community_list:[],
+		community_data:[]
+	},
+	methods:{
+		change:function(cno){
+			let _this=this;
+			axios.get("http://localhost/web/community_change.do",{
+				params:{
+					cno:cno
+				}
+			}).then(function(response){
+				console.log(response.data)
+				_this.community_list=response.data
+			})
+		}
+	}
+	
+}),
+new Vue({
+	   el:'.communityArea',
 	   data:{
 	 	   community_list:[],
 		   curpage:1,
