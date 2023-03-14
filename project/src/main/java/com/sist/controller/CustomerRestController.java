@@ -4,14 +4,17 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
 
 import com.sist.vo.CustomerVO;
-
+import com.sist.global.security.vo.AuthMemberVO;
 import com.sist.service.CustomerService;
 
 @RestController
@@ -52,10 +55,15 @@ public class CustomerRestController {
         return arr.toJSONString();
     }
 
-    @GetMapping("/insert_vue.do")
-    public String cs_insert(CustomerVO vo) {
-        service.csBoardInserst(vo);
-        return "";
+    // 사용자 값 가져오기
+    @PostMapping("/insert_vue.do")
+    public String cs_insert(@RequestBody CustomerVO vo, Authentication auth) {
+    	AuthMemberVO principal = (AuthMemberVO)auth.getPrincipal();
+    	String nickname = principal.getNickname();
+    	int mno = principal.getMno();
+        service.csBoardInserst(vo, mno, nickname);
+        System.out.println("ss");
+        return "ok";
     }
 
     @GetMapping("/detail_vue.do")

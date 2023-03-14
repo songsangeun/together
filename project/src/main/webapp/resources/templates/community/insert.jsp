@@ -92,6 +92,8 @@ $(function(){
           </select>
          </td>
        </tr>
+       <%-- @Insert("INSERT INTO pet_community_2_1 VALUES(" 
+			+ "#{cno},4,#{title},#{content},SYSDATE,#{type},0,#{name},#{pwd},#{filesize},#{filename})") --%>
        <tr>
            <th width=15% class="text-right">이름</th>
            <td width=85%>

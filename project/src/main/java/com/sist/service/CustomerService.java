@@ -39,9 +39,9 @@ public class CustomerService {
 				statement="SELECT NVL(MAX(nno)+1,1) as nno FROM PET_HELP_2_")
 		@Insert("INSERT INTO spring_board VALUES("
 				+"{nno}, #{name}, #{subject}, #{content}, #{pwd}, SYSDATE,0)")*/
-		public void csBoardInserst(CustomerVO vo)
+		public void csBoardInserst(CustomerVO vo, int mno, String nickname)
 		{
-			mapper.csBoardInserst(vo);
+			mapper.csBoardInserst(vo, mno, nickname);
 		}
 		
 		// 조회수 증가
@@ -78,7 +78,7 @@ public class CustomerService {
 		
 		public String csBoardUpdate(CustomerVO vo)
 		{
-			String res="no";
+			String res="nno";
 			String db_pwd=mapper.csBoardGetPassword(vo.getNno());
 			if(db_pwd.equals(vo.getPwd()))
 			{
@@ -88,15 +88,31 @@ public class CustomerService {
 			return res;
 		}
 		
-		public String csBoardDelete(int no, String pwd)
+		public String csBoardDelete(int nno, String pwd)
 		{
-			String res="no";
-			String db_pwd=mapper.csBoardGetPassword(no);
+			String res="nno";
+			String db_pwd=mapper.csBoardGetPassword(nno);
 			if(db_pwd.equals(pwd))
 			{
-				mapper.csBoardDelete(no);
+				mapper.csBoardDelete(nno);
 				res="yes";
 			}
 			return res;
 		}
+		
+	    // 파일 첨부
+		/*@Insert("INSERT INTO pet_HELP_2_1 VALUES(" 
+				+ "#{nno},5,#{subject},#{content},regdate,#{type},0,#{name},#{pwd},#{filesize},#{filename})")*/
+		public void csFileInsert(CustomerVO vo)
+		{
+			mapper.csFileInsert(vo);
+		}
+		
+	    //@Select("SELECT filename,filesize FROM pet_HELP_2_1 WHERE no=#{nno}")
+		   public CustomerVO customerFileInfoData(int nno)
+		   {
+			   return mapper.customerFileInfoData(nno);
+		   }
+		   
+		   
 }

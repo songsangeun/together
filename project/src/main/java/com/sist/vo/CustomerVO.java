@@ -4,6 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
@@ -28,5 +31,11 @@ public class CustomerVO {
     private Date createdAt;
 
     private int mno;
+    
+    private String filesize;
+    
+    private String filename;
+    
+    private List<MultipartFile> files;
 
 }

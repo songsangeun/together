@@ -81,7 +81,11 @@ public class CommunityRestController {
 	
 	
 	  @GetMapping("community/insert_vue.do") public String
-	  community_insert(CommunityVO vo) { service.communityInsert(vo); return ""; }
+	  community_insert(CommunityVO vo) 
+	  { 
+		  service.communityInsert(vo); 
+		  return ""; 
+	  }
 	 
 	  
 	  @GetMapping(value="community/detail_vue.do",produces = "text/plain;charset=UTF-8")
