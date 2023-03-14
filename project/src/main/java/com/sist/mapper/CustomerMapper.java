@@ -7,6 +7,7 @@ import com.sist.vo.*;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
@@ -44,10 +45,10 @@ public interface CustomerMapper {
     int csBoardTotalPage();
 
     // 게시판 데이터 삽입
-    @SelectKey(keyProperty = "nno", resultType = int.class, before = true,
-            statement = "SELECT NVL(MAX(nno)+1,1) as nno FROM PET_HELP_2_1")
-    @Insert("INSERT INTO spring_board VALUES ({nno}, #{name}, #{subject}, #{content}, #{pwd}, SYSDATE,0)")
-    void csBoardInserst(CustomerVO vo);
+    
+    @Insert("INSERT INTO PET_HELP_2_1 (nno,subject,content,pwd,mno,name) "
+    		+ "VALUES (PET_HELP_SEQ.NEXTVAL ,#{vo.subject}, #{vo.content}, #{vo.pwd}, #{mno}, #{nickname})")
+    void csBoardInserst(@Param("vo") CustomerVO vo,@Param("mno") int mno, @Param("nickname") String name);
 
     // 조회수 증가
     @Update("UPDATE PET_HELP_2_1 SET "
@@ -75,4 +76,11 @@ public interface CustomerMapper {
     @Delete("DELETE FROM PET_HELP_2_1 WHERE nno=#{nno}")
     void csBoardDelete(int nno);
 
+    // 파일 첨부1
+    @Select("SELECT filename,filesize FROM pet_HELP_2_1 WHERE no=#{nno}")
+	  public CustomerVO customerFileInfoData(int nno);
+    
+    @Insert("INSERT INTO pet_HELP_2_1 VALUES(" 
+			+ "#{nno},5,#{subject},#{content},#{pwd},SYSDATE,#{type},0,#{name},#{filesize},#{filename})")
+	  public void csFileInsert(CustomerVO vo);
 }
