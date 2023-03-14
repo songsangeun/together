@@ -20,7 +20,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         MemberVO vo = memberMapper.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("사용자를 찾을 수 없습니다."));
-        return new AuthMemberVO(vo.getNickname(), vo.getEmail(), vo.getPassword(), vo.getRole());
+        return new AuthMemberVO(vo.getMno(), vo.getNickname(), vo.getEmail(), vo.getPassword(), vo.getRole());
     }
 
 }
