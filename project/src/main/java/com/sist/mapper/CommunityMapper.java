@@ -32,10 +32,10 @@ import com.sist.vo.*;
     private int mno;
  */
 public interface CommunityMapper {
-	@Select("SELECT cno,hit,name,title,filesize,type,TO_CHAR(createdAt,'YYYY-MM-DD') as dbday,num "
-			+"FROM (SELECT cno,hit,name,title,filesize,type,createdAt,rownum as num "
-			+"FROM (SELECT cno,hit,name,title,filesize,type,createdAt "
-			+"FROM pet_community_2_1 ORDER BY cno DESC)) "
+	@Select("SELECT cno,hit,name,title,filesize,fileimage,type,TO_CHAR(created_At,'YYYY-MM-DD') as dbday,num "
+			+"FROM (SELECT cno,hit,name,title,filesize,fileimage,type,created_At,rownum as num "
+			+"FROM (SELECT cno,hit,name,title,filesize,fileimage,type,created_At "
+			+"FROM pet_community_2_1 WHERE type=#{type} ORDER BY cno DESC)) "
 			+"WHERE num BETWEEN #{start} AND #{end}")
 	public List<CommunityVO> communityListData(Map map);
 	
@@ -62,7 +62,7 @@ FILESIZE            VARCHAR2(4000)
 FILENAME            VARCHAR2(4000)
 	 */
 	@Insert("INSERT INTO pet_community_2_1 VALUES(" 
-			+ "#{cno},4,#{title},#{content},SYSDATE,#{type},0,#{name},#{pwd},#{filesize},#{filename})")
+			+ "#{cno},4,#{title},#{content},SYSDATE,#{type},0,#{name},#{pwd},#{filesize},#{filename},#{fileimage})")
 	public void communityInsert(CommunityVO vo);
 	  
 	@Update("UPDATE pet_community_2_1 SET "
@@ -70,7 +70,7 @@ FILENAME            VARCHAR2(4000)
 			+"WHERE cno=#{cno}")
 	public void communityHitIncrement(int cno);
 	
-	@Select("SELECT cno,name,title,content,filesize,filename,TO_CHAR(createdAt,'YYYY-MM-DD') as dbday,hit "
+	@Select("SELECT cno,name,title,fileimage,content,filesize,filename,TO_CHAR(created_At,'YYYY-MM-DD') as dbday,hit "
 			+"FROM pet_community_2_1 "
 			+"WHERE cno=#{cno}")
 	public CommunityVO communityDetailData(int cno);
@@ -88,7 +88,7 @@ FILENAME            VARCHAR2(4000)
 			+"WHERE cno=#{cno}")
 	public void communityDelete(int cno);
 	
-	@Select("SELECT filename,filesize FROM pet_community_2_1 WHERE cno=#{cno}")
+	@Select("SELECT filename,filesize,fileimage FROM pet_community_2_1 WHERE cno=#{cno}")
 	   public CommunityVO communityFileInfoData(int cno);
 	
 }

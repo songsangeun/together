@@ -26,6 +26,8 @@ public class CommunityVO {
     
     private String pwd;
     
+    private String fileimage;
+    
     private String filesize;
     
     private String filename;
