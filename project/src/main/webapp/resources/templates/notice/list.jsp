@@ -38,7 +38,7 @@
      </tr>
     </thead>
     <tbody>
-     <tr v-for="vo in board_list"> 
+     <tr v-for="vo in notice_list"> 
       <td width=10% class="text-center">{{vo.nno}}</td>
       <td width=45%><a :href="'../notice/detail.do?nno='+vo.nno">{{vo.title}}</a></td>
       <td width=20% class="text-center">{{vo.dbday}}</td>
@@ -75,7 +75,7 @@
 				   }
 			   }).then(function(response){
 				   console.log(response.data)
-				   _this.board_list=response.data
+				   _this.notice_list=response.data
 				   _this.curpage=response.data[0].curpage
 				   _this.totalpage=response.data[0].totalpage
 			   }) 

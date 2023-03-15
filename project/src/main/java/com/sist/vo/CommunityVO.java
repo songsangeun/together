@@ -16,7 +16,7 @@ public class CommunityVO {
     
     private int hit;
     
-    private List<MultipartFile> files;
+    private MultipartFile files;
     
     private String name;
 
@@ -26,9 +26,7 @@ public class CommunityVO {
     
     private String pwd;
     
-    private String fileimage;
-    
-    private String filesize;
+    private int filesize;
     
     private String filename;
 

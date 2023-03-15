@@ -32,7 +32,13 @@
   list-style: none;
   border-radius: 50px;
 } 
-/* C:\Users\user\OneDrive\바탕 화면\project2\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\project\resources\static\image  */
+.button1{
+  background-color:transparent;
+  border: 1px solid;
+  color: #477A7B;
+  border-color: #dfe9e8;
+  border-radius: 50px;
+}
 </style>
 <body>
 <jsp:include page="../fragments/header.jsp"/>
@@ -70,30 +76,31 @@
    <table class="table">
     <thead>
      <tr>
-      <th width=10% class="text-center">번호</th>
+      <th width=5% class="text-center">번호</th>
+      <th></th>
       <th width=15% class="text-center">타입</th>
       <th width=20% class="text-center">제목</th>
-      <th width=15% class="text-center">이름</th>
+      <th width=15% class="text-center">닉네임</th>
       <th width=20% class="text-center">작성일</th>
-      <th width=10% class="text-center">파일</th>
-      <th width=10% class="text-center">조회수</th>
+<!--       <th width=10% class="text-center">파일</th>
+ -->      <th width=10% class="text-center">조회수</th>
      </tr>
     </thead>
     <tbody>
      <tr v-for="vo in community_list">
       <td width=10% class="text-center">{{vo.cno}}</td>
+      <td><img :src="'/image/upload/'+vo.filename"></td>
       <td width=15% class="text-center">{{vo.type}}</td>
       <td width=20%><a :href="'../community/detail.do?cno='+vo.cno">{{vo.title}}</a></td>
       <td width=15% class="text-center">{{vo.name}}</td>
       <td width=20% class="text-center">{{vo.dbday}}</td>
-      <td width=10% class="text-center">{{vo.filesize}}</td>
       <td width=10% class="text-center">{{vo.hit}}</td>
      </tr>
      <tr> 
-      <td colspan="5" class="text-right">
-       <input type=button value="이전" class="btn btn-sm btn-danger" v-on:click="prev()">
-        {{curpage}} page / {{totalpage}} pages
-       <input type=button value="다음" class="btn btn-sm btn-warning" v-on:click="next()">
+      <td colspan="5" class="text-center">
+       <input type=button value="이전" class="button1" v-on:click="prev()">
+        <span style="color: #477A7B">{{curpage}} page / {{totalpage}} pages</span>
+       <input type=button value="다음" class="button1" v-on:click="next()">
       </td>
      </tr>
     </tbody>
