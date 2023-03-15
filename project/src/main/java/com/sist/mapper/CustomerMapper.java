@@ -33,12 +33,14 @@ import org.apache.ibatis.annotations.Update;
 public interface CustomerMapper {
 
     // 고객센터 1:1 문의 목록 출력
-    @Select("SELECT nno,subject,name,regdate,hit,num "
+    /*@Select("SELECT nno,subject,name,regdate,hit,num "
             + "FROM (SELECT nno,subject,name,regdate,hit,rownum as num "
             + "FROM (SELECT nno,subject,name,regdate,hit "
             + "FROM PET_HELP_2_1 ORDER BY nno DESC)) "
-            + "WHERE num BETWEEN #{start} AND #{end}")
-    List<CustomerVO> csBoardListData(Map map);
+            + "WHERE num BETWEEN #{start} AND #{end}")*/
+	@Select("SELECT nno,subject,name,TO_CHAR(regdate,'YY/MM/DD') as dbday, hit "
+			+ "FROM PET_HELP_2_1 ORDER BY nno DESC OFFSET ${page} ROW FETCH FIRST 10 ROWS ONLY")
+    List<CustomerVO> csBoardListData(@Param("page") int page);
 
     // 페이지네이션 (10개씩 페이지 나누기)
     @Select("SELECT CEIL(COUNT(*)/10.0) FROM PET_HELP_2_1")
@@ -57,7 +59,7 @@ public interface CustomerMapper {
     void csBoardHitIncrement(int nno);
 
     //게시판 데이터 상세보기
-    @Select("SELECT no,name,subject,content,createdAt,hit "
+    @Select("SELECT nno,name,subject,content,TO_CHAR(regdate,'YY/MM/DD') as dbday,hit "
             + "FROM PET_HELP_2_1 "
             + "WHERE nno=#{nno}")
     CustomerVO csBoardDetailData(int nno);
@@ -77,10 +79,23 @@ public interface CustomerMapper {
     void csBoardDelete(int nno);
 
     // 파일 첨부1
-    @Select("SELECT filename,filesize FROM pet_HELP_2_1 WHERE no=#{nno}")
-	  public CustomerVO customerFileInfoData(int nno);
+    @Select("SELECT filename,filesize FROM pet_HELP_2_1 WHERE nno=#{nno}")
+	   public CustomerVO customerFileInfoData(int nno);
     
     @Insert("INSERT INTO pet_HELP_2_1 VALUES(" 
 			+ "#{nno},5,#{subject},#{content},#{pwd},SYSDATE,#{type},0,#{name},#{filesize},#{filename})")
-	  public void csFileInsert(CustomerVO vo);
+	public void csFileInsert(CustomerVO vo);
+    
+    // 댓글
+    // 해당 게시글 db에 댓글 저장(관리자가 댓글 달고 저장) 관리자만
+    @Insert("INSERT INTO pet_HELP_REPLY_2_1 (hrno,nno,msg) VALUES (PET_HELP_REPLY.NEXTVAL, #{nno},#{msg})")
+    public void csReplySave(CustomerReplyVO vo);
+    
+    // 관리자가 작성한 게시글 내용 가져오기(관리자가 작성한 댓글 가져오기) 일반 사용자도 볼수있게
+    @Select("SELECT * FROM PET_HELP_REPLY_2_1 WHERE nno=#{nno}")
+    public CustomerReplyVO csReplyData(int nno);
+    
+    
+    
+
 }

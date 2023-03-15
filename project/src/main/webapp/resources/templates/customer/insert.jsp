@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../fragments/head.jsp"/>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -143,11 +144,11 @@ $(function(){
 <body>
 <jsp:include page="../fragments/header.jsp"/>
 
- <div class="wrapper row3 rows">
+ <!--<div class="wrapper row3 rows">
   <main class="container clear">
    <table class="table">
     <tbody>
-<!-- <tr>
+ <tr>
 <th scope="row">제목</th>
 <td> <select id="subject" name="subject" fw-filter="isFill" fw-label="제목" fw-msg=""  >
 <option value="[회원] 상품관련 문의 드립니다.">[상품] 상품관련 문의 드립니다.</option>
@@ -156,19 +157,19 @@ $(function(){
 <option value="[추천] 주문취소 문의 드립니다. ">[주문취소] 주문취소 문의 드립니다. </option>
 </select>  
 </td>
-</tr> -->
+</tr> 
 
 <tr>
 
 </tr>
 </tbody>
-<tbody class="">
+<tbody class="">-->
 <div class="wrapper row3 rows">
   <main class="container clear">
     <table class="table">
       <tr>
         <th width=20%>작성자</th>
-        <td width=80%><input type=text size="15" class="input-sm" v-model="name"></td>
+        <td width=80%><sec:authentication property="principal.nickname"/></td>
       </tr>
       <tr>
         <th width=20%>제목</th>
@@ -209,6 +210,8 @@ $(function(){
       </tr>
       <tr>
       <td>
+         
+      
       <!-- <div class="ec-base-button">
       <div class="clear"></div>
       <a href="#" class="per_50 cBtn">취소</a>
@@ -217,15 +220,11 @@ $(function(){
       </td>
       </tr>
       </tbody>
-      
-    </table>
-  </main>
-</div>
-
-
-   </table>
+     </table>
+            
    </main>
   </div>
+
   </body>
 <script>
   new Vue({
@@ -245,6 +244,11 @@ $(function(){
 					  content:this.content,
 					  pwd:this.pwd
   					  
+  			  }
+  			  if(this.pwd===''){
+  				alert("비밀번호를 입력해주세요");
+				  return false;
+  			  }
   			  axios.post('/customer/insert_vue.do',JSON.stringify(data),{
   				  headers:{
   					  "content-type":'application/json'

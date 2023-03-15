@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sist.vo.CustomerReplyVO;
 import com.sist.vo.CustomerVO;
 import com.sist.mapper.CustomerMapper;
 
@@ -22,9 +23,10 @@ public class CustomerService {
 				+"FROM (SELECT nno,subject,name,createdAt,hit "
 				+"FROM PET_HELP_2_1 ORDER BY nno DESC)) "
 				+"WHERE num BETWEEN #{start} AND #{end}")*/
-		public List<CustomerVO> csBoardListData(Map map)
+		public List<CustomerVO> csBoardListData(int page)
 		{
-			return mapper.csBoardListData(map);
+			int start = (10*page) - (10-1);
+			return mapper.csBoardListData(start-1);
 		}
 		
 		// 페이지네이션 (10개씩 페이지 나누기)
@@ -113,6 +115,22 @@ public class CustomerService {
 		   {
 			   return mapper.customerFileInfoData(nno);
 		   }
-		   
+		
+		//댓글
+		// 해당 게시글 db에 댓글 저장(관리자가 댓글 달고 저장) 관리자만
+		//@Insert("INSERT INTO pet_HELP_REPLY_2_1 (hrno,nno,msg) VALUES (PET_HELP_REPLY.NEXTVAL, #{nno},#{msg})")
+		    public void csReplySave(CustomerReplyVO vo)
+		    {
+		    	mapper.csReplySave(vo);
+		    }
+		    
+		// 관리자가 작성한 게시글 내용 가져오기(관리자가 작성한 댓글 가져오기) 일반 사용자도 볼수있게
+		    @Select("SELECT * FROM PET_HELP_REPLY_2_1 WHERE nno=#{nno}")
+		    public CustomerReplyVO csReplyData(int nno)
+		    {
+		    	return mapper.csReplyData(nno);
+		    }
+		
+		
 		   
 }
