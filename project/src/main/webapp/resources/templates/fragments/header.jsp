@@ -37,7 +37,7 @@
                                                     <a href="/besttip/list">베스트팁</a>
                                                 </li>
                                                 <li>
-                                                    <a href="/">리뷰모음</a>
+                                                    <a href="/review/review_list">리뷰모음</a>
                                                 </li>
                                                 <li>
                                                     <a href="/">Q&A</a>

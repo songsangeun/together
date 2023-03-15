@@ -24,7 +24,7 @@ public interface ReviewMapper {
 		public List<ReviewVO> reviewListData(Map map);
 
 // 총 페이지
-@Select("SELECT CEIL(COUNT(*)/20.0) FROM pet_place_review_2_1")
+@Select("SELECT CEIL(COUNT(*)/10.0) FROM pet_place_review_2_1")
 public int reviewTotalPage();
 
 // 글쓰기
@@ -35,7 +35,7 @@ public int reviewTotalPage();
 public void reviewInsert(ReviewVO vo);
 
 // 상세
-@Select("SELECT prno,pno,mno,content,TO_CHAR(regdate,'YYYY-MM-DD') as created_at "
+@Select("SELECT prno,pno,mno,content,TO_CHAR(created_at,'YYYY-MM-DD') as createdAt "
 		+"FROM pet_place_review_2_1 "
 		+"WHERE prno=#{prno}")
 public ReviewVO reviewDetailData(int pno);

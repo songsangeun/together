@@ -16,7 +16,7 @@ import com.sist.vo.ReviewVO;
 public class ReviewService {
 	@Autowired
 	private ReviewMapper mapper;
-	/* @Select("SELECT prno,pno,mno,content,TO_CHAR(regdate,'YYYY-MM-DD') as created_at,writer num "
+	/* @Select("SELECT prno,pno,mno,content,TO_CHAR(created_at,'YYYY-MM-DD') as created_at,writer num "
 			+"FROM (SELECT prno,pno,mno,content,created_at,write,rownum as num "
 			+"FROM pet_place_review_2_1) "
 			+"WHERE num BETWEEN #{start} AND #{end}") */
@@ -46,9 +46,9 @@ public class ReviewService {
 	/* @Select("SELECT prno,pno,mno,content,TO_CHAR(regdate,'YYYY-MM-DD') as created_at "
 			+"FROM pet_place_review_2_1 "
 			+"WHERE prno=#{prno}") */
-	public ReviewVO reviewDetailData(int pno)
+	public ReviewVO reviewDetailData(int prno)
 	{
-		return mapper.reviewDetailData(pno);
+		return mapper.reviewDetailData(prno);
 	}
 	
 	// 삭제
