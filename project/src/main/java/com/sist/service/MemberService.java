@@ -2,6 +2,7 @@ package com.sist.service;
 
 import com.sist.exception.member.DuplicateEmailException;
 import com.sist.exception.member.DuplicateNicknameException;
+import com.sist.exception.member.NotFoundMemberException;
 import com.sist.global.error.exception.ErrorType;
 import com.sist.mapper.MemberMapper;
 import com.sist.vo.MemberVO;
@@ -25,6 +26,11 @@ public class MemberService {
         String encode = passwordEncoder.encode(memberVO.getPassword());
         memberVO.setPassword(encode);
         memberMapper.save(memberVO);
+    }
+
+    public MemberVO profile(String email) {
+        return memberMapper.findByEmail(email)
+                .orElseThrow(() -> new NotFoundMemberException(ErrorType.NOT_FOUND_MEMBER));
     }
 
     public void nicknameDuplicateCheck(String nickname) {
