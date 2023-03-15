@@ -19,6 +19,8 @@ public class BestTipVO {
 
     private int hit;
 
-    private Date createdAt;
+    private Date created_at;
+    
+    private String createdAt;
 
 }
