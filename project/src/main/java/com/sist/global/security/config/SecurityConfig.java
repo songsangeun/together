@@ -28,8 +28,8 @@ public class SecurityConfig {
                 .loginProcessingUrl("/member/login")
                 .usernameParameter("email")
                 .passwordParameter("password")
-                .failureHandler(loginFailureHandler())
                 .defaultSuccessUrl("/")
+                .failureHandler(loginFailureHandler())
         );
         http.logout(logout -> logout
                 .logoutUrl("/member/logout")

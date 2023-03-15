@@ -68,7 +68,9 @@ public class CustomerController {
     
     @GetMapping("/detail")
     public String cs_detail(int nno, Model model) {
-        model.addAttribute("nno", nno); // model을 이용해서 nno값 넘기기
+    	CustomerVO vo=service.csBoardDetailData(nno);
+        model.addAttribute("vo", vo); // model을 이용해서 nno값 넘기기
+        model.addAttribute("nno", nno);
         return "customer/detail";
     }
 

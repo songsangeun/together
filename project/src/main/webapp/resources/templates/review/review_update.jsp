@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,15 +18,15 @@
     <table class="table">
       <tr>
         <th width=20%>작성자</th>
-        <td width=80%><input type=text size="15" class="input-sm" v-model="writer"></td>
+        <td width=80%><input type=text size="15" class="input-sm" v-model="writer" :value="writer"></td>
       </tr>
       <tr>
         <th width=20%>내용</th>
-        <td width=80%><textarea rows="10" cols="55" v-model="content"></textarea></td>
+        <td width=80%><textarea rows="10" cols="55" v-model="content">{{content}}</textarea></td>
       </tr>
       <tr>
         <td colspan="2" class="text-center">
-         <input type=button value="글쓰기" class="btn btn-sm btn-primary" v-on:click="write()">
+         <input type=button value="수정하기" class="btn btn-sm btn-primary" v-on:click="update()">
          <input type=button value="취소" class="btn btn-sm btn-info" onclick="javascript:history.back()">
         </td>
       </tr>
@@ -33,26 +34,25 @@
   </main>
 </div>
 <script>
-  new Vue({
+new Vue({
 	  el:'.rows',
 	  data:{
 		  writer:'',
-		  content:''
+		  content:'',
+		  prno:${prno}
 	  },
-	  methods:{
-		  write:function(){
+	  mounted:function(){
 			  let _this=this;
-			  axios.get('reivew/review_insert_vue',{
+			  axios.get('/review/review_update_vue',{
 				  params:{
-					  writer:this.writer,
-					  content:this.content,
+					 prno:this.prno
 				  }
 			  }).then(function(response){
-				  location.href="/review/review_list"
+				  _this.writer=response.data.writer
+				  _this.content=response.data.content
 			  })
-		  }
 	  }
-  })
+})
 </script>
 
 <jsp:include page="../fragments/footer.jsp"/>

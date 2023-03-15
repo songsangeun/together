@@ -1,18 +1,64 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <jsp:include page="../templates/fragments/head.jsp"/>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>베스트팁</title>
+</head>
+<style>
+.slider_textt h3{
+	font-size: 40px;
+	color: white;
+	font-weight: bold;
+}
+
+.slider_textt p{
+	font-size: 20px;
+	color: white;
+	font-weight: bold;
+}
+ .slider_bg_2{
+	background-image:url('https://a.cdn-hotels.com/gdcs/production106/d509/18ef0f52-b1cf-4284-b97e-2c763fa1fd1b.jpg?impolicy=fcrop&w=1600&h=1066&q=medium');
+} 
+.m_box3 {
+    display: block;
+    width: 100%;
+    margin: 15px auto;
+    height: 480px;
+}
+.swiper-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    transition-property: transform;
+    box-sizing: content-box;
+}
+.m_list_box {
+    width: 31% !important;
+    margin: 0 3.2% 0 0;
+}
+.m_list_box p img {
+    width: 100%;
+    height: 250px;
+    cursor: pointer;
+}
+</style>
 <body>
 <!-- header_area_start -->
 <jsp:include page="../templates/fragments/header.jsp"/>
 <!-- slider_area_start -->
 <div class="slider_area">
-    <div class="single_slider slider_bg_1 d-flex align-items-center">
+    <div class="single_slider slider_bg_2 d-flex align-items-center">
         <div class="container">
             <div class="row">
                 <div class="col-lg-5 col-md-6">
-                    <div class="slider_text">
-                        <h3>We Care <br> <span>Your Pets</span></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur <br> adipiscing elit, sed do eiusmod.</p>
-                        <a href="contact.html" class="boxed-btn4">Contact Us</a>
+                    <div class="slider_textt">
+                        <h3>반려견과 함께하는 <br> <span>일상을 더더욱 다양하게!</span></h3>
+                        <p>우리 반려견과 함께하는 플랫폼, <br> 투개더</p>
+                        <a href="contact.html" class="boxed-btn4">숙소 둘러보기</a>
                     </div>
                 </div>
             </div>
@@ -24,244 +70,89 @@
 <!-- service_area_start  -->
 <div class="service_area">
     <div class="container">
-        <div class="row justify-content-center ">
-            <div class="col-lg-7 col-md-10">
-                <div class="section_title text-center mb-95">
-                    <h3>Services for every dog</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna.</p>
-                </div>
-            </div>
-        </div>
         <div class="row justify-content-center">
-            <div class="col-lg-4 col-md-6">
-                <div class="single_service">
-                    <div class="service_thumb service_icon_bg_1 d-flex align-items-center justify-content-center">
-                        <div class="service_icon">
-                            <img src="/image/service/service_icon_1.png" alt="">
-                        </div>
-                    </div>
-                    <div class="service_content text-center">
-                        <h3>Pet Boarding</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single_service active">
-                    <div class="service_thumb service_icon_bg_1 d-flex align-items-center justify-content-center">
-                        <div class="service_icon">
-                            <img src="/image/service/service_icon_2.png" alt="">
-                        </div>
-                    </div>
-                    <div class="service_content text-center">
-                        <h3>Healthy Meals</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single_service">
-                    <div class="service_thumb service_icon_bg_1 d-flex align-items-center justify-content-center">
-                        <div class="service_icon">
-                            <img src="/image/service/service_icon_3.png" alt="">
-                        </div>
-                    </div>
-                    <div class="service_content text-center">
-                        <h3>Pet Spa</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut</p>
-                    </div>
-                </div>
-            </div>
+        <div class="m_box3 area aos-init aos-animate" data-aos="fade-up">  				
+        <div class="m_box_ttlbox">  					
+        <h2 class="m_box_ttl">지난주 <span>HOT</span></h2>  					 				
+        </div>  			
+        <div class="swiper-container swiper_hot swiper-container-initialized swiper-container-horizontal" style="width:100%">  				
+        <div class="m_list_wrap pr swiper-wrapper" id="swiper-wrapper-b63ffae40f4243cc" aria-live="polite" style="transform: translate3d(0px, 0px, 0px);">  									
+        <div class="m_list_box swiper-slide swiper-slide-active" onclick="page_move('http://hatdog.co.kr/pc_hatdog/?m1Code=ar_info&amp;m2Code=ar_info&amp;mode=view&amp;idx=8242', 'H');" role="group" aria-label="1 / 9" style="width: 420px;">  						
+        <p><img src="http://appdata.hungryapp.co.kr/images/hatdog/ar/202108/1628054951_M162805495126346193.jpg/hungryapp/resize/390" alt=""></p>  						
+        <dl>  							
+        <dt>클램 해운대</dt>  							
+        <dd>해운대 오션뷰 펍, 맛과 분위기 모두 만족!</dd>  						
+        </dl>  					
+        </div>  									
+        <div class="m_list_box swiper-slide swiper-slide-next" onclick="page_move('http://hatdog.co.kr/pc_hatdog/?m1Code=ar_info&amp;m2Code=ar_info&amp;mode=view&amp;idx=4950', 'H');" role="group" aria-label="2 / 9" style="width: 420px;">  						
+        <p><img src="http://appdata.hungryapp.co.kr/images/hatdog/ar/202302/1676792411_M16767924111779421.jpeg/hungryapp/resize/390" alt=""></p>  						
+        <dl>  							
+        <dt>신창해물라면와랑식탁</dt>  							
+        <dd>술먹은 다음날 먹기좋은 배반하지않는 맛</dd>  						
+        </dl>  					
+        </div>  									
+        <div class="m_list_box swiper-slide" onclick="page_move('http://hatdog.co.kr/pc_hatdog/?m1Code=ar_info&amp;m2Code=ar_info&amp;mode=view&amp;idx=6445', 'H');" role="group" aria-label="3 / 9" style="width: 420px;">  						
+        <p><img src="http://appdata.hungryapp.co.kr/images/hatdog/ar/202101/1611642896_M161164289696961222.jpg/hungryapp/resize/390" alt=""></p>  						
+        <dl>  							
+        <dt>시티스트릿츠</dt>  							
+        <dd>모던한 분위기에서 휴식을 즐길 수 있는 곳</dd>  						
+        </dl>  					
+        </div>  									
+        <div class="m_list_box swiper-slide" onclick="page_move('http://hatdog.co.kr/pc_hatdog/?m1Code=ar_info&amp;m2Code=ar_info&amp;mode=view&amp;idx=8071', 'H');" role="group" aria-label="4 / 9" style="width: 420px;">  						
+        <p><img src="http://appdata.hungryapp.co.kr/images/hatdog/ar/202107/1627015685_M162701568597273193.jpg/hungryapp/resize/390" alt=""></p>  						
+        <dl>  							
+        <dt>깡 카페</dt>  							
+        <dd>작고 예쁜 분위기의 서귀포시 카페</dd>  						
+        </dl>  					
         </div>
-    </div>
-</div>
-<!-- service_area_end -->
+        </div>
+        <!-- 지난주 핫 끝 -->
+        
+        <!-- 다음줄 시작 -->
+        <div class="m_box3 area aos-init aos-animate" data-aos="fade-up">  				
+        <div class="m_box_ttlbox">  					
+        <h2 class="m_box_ttl">추천하는 <span>장소</span></h2>  					 				
+        </div>  			
+        <div class="swiper-container swiper_hot swiper-container-initialized swiper-container-horizontal" style="width:100%">  				
+        <div class="m_list_wrap pr swiper-wrapper" id="swiper-wrapper-b63ffae40f4243cc" aria-live="polite" style="transform: translate3d(0px, 0px, 0px);">  									
+        <div class="m_list_box swiper-slide swiper-slide-active" onclick="page_move('http://hatdog.co.kr/pc_hatdog/?m1Code=ar_info&amp;m2Code=ar_info&amp;mode=view&amp;idx=8242', 'H');" role="group" aria-label="1 / 9" style="width: 420px;">  						
+        <p><img src="http://appdata.hungryapp.co.kr/images/hatdog/ar/202108/1628054951_M162805495126346193.jpg/hungryapp/resize/390" alt=""></p>  						
+        <dl>  							
+        <dt>클램 해운대</dt>  							
+        <dd>해운대 오션뷰 펍, 맛과 분위기 모두 만족!</dd>  						
+        </dl>  					
+        </div>  									
+        <div class="m_list_box swiper-slide swiper-slide-next" onclick="page_move('http://hatdog.co.kr/pc_hatdog/?m1Code=ar_info&amp;m2Code=ar_info&amp;mode=view&amp;idx=4950', 'H');" role="group" aria-label="2 / 9" style="width: 420px;">  						
+        <p><img src="http://appdata.hungryapp.co.kr/images/hatdog/ar/202302/1676792411_M16767924111779421.jpeg/hungryapp/resize/390" alt=""></p>  						
+        <dl>  							
+        <dt>신창해물라면와랑식탁</dt>  							
+        <dd>술먹은 다음날 먹기좋은 배반하지않는 맛</dd>  						
+        </dl>  					
+        </div>  									
+        <div class="m_list_box swiper-slide" onclick="page_move('http://hatdog.co.kr/pc_hatdog/?m1Code=ar_info&amp;m2Code=ar_info&amp;mode=view&amp;idx=6445', 'H');" role="group" aria-label="3 / 9" style="width: 420px;">  						
+        <p><img src="http://appdata.hungryapp.co.kr/images/hatdog/ar/202101/1611642896_M161164289696961222.jpg/hungryapp/resize/390" alt=""></p>  						
+        <dl>  							
+        <dt>시티스트릿츠</dt>  							
+        <dd>모던한 분위기에서 휴식을 즐길 수 있는 곳</dd>  						
+        </dl>  					
+        </div>  									
+        <div class="m_list_box swiper-slide" onclick="page_move('http://hatdog.co.kr/pc_hatdog/?m1Code=ar_info&amp;m2Code=ar_info&amp;mode=view&amp;idx=8071', 'H');" role="group" aria-label="4 / 9" style="width: 420px;">  						
+        <p><img src="http://appdata.hungryapp.co.kr/images/hatdog/ar/202107/1627015685_M162701568597273193.jpg/hungryapp/resize/390" alt=""></p>  						
+        <dl>  							
+        <dt>깡 카페</dt>  							
+        <dd>작고 예쁜 분위기의 서귀포시 카페</dd>  						
+        </dl>  					
+        </div>
+        </div>
+        </div>
+        </div> 
+        <!-- 다음줄 끝 -->
+        
+            
 
-<!-- adapt_area_start  -->
-<div class="adapt_area">
-    <div class="container">
-        <div class="row justify-content-between align-items-center">
-            <div class="col-lg-5">
-                <div class="adapt_help">
-                    <div class="section_title">
-                        <h3><span>We need your</span>
-                            help Adopt Us</h3>
-                        <p>Lorem ipsum dolor sit , consectetur adipiscing elit, sed do iusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Quis ipsum suspendisse ultrices.</p>
-                        <a href="contact.html" class="boxed-btn3">Contact Us</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="adapt_about">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6 col-md-6">
-                            <div class="single_adapt text-center">
-                                <img src="/image/adapt_icon/1.png" alt="">
-                                <div class="adapt_content">
-                                    <h3 class="counter">452</h3>
-                                    <p>Pets Available</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="single_adapt text-center">
-                                <img src="/image/adapt_icon/3.png" alt="">
-                                <div class="adapt_content">
-                                    <h3><span class="counter">52</span>+</h3>
-                                    <p>Pets Available</p>
-                                </div>
-                            </div>
-                            <div class="single_adapt text-center">
-                                <img src="/image/adapt_icon/2.png" alt="">
-                                <div class="adapt_content">
-                                    <h3><span class="counter">52</span>+</h3>
-                                    <p>Pets Available</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 </div>
-<!-- adapt_area_end  -->
-
-<!-- testmonial_area_start  -->
-<div class="testmonial_area">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="textmonial_active owl-carousel">
-                    <div class="testmonial_wrap">
-                        <div class="single_testmonial d-flex align-items-center">
-                            <div class="test_thumb">
-                                <img src="/image/testmonial/1.png" alt="">
-                            </div>
-                            <div class="test_content">
-                                <h4>Jhon Walker</h4>
-                                <span>Head of web design</span>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exerci.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testmonial_wrap">
-                        <div class="single_testmonial d-flex align-items-center">
-                            <div class="test_thumb">
-                                <img src="/image/testmonial/1.png" alt="">
-                            </div>
-                            <div class="test_content">
-                                <h4>Jhon Walker</h4>
-                                <span>Head of web design</span>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exerci.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testmonial_wrap">
-                        <div class="single_testmonial d-flex align-items-center">
-                            <div class="test_thumb">
-                                <img src="/image/testmonial/1.png" alt="">
-                            </div>
-                            <div class="test_content">
-                                <h4>Jhon Walker</h4>
-                                <span>Head of web design</span>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exerci.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
 </div>
-<!-- testmonial_area_end  -->
-
-<!-- team_area_start  -->
-<div class="team_area">
-    <div class="container">
-        <div class="row justify-content-center ">
-            <div class="col-lg-6 col-md-10">
-                <div class="section_title text-center mb-95">
-                    <h3>Our Team</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna.</p>
-                </div>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-lg-4 col-md-6">
-                <div class="single_team">
-                    <div class="thumb">
-                        <img src="/image/team/1.png" alt="">
-                    </div>
-                    <div class="member_name text-center">
-                        <div class="mamber_inner">
-                            <h4>Rala Emaia</h4>
-                            <p>Senior Director</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single_team">
-                    <div class="thumb">
-                        <img src="/image/team/2.png" alt="">
-                    </div>
-                    <div class="member_name text-center">
-                        <div class="mamber_inner">
-                            <h4>jhon Smith</h4>
-                            <p>Senior Director</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single_team">
-                    <div class="thumb">
-                        <img src="/image/team/3.png" alt="">
-                    </div>
-                    <div class="member_name text-center">
-                        <div class="mamber_inner">
-                            <h4>Rala Emaia</h4>
-                            <p>Senior Director</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- team_area_start  -->
-<div class="contact_anipat anipat_bg_1">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="contact_text text-center">
-                    <div class="section_title text-center">
-                        <h3>Why go with Anipat?</h3>
-                        <p>Because we know that even the best technology is only as good as the people behind it. 24/7
-                            tech support.</p>
-                    </div>
-                    <div class="contact_btn d-flex align-items-center justify-content-center">
-                        <a href="contact.html" class="boxed-btn4">Contact Us</a>
-                        <p>Or <a href="#"> +880 4664 216</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 <!-- footer_start  -->
 <jsp:include page="../templates/fragments/footer.jsp"/>

@@ -18,28 +18,31 @@
 </style>
 <body>
 <jsp:include page="../fragments/header.jsp"/>
-<div class="container" id="app">
-    <div class="text-center"
-         style="background: url('http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/member/top_bgr.jpg')">
-        <div class="d-flex justify-content-between align-items-center">
-            <div>
-                <img src="http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/member/top_left_img.png">
-            </div>
-            <div class="p-5">
-                <h1 class="text-light">
-                    <strong>투개더 로그인</strong>
-                </h1>
-                <p class="text-light mt-3">
-                    반려견과 함께 행복한 여행!
-                    <br/>
-                    투개더 로그인 후 지금 바로 떠나보세요.
-                </p>
-            </div>
-            <div>
-                <img src="http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/member/top_right_img.png">
+<div class="p-0 container-fluid">
+    <div class="text-center" style="background: url('http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/schedule/top_bgr_n2.png')">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <img src="http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/member/top_left_img.png">
+                </div>
+                <div class="p-5">
+                    <h1 class="text-light">
+                        <strong>투개더 로그인</strong>
+                    </h1>
+                    <p class="text-light mt-3">
+                        반려견과 함께 행복한 여행!
+                        <br/>
+                        투개더 로그인 후 지금 바로 떠나보세요.
+                    </p>
+                </div>
+                <div>
+                    <img src="http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/member/top_right_img.png">
+                </div>
             </div>
         </div>
     </div>
+</div>
+<div class="container" id="app">
     <div class="d-flex justify-content-center">
         <div class="login-box">
             <div class="p-5">

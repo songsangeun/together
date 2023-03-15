@@ -9,11 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
 
+import com.sist.vo.CustomerReplyVO;
 import com.sist.vo.CustomerVO;
+import com.sist.global.security.annotation.LoginMember;
 import com.sist.global.security.vo.AuthMemberVO;
 import com.sist.service.CustomerService;
 
@@ -26,8 +29,8 @@ public class CustomerRestController {
 
     // VusJS에서 페이지 전송
     @GetMapping("/list_vue.do")
-    public String cs_list(int page) {
-        Map map = new HashMap();
+    //public String cs_list(int page) {
+        /*Map map = new HashMap();
         map.put("start", (page * 10) - 9);
         map.put("end", page * 10);
 
@@ -51,9 +54,13 @@ public class CustomerRestController {
             }
             arr.add(obj);
             i++;
-        }
-        return arr.toJSONString();
-    }
+        }*/
+        //return arr.toJSONString();
+    	public List<CustomerVO> test(@RequestParam(value="page", defaultValue = "1") int page)
+    	{
+    		page = (page <= 0) ? 1 :page;
+    		return service.csBoardListData(page);
+    	}
 
     // 사용자 값 가져오기
     @PostMapping("/insert_vue.do")
@@ -102,9 +109,24 @@ public class CustomerRestController {
     }
 
     @GetMapping("/delete_vue.do")
-    public String cs_delete_ok(int nno, String pwd) {
+    public String cs_delete_ok(int nno, String pwd)
+    {
         return service.csBoardDelete(nno, pwd);
     }
 
+    @PostMapping("/write")
+    public void cs_write(@RequestBody CustomerReplyVO customerReplyVO, @LoginMember Authentication authentication)
+    {
+    	AuthMemberVO principal=(AuthMemberVO)authentication.getPrincipal();
+    	// hrno는 시퀀스로 가져옴
+    	// nno는 고객센터 글에서 보내주고 
+    	service.csReplySave(customerReplyVO);
+    }
+    
+    @GetMapping("/reply")
+    public CustomerReplyVO cs_reply(@RequestParam("nno") int nno)
+    {
+    	return service.csReplyData(nno);
+    }
 
 }

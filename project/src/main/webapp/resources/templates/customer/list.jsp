@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -110,23 +111,153 @@ h1{
 #searchQuerySubmit:hover {
   cursor: pointer;
 }
+
+.pageTopWrap {
+    position: relative;
+    width: 100%;
+    padding: 0 0 0;
+    margin: 0 0;
+    background: #dfe9e8;
+}
+
+.pageTopMargin {
+    height: 30px;
+    width: 100%;
+    background: #dfe9e8;
+    margin: 0 0 30px;
+}
+
+.pageTopWrap.gray {
+    background: #fafafa;
+}
+
+.pageTopWrap.white {
+    background: #fff;
+}
+
+.sectionT,.pageTitle,.titleArea h2,.bestTitle {
+    position: relative;
+    display: block;
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    color: #477A7B;
+    margin: 0 0 30px;
+    padding: 0 10px;
+    line-height: 1.2em;
+}
+
+.per_10 {
+	width:10%;
+	float:left;
+}
+
+.pconly {
+	display: block !important;
+}
+.per_50 {
+	width:50%;
+	float:left;
+}
+
+.per_20 {
+	width: 20%;
+	float: left;
+}
+
+.pageSubtitle {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e8e8e8;
+    margin: 0 0 30px;
+}
+
+.pageNav {
+    position: relative;
+    margin: 0 auto 30px;
+    padding: 10px 0;
+}
+
+.pageNav ul {
+    margin: 0 auto;
+    padding: 0 10px;
+    list-style: none;
+    text-align: center;
+    font-size: 0;
+}
+
+.pageNav ul li {
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+    display: inline-block;
+}
+
+.pageNav ul li a {
+    position: relative;
+    display: block;
+    margin: 0 5px;
+    padding: 0 20px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 15px;
+    font-weight: 500;
+    background: #f3f3f3;
+    color: #477A7B;
+    list-style: none;
+    border-radius: 50px;
+}
+
+.pageNav ul li a:hover,.pageNav ul li.active a {
+    background: #477A7B;
+    color: #fff;
+}
+
+.pBtn{
+
+}
+
+.nBtn{
+
+}
 </style>
 </head>
 
 <body>
 <jsp:include page="../fragments/header.jsp"/>
-
+<div id="wrap">
  <div class="wrapper row3 rows">
   <main class="container clear">
-   <table class="table">
-     <tr>
-      <td>
-       <a href="/customer/insert" class="plusBtn">등록</a>
-      </td>
-     </tr>
-   </table>
+   <div class="pageTopWrap">
+     <div class="pageTitle">커뮤니티</div>
+     <div class="pageNav">
+      <ul>
+        <li class="active">
+          <a href="#">~~~</a>
+        </li>
+        <li>
+          <a href="#">QNA</a>
+        </li>
+        <li>
+          <a href="#">FAQ</a>
+        </li>
+        <li>
+          <a href="#">고객센터</a>
+        </li>
+       </ul>
+     </div>
+   </div>
+   <tr>
+     <td>
+      <sec:authorize access="isAuthenticated()">
+       <a href="../customer/insert" class="plusBtn" style="background-color:transparent;color:black;border-color: black">글쓰기</a>
+      </sec:authorize>
+     </td>
+    </tr> 
    <table class="table">
      <thead>
+     	
        <tr>
          <th width=10% class="text-center">번호</th>
          <th width=45% class="text-center">작성자</th>
@@ -143,42 +274,20 @@ h1{
          <td width=20% class="text-center">{{vo.dbday}}</td>
          <td width=10% class="text-center">{{vo.hit}}</td>
        </tr>
-       
-       <form id="boardSearchForm" name action="/customer/list" method="get"
-        target="_top" enctype="multipart/form-data">
-          <fieldset class="boardSearch">
-            <legend>게시물 검색</legend>
-            <div class="searchBar">
-    <input id="searchQueryInput" type="text" name="ss" placeholder="검색해보걸아♡" value="${ss }" />
-    <button id="searchQuerySubmit" type="submit" name="searchQuerySubmit">
-      <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#666666" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
-      </svg>
-    </button>
-  </div>
-            <p>
-              <select id="search_date" name="search_date" fw-filter fw-label fw-msg>
-                <option value="week">일주일</option>
-                <option value="month">한달</option>
-                <option value="month3">세달</option>
-                <option value="all">전체</option>
-              </select>
-            </p>
-          </fieldset>
-        </form>
-       
-       
-       
+      
        
        <tr>
          <td colspan="5" class="text-center">
-           <input type=button value="이전" class="btn btn-sm btn-danger" v-on:click="prev()">
+           <input type=button value="이전" class="pBtn" v-on:click="prev()">
              {{curpage}} page / {{totalpage}} pages
-           <input type=button value="다음" class="btn btn-sm btn-warning" v-on:click="next()">
+           <input type=button value="다음" class="nBtn" v-on:click="next()">
          </td>
        </tr>
      </tbody>
    </table>
+
    </main>
+  </div>
   </div>
 <script>
   new Vue({
@@ -201,7 +310,7 @@ h1{
 				 }
 			 }).then(function(response){
 				 console.log(response.data)
-				 _this.customer_list=response.data
+				 _this.cs_list=response.data
 				 _this.curpage=response.data[0].curpage
 				 _this.totalpage=response.data[0].totalpage
 			 }) 	

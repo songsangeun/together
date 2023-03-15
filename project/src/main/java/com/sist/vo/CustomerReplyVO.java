@@ -24,14 +24,6 @@ public class CustomerReplyVO {
 	
 	private int nno;
 	
-	private int group_id;
-	
-	private int group_step;
-	
-	private int group_tab;
-	
-	private int hit;
-	
 	private String msg;
 	
 	private String state;
