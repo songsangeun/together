@@ -2,12 +2,17 @@ package com.sist.controller;
 import java.io.File;
 import java.util.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.annotations.Select;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,13 +33,18 @@ public class CommunityRestController {
 			+"FROM (SELECT /* +INDEX_DESC(pet_community_2_1 pc1_cno_pk)cno,hit,title,content,filesize,type,createdAt "
 			+"FROM pet_community_2_1)) "
 			+"WHERE num BETWEEN #{start} AND #{end}")
+			community/list_vue.do
 	 */
 	@GetMapping(value="community/list_vue.do",produces = "text/plain;charset=UTF-8")
-	 public String community_list(int page) 
+	 public String community_list(int page,String type) 
 	{
+		System.out.println(page);
 		Map map=new HashMap();
+		System.out.println(type);
+//		int ipage=Integer.parseInt(page);
 		map.put("start", (page*10)-9);
 		map.put("end", page*10);
+		map.put("type", type);
 		List<CommunityVO> list=service.communityListData(map);
 		int totalpage=service.communityTotalPage();
 		
@@ -42,6 +52,16 @@ public class CommunityRestController {
 		int i=0;
 		for(CommunityVO vo:list)
 		{
+			/*
+			 *        <tr v-for="vo in community_list">
+      <td width=10% class="text-center">{{vo.cno}}</td>
+      <td width=15% class="text-center">{{vo.type}}</td>
+      <td width=20%><a :href="'../community/detail.do?cno='+vo.cno">{{vo.title}}</a></td>
+      <td width=15% class="text-center">{{vo.name}}</td>
+      <td width=20% class="text-center">{{vo.dbday}}</td>
+      <td width=10% class="text-center">{{vo.filesize}}</td>
+      <td width=10% class="text-center">{{vo.hit}}</td>
+			 */
 			JSONObject obj=new JSONObject();
 			obj.put("cno", vo.getCno());
 			obj.put("hit", vo.getHit());
@@ -59,10 +79,14 @@ public class CommunityRestController {
 		return arr.toJSONString();
 	}
 	
-	/*
-	 * @GetMapping("community/insert_vue.do") public String
-	 * community_insert(CommunityVO vo) { service.communityInsert(vo); return ""; }
-	 */
+	
+	  @GetMapping("community/insert_vue.do") public String
+	  community_insert(CommunityVO vo) 
+	  { 
+		  service.communityInsert(vo); 
+		  return ""; 
+	  }
+	 
 	  
 	  @GetMapping(value="community/detail_vue.do",produces = "text/plain;charset=UTF-8")
 	  public String community_detail(int cno)

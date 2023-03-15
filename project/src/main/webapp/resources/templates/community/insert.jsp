@@ -21,6 +21,34 @@
 h1{
    text-align: center;
 }
+.select_box{
+   background-color: #dfe9e8;
+   color: #477A7B;
+}
+.btn1{
+   background-color: #477a7b;
+   color: #fff;
+   border: 1px solid #477a7b;
+   padding: 0 10px;
+   display :inline-block;
+   text-align: center;
+   cursor: pointer;
+   font-weight: 500;
+   line-height: 50px;
+   width: 50%;
+}
+.btn2{
+  background-color: #fff;
+   color: #477a7b;
+   border: 1px solid #477a7b;
+   padding: 0 10px;
+   display :inline-block;
+   cursor: pointer;
+   font-weight: 500;
+   line-height: 50px;
+   width: 50%;
+}
+
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
@@ -49,12 +77,11 @@ $(function(){
 <body>
 <jsp:include page="../fragments/header.jsp"/>
    <div class="container">
-     <h1>글쓰기</h1>
      <div class="row">
       <form method=post action="insert_ok.do" enctype="multipart/form-data">
        <table class="table">
        <tr>
-        <th width=15% class="text-right">타입</th>
+        <th width=100% class="text-center"></th>
          <td width=85%>
           <select class="select_box" name="type" style="width:100%;height:35px;border:none">
            <option value="review">여행후기</option>
@@ -65,6 +92,8 @@ $(function(){
           </select>
          </td>
        </tr>
+       <%-- @Insert("INSERT INTO pet_community_2_1 VALUES(" 
+			+ "#{cno},4,#{title},#{content},SYSDATE,#{type},0,#{name},#{pwd},#{filesize},#{filename})") --%>
        <tr>
            <th width=15% class="text-right">이름</th>
            <td width=85%>
@@ -106,12 +135,14 @@ $(function(){
              <input type=password name="pwd" size=50 class="input-sm">
            </td>
          </tr>
+        <div class="clear">
          <tr>
            <td colspan="2" class="text-center">
-             <input type=submit value="전송" class="btn btn-sm btn-danger">
-             <input type=button value="취소" class="btn btn-sm btn-warning" onclick="javascript:history.back()">
+             <input type=submit value="전송" class="btn1">
+             <input type=button value="취소" class="btn2" onclick="javascript:history.back()">
            </td>
          </tr>
+        </div> 
        </table>
        </form>
      </div>

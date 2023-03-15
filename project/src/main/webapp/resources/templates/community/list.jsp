@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <jsp:include page="../fragments/head.jsp"/>
 <!DOCTYPE html>
 <html>
@@ -19,8 +20,8 @@
 <style type="text/css">
 .btn3{
   position: relative;
-  display: block;
-  margin: 0 5px;
+  /* display: block; */
+  margin: 0 5px; 
   padding: 0 20px;
   height: 35px;
   line-height: 35px;
@@ -31,11 +32,13 @@
   list-style: none;
   border-radius: 50px;
 } 
+/* C:\Users\user\OneDrive\바탕 화면\project2\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\project\resources\static\image  */
 </style>
 <body>
 <jsp:include page="../fragments/header.jsp"/>
- <div class="container">
-  <div class="row">
+ <div class="container app">
+ 
+  <div class="row rows">
    <table class="table" style="background-color: #dfe9e8;">
     <tr class="text-center"> 
      <td>
@@ -43,21 +46,23 @@
        <p>투개더에서 우리 반려동물에 대한 이야기를 공유해보세요.</p>
      </td>
     </tr>
+    <sec:authorize access="isAuthenticated()">
      <tr class="text-center">
       <td>
        <a href="../community/insert.do" class="btn btn-md" style="background-color:transparent;color:white;border-color: white">커뮤니티에 글쓰기</a>
       </td>
     </tr>
+     </sec:authorize>
    </table>
   </div>
    
   <div class="row rows"> 
    <div class="inline text-center">
-    <button class="btn" v-on:click="change(1)">유머나라</button>
-    <button class="btn" v-on:click="change(2)">여행후기</button>
-    <button class="btn" v-on:click="change(3)">장소추천</button>
-    <button class="btn" v-on:click="change(4)">맛집추천</button>
-    <button class="btn" v-on:click="change(5)">내반려견</button>  
+    <button class="btn3" v-on:click="change('humor')">유머나라</button>
+    <button class="btn3" v-on:click="change('review')">여행후기</button>
+    <button class="btn3" v-on:click="change('place')">장소추천</button>
+    <button class="btn3" v-on:click="change('food')">맛집추천</button>
+    <button class="btn3" v-on:click="change('mydog')">내반려견</button>  
    </div>  
   </div> 
   <div class="container containers">
@@ -75,10 +80,10 @@
      </tr>
     </thead>
     <tbody>
-     <tr>
+     <tr v-for="vo in community_list">
       <td width=10% class="text-center">{{vo.cno}}</td>
       <td width=15% class="text-center">{{vo.type}}</td>
-      <td width=20%><a :href="'/community/detail?cno='+vo.cno">{{vo.title}}</a></td>
+      <td width=20%><a :href="'../community/detail.do?cno='+vo.cno">{{vo.title}}</a></td>
       <td width=15% class="text-center">{{vo.name}}</td>
       <td width=20% class="text-center">{{vo.dbday}}</td>
       <td width=10% class="text-center">{{vo.filesize}}</td>
@@ -97,18 +102,19 @@
   </div>
  </div>
 <script>
-new Vue({
+ /*  new Vue({
 	el:'.rows',
 	data:{
 		community_list:[],
-		community_data:[]
+		
+		type:'humor'
 	},
 	methods:{
-		change:function(cno){
+		change:function(type){
 			let _this=this;
-			axios.get("http://localhost/web/community_change.do",{
+			axios.get("/community_change.do",{
 				params:{
-					cno:cno
+					type:type
 				}
 			}).then(function(response){
 				console.log(response.data)
@@ -117,13 +123,14 @@ new Vue({
 		}
 	}
 	
-}),
+})   */
 new Vue({
-	   el:'.communityArea',
+	   el:'.app',
 	   data:{
 	 	   community_list:[],
 		   curpage:1,
-		   totalpage:0
+		   totalpage:0,
+		   type:'review'
 	   },
 	   mounted:function(){
 		   this.send()
@@ -131,9 +138,10 @@ new Vue({
 	   methods:{
 		   send:function(){
 			   let _this=this
-			   axios.get("http://localhost/web/community/list_vue.do",{
+			   axios.get("/community/list_vue.do",{
 				   params:{
-					   page:this.curpage
+					   page:_this.curpage,
+					   type:this.type
 				   }
 			   }).then(function(response){
 				   console.log(response.data)
@@ -141,6 +149,12 @@ new Vue({
 				   _this.curpage=response.data[0].curpage
 				   _this.totalpage=response.data[0].totalpage
 			   }) 
+		   },
+		   change:function(type){
+			   //alert(type)
+			   this.type=type
+			   this.curpage=1
+			   this.send()
 		   },
 		   prev:function(){
 			   this.curpage=this.curpage>1?this.curpage-1:this.curpage

@@ -32,10 +32,11 @@ import com.sist.vo.*;
     private int mno;
  */
 public interface CommunityMapper {
-	@Select("SELECT cno,hit,name,title,filesize,type,TO_CHAR(createdAt,'YYYY-MM-DD') as dbday,num "
-			+"FROM (SELECT cno,hit,name,title,filesize,type,createdAt,rownum as num "
-			+"FROM (SELECT cno,hit,name,title,filesize,type,createdAt "
-			+"FROM pet_community_2_1 ORDER BY cno DESC)) "
+	
+	@Select("SELECT cno,hit,name,title,filesize,type,TO_CHAR(created_At,'YYYY-MM-DD') as dbday,num "
+			+"FROM (SELECT cno,hit,name,title,filesize,type,created_At,rownum as num "
+			+"FROM (SELECT cno,hit,name,title,filesize,type,created_At "
+			+"FROM pet_community_2_1 WHERE type=#{type} ORDER BY cno DESC)) "
 			+"WHERE num BETWEEN #{start} AND #{end}")
 	public List<CommunityVO> communityListData(Map map);
 	
@@ -70,12 +71,12 @@ FILENAME            VARCHAR2(4000)
 			+"WHERE cno=#{cno}")
 	public void communityHitIncrement(int cno);
 	
-	@Select("SELECT cno,name,title,content,filesize,filename,TO_CHAR(createdAt,'YYYY-MM-DD') as dbday,hit "
+	@Select("SELECT cno,name,title,content,filesize,filename,TO_CHAR(created_At,'YYYY-MM-DD') as dbday,hit "
 			+"FROM pet_community_2_1 "
 			+"WHERE cno=#{cno}")
 	public CommunityVO communityDetailData(int cno);
 	
-	@Select("SELECT pwd FROM pet_community_2_1 "
+	@Select("SELECT pwd FROM pet_community_2_1 " 
 			+"WHERE cno=#{cno}")
 	public String communityGetPassword(int no);
 	
