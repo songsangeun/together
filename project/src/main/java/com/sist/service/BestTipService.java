@@ -1,9 +1,10 @@
 package com.sist.service;
 
 import java.util.List;
-import java.util.Map;
 
-import org.apache.ibatis.annotations.Select;
+import com.sist.util.Pagination;
+import com.sist.vo.BestTipReplyVO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,36 +13,37 @@ import com.sist.vo.BestTipVO;
 
 @Service
 public class BestTipService {
-	@Autowired
-	private BestTipMapper mapper;
-	
-	/* @Select("SELECT bno,title,content,tag,hit,created_at,num "
-			+"FROM (SELECT bno,title,content,tag,hit,created_at,rownum as num "
-			+"FROM pet_best_tip_2_1) "
-			+"WHERE num BETWEEN #{start} AND #{end}") */
-	public List<BestTipVO> besttipListData(Map map)
-	{
-		return mapper.besttipListData(map);
-	}
-	
-	//@Select("SELECT CEIL(COUNT(*)/20.0) FROM pet_best_tip_2_1")
-	public int besttipTotalPage()
-	{
-		return mapper.besttipTotalPage();
-	}
-	
-	//@Select("SELECT TO_CHAR(COUNT(*),'999,999') FROM pet_best_2_1")
-	public String besttipRowCount()
-	{
-		return mapper.besttipRowCount();
-	}
-	
-	/* @Select("SELECT bno,title,content,TO_CHAR(regdate,'YYYY-MM-DD') as created_at "
-			+"FROM pet_best_tip_2_1 "
-			+"WHERE bno=#{bno}") */
-	public List<BestTipVO> besttipDetailData(int bno)
-	{
-		return mapper.besttipDetailData(bno);
-	}
-	
+
+    @Autowired
+    private BestTipMapper bestTipMapper;
+
+    public Pagination besttipListData(int page) {
+        int start = (20 * page) - (20 - 1);
+        List<BestTipVO> list = bestTipMapper.bestTipListData(start - 1);
+        for (BestTipVO bestTipVO : list) {
+            String content = bestTipVO.getContent().split(",")[0];
+            bestTipVO.setContent(content);
+        }
+        int totalCount = bestTipMapper.bestTipTotalCount();
+        return new Pagination(list, page, totalCount, 7);
+    }
+
+    public Pagination bestTipReplyData(int page, int bno) {
+        int start = (10 * page) - (10 - 1);
+        List<BestTipReplyVO> list = bestTipMapper.bestTipReplyData(bno, start - 1);
+        int totalCount = bestTipMapper.bestTipReviewTotalCount(bno);
+        return new Pagination(list, page, totalCount, 7);
+    }
+
+    public BestTipVO besttipDetailData(int bno) {
+        BestTipVO bestTipVO = bestTipMapper.besttipDetailData(bno);
+        String tag = bestTipVO.getTag().replace(",", "  ");
+        bestTipVO.setTag(tag);
+        return bestTipVO;
+    }
+
+    public void bestTipWrite(BestTipReplyVO vo) {
+        bestTipMapper.bestTipWrite(vo);
+    }
+
 }

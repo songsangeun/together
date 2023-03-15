@@ -245,7 +245,6 @@ $(function(){
 					  content:this.content,
 					  pwd:this.pwd
   					  
-  			  }
   			  axios.post('/customer/insert_vue.do',JSON.stringify(data),{
   				  headers:{
   					  "content-type":'application/json'
