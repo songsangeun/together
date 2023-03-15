@@ -16,7 +16,7 @@ public class NoticeController {
 	@Autowired
 	private NoticeService service;
 	
-	@RequestMapping("list.do")
+	@RequestMapping("notice/list.do")
 	public String notice_list(String page,Model model) // Model ���� ��ü => request ����
 	{
 		if(page==null)
@@ -35,18 +35,18 @@ public class NoticeController {
 		model.addAttribute("list",list); // request.setAttribute("list",list)
 		return "notice/list";
 	}
-	@RequestMapping("insert.do")
+	@RequestMapping("notice/insert.do")
 	public String notice_insert()
 	{
 		return "notice/insert";
 	}
-	@RequestMapping("insert_ok.do")
+	@RequestMapping("notice/insert_ok.do")
 	public String notice_insert_ok(NoticeVO vo)
 	{
 		service.noticeInsert(vo);
 		return "redirect:list.do";
 	}
-	@RequestMapping("detail.do")
+	@RequestMapping("notice/detail.do")
 	public String notice_detail(int nno,Model model)
 	{
 		NoticeVO vo=service.noticeDetailData(nno);

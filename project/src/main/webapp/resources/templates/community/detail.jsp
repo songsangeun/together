@@ -79,8 +79,6 @@
         <th width="20%" class="text-center">조회수</th>
         <td width="30%" class="text-center">{{community_detail.hit}}</td>
       </tr>
-      
-      
       <tr>
         <td colspan="4" class="text-right">
           <a :href="'../community/update.do?cno='+cno" class="btn btn-xs btn-danger">수정</a>
@@ -91,6 +89,13 @@
     </table>
   </main>
 </div>
+    <div class="form-group">
+                <textarea class="form-control" v-model="content" id="exampleFormControlTextarea1" rows="4"
+                          placeholder="댓글을 입력해주세요."></textarea>
+                <div class="mt-3 d-flex justify-content-end">
+                    <button class="btn btn-outline-secondary" type="button" v-on:click="writeReply()">등록</button>
+                </div>
+            </div>
 </div>
 <script>
   new Vue({

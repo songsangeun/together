@@ -12,11 +12,11 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <style type="text/css">
 .container{
-   margin-top: 50px;
+   margin-top: 70px;
 }
 .row{
    margin: 0px auto;
-   width:800px;
+   width:700px;
 }
 h1{
    text-align: center;
@@ -35,7 +35,7 @@ h1{
    cursor: pointer;
    font-weight: 500;
    line-height: 50px;
-   width: 50%;
+   width: 200px;
 }
 .btn2{
   background-color: #fff;
@@ -46,33 +46,17 @@ h1{
    cursor: pointer;
    font-weight: 500;
    line-height: 50px;
-   width: 50%;
+   width: 200px;
 }
-
+#addBtn{
+  background-color: #7FFFD4;
+}
+#removeBtn{
+  background-color: #AFFFEE;
+}
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
-<script type="text/javascript">
-let fileIndex=0;
-$(function(){
-	$('#addBtn').click(function(){
-		$('#user-table').append(
-		  '<tr id="m'+(fileIndex)+'">'
-		 +'<td width="20%">File '+(fileIndex+1)+'</td>'
-		 +'<td width="80%"><input type=file name=files['+fileIndex+']></td>'
-		 +'</tr>'
-		)
-		fileIndex++;
-	})
-	$('#removeBtn').click(function(){
-		if(fileIndex>0)
-	    {
-			$('#m'+(fileIndex-1)).remove();
-			fileIndex--;
-	    }
-		
-	})
-})
-</script>
+
 </head>
 <body>
 <jsp:include page="../fragments/header.jsp"/>
@@ -95,7 +79,7 @@ $(function(){
        <%-- @Insert("INSERT INTO pet_community_2_1 VALUES(" 
 			+ "#{cno},4,#{title},#{content},SYSDATE,#{type},0,#{name},#{pwd},#{filesize},#{filename})") --%>
        <tr>
-           <th width=15% class="text-right">이름</th>
+           <th width=15% class="text-right">닉네임</th>
            <td width=85%>
              <input type=text name="name" size=50 class="input-sm">
            </td>
@@ -116,17 +100,8 @@ $(function(){
          <tr>
            <th width=15% class="text-right">첨부파일</th>
            <td width=85%>
-             <table class="table">
-               <tr>
-                 <td class="text-right">
-                   <input type=button value="추가" class="btn btn-xs btn-info" id="addBtn">
-                   <input type=button value="취소" class="btn btn-xs btn-warning" id="removeBtn">
-                 </td>
-               </tr>
-             </table>
-             <table class="table" id="user-table">
-              
-             </table>
+             
+			<input type=file name="files" size=20 class="input-sm">              
            </td>
          </tr>
          <tr>

@@ -34,30 +34,23 @@ public class CommunityController {
 	@PostMapping("community/insert_ok.do")
 	   public String databoard_insert_ok(CommunityVO vo)
 	   {
-		   
-		   List<MultipartFile> list=vo.getFiles();
+		   MultipartFile list=vo.getFiles();
 		   if(list==null)//업로드가 안된 상태
 		   {
 			   vo.setFilename("");
-			   vo.setFilesize("");
+			   vo.setFilesize(0);
 		   }
 		   else// 업로드가 된 상태 a.jpg,b.jpg,c.jpg
 		   {
-			   String fn="";
-			   String fs="";
-			   for(MultipartFile mf:list)
-			   {
-				   String of=mf.getOriginalFilename();
-				   fn+=of+","; // 데이터베이스 첨부
-				   File file=new File("c:\\download\\"+of);//업로드
-				   fs+=mf.getSize()+",";
+			   String path="C:\\springDev\\springStudy\\project2\\together\\project\\src\\main\\webapp\\resources\\static\\image\\upload";
+			   File file=new File(path+list.getOriginalFilename());//업로드
 				   try
 				   {
-				      mf.transferTo(file);
+				      list.transferTo(file);
 				   }catch(Exception ex) {}
-			   }
-			   vo.setFilename(fn.substring(0,fn.lastIndexOf(",")));
-			   vo.setFilesize(fs.substring(0,fs.lastIndexOf(",")));
+			   
+			   vo.setFilename(file.getName());
+			   vo.setFilesize((int)file.length());
 		   }
 		   service.communityInsert(vo);
 		   return "redirect:list.do";//sendRedirect => request를 초기화 => 화면 이동 

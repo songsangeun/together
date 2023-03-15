@@ -16,7 +16,7 @@
                                 <nav class="d-flex justify-content-center">
                                     <ul id="navigation">
                                         <li class="m-0">
-                                            <a href="../place/place_list.do">여행지정보</a>
+                                           <a href="../place/place_list.do">여행지정보</a>
                                         </li>
                                         <li>
                                             <a href="/">여행앨범
@@ -27,8 +27,8 @@
                                                     <a href="/">여행노트</a>
                                                 </li>
                                                 <li>
-                                                  <a href="../notice/list.do">공지사항</a>
-                                                </li>
+                                          <a href="../notice/list.do">공지사항</a>
+                                        </li>
                                             </ul>
                                         </li>
                                         <li><a href="../community/list.do">커뮤니티 <i class="ti-angle-down"></i></a>
@@ -45,9 +45,10 @@
                                                 <li>
                                                     <a href="/customer/faq">FAQ</a>
                                                 </li>
-                                                <li>
+                                                 <li>
                                                     <a href="/customer/list">고객센터</a>
                                                 </li>
+                                                
                                             </ul>
                                         </li>
                                     </ul>
