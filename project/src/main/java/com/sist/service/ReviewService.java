@@ -20,9 +20,10 @@ public class ReviewService {
 			+"FROM (SELECT prno,pno,mno,content,created_at,write,rownum as num "
 			+"FROM pet_place_review_2_1) "
 			+"WHERE num BETWEEN #{start} AND #{end}") */
-	public List<ReviewVO> reviewListData(Map map)
+	public List<ReviewVO> reviewListData(int page)
 	{
-		return mapper.reviewListData(map);
+		int start=(10*page)-(10-1);
+		return mapper.reviewListData(start-1);
 	}
 	
 	// 총 페이지
@@ -37,9 +38,9 @@ public class ReviewService {
 				statement="SELECT NVL(MAX(no)+1,1) as no FROM pet_place_review_2_1")
 	@Insert("INSERT INTO pet_place_review_2_1 VALUES("
 			+"#{writer},#{prno},#{pno},#{mno},#{content},SYSDATE,0") */
-	public void reviewInsert(ReviewVO vo)
+	public void reviewInsert(ReviewVO vo, int mno, String writer)
 	{
-		mapper.reviewInsert(vo);
+		mapper.reviewInsert(vo,mno,writer);
 	}
 	
 	// 상세

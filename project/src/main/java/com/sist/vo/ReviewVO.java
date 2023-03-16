@@ -20,5 +20,7 @@ public class ReviewVO {
     private int mno;
     
     private String writer;
+    
+    
 
 }
