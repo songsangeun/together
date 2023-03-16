@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<jsp:include page="../fragments/head.jsp"/>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +19,7 @@
     <table class="table">
       <tr>
         <th width=20%>작성자</th>
-        <td width=80%><input type=text size="15" class="input-sm" v-model="writer"></td>
+        <td width=80%><sec:authentication property="principal.nickname"/></td>
       </tr>
       <tr>
         <th width=20%>내용</th>
@@ -36,16 +38,19 @@
   new Vue({
 	  el:'.rows',
 	  data:{
-		  writer:'',
-		  content:''
+		  content:'',
+		  pno=${pno}
 	  },
 	  methods:{
 		  write:function(){
 			  let _this=this;
-			  axios.get('reivew/review_insert_vue',{
-				  params:{
-					  writer:this.writer,
+			  let data = {
 					  content:this.content,
+					  pno:this.pno
+			  }
+			  axios.post('/review/review_insert_vue',JSON.stringify(data),{
+				  headers:{
+					  "content-type":'application/json'
 				  }
 			  }).then(function(response){
 				  location.href="/review/review_list"

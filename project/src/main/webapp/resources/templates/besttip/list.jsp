@@ -172,6 +172,16 @@
         transition: background-color .3s;
         margin: 0 4px;
     }
+    .button
+    {
+    	position: absolute;
+    	background-color:#fde5e6;
+    	color: #;
+    	border:none;
+    	border-radius:10px;
+		padding: 5px;
+    }
+    
 </style>
 <body>
 <jsp:include page="../fragments/header.jsp"/>
@@ -185,15 +195,9 @@
                 <input type="hidden" id="m2Code" name="m2Code" value="tip">
                 <input type="hidden" id="mode" name="mode" value="tiplist">
                 <input type="hidden" id="page" name="page" value="0">
-                <div class="s21_tip_select">
-                    <select name="sch_type" id="sch_type">
-                        <option value="1">제목</option>
-                        <option value="2">해시태그</option>
-                    </select>
-                    <input type="text" class="s21_tip_select_Input" name="sch_text" id="sch_text"
-                           placeholder="검색어를 입력하세요" title="">
-                    <button type="button" class="s21_tip_select_button" onclick="search_go();">검색하기</button>
-                </div>
+                
+    				<button type="button" class="button">눈물</button>
+                
             </form>
         </div>
     </div>

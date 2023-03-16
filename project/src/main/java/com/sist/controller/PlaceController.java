@@ -1,23 +1,30 @@
 package com.sist.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.sist.service.*;
 import com.sist.vo.*;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class PlaceController {
     @Autowired
     private PlaceService service;
+
     @GetMapping("place/place_list.do")
-    public String place_list(){
+    public String place_list() {
         return "place/place_list";
     }
+
     @GetMapping("place/place_list_vue.do")
     @ResponseBody
     public List<PlaceVO> place_list_vue() {
@@ -41,16 +48,12 @@ public class PlaceController {
         return placeList;
     }
 
-    @GetMapping("place/place_detail.do")
-    public String place_detail(){
-        return "place/place_detail";
-    }
-    @GetMapping("place/place_detail_vue.do")
+    @GetMapping("place/place_list_infinite.do")
     @ResponseBody
-    public List<PlaceVO> place_detail_vue(int pno, Model model) {
-        List<PlaceVO> placeDetailData = service.placeDetailData(pno);
+    public List<PlaceVO> place_list_infinite(@RequestParam("page") int page) {
 
-        for (PlaceVO vo : placeDetailData) {
+        List<PlaceVO> placeListInfinite = service.PlaceLisTInfinite(page);
+        for (PlaceVO vo : placeListInfinite) {
             String[] tokens = vo.getTitle().split(" ", 2);
             String title = tokens[0];
             String subtitle = tokens[1];
@@ -63,14 +66,79 @@ public class PlaceController {
             String image = images[0];
             vo.setImage(image);
             System.out.println(image);
-
-            if (vo.getOpenHour() == null) {
-                vo.setOpenHour("정보가 없습니다.");
-            }
-            System.out.println(vo.getOpenHour());
+            System.out.println(vo.getPno());
         }
-        model.addAttribute("placeDetailData", placeDetailData);
+        return placeListInfinite;
+
+    }
+
+    @GetMapping("place/place_detail.do")
+    public String place_detail(int pno, Model model) {
+        model.addAttribute("pno", pno);
+        return "place/place_detail";
+    }
+
+    @GetMapping("place/place_detail_vue.do")
+    @ResponseBody
+    public PlaceVO place_detail_vue(int pno) {
+        PlaceVO placeDetailData = service.placeDetailData(pno);
+
+        String[] tokens = placeDetailData.getTitle().split(" ", 2);
+        String title = tokens[0];
+        String subtitle = tokens[1];
+        placeDetailData.setTitle(title);
+        placeDetailData.setSubtitle(subtitle);
+        System.out.println(title);
+        System.out.println(subtitle);
+
+        if (placeDetailData.getOpenHour() == null) {
+            placeDetailData.setOpenHour("정보가 없습니다.");
+        }
+        System.out.println(placeDetailData.getOpenHour());
 
         return placeDetailData;
+    }
+
+    /*@GetMapping("place/place_search.do")
+    public String place_search(){
+        return "place/place_search";
+    }*/
+    @GetMapping("place/place_search_vue.do")
+    @ResponseBody
+    public List<PlaceVO> place_search_vue(@RequestParam("selectedRegion") String selectedRegion, @RequestParam("selectedCity") String selectedCity, @RequestParam("category") String category, @RequestParam("title") String title) {
+        String address = selectedRegion + " " + selectedCity;
+        System.out.println("입력된 검색 키워드 : " + selectedRegion + " " + selectedCity + " " + category + " " + title);
+        List<PlaceVO> PlacesSearch = service.PlacesSearch(address, category, title);
+
+        /*PlaceVO vo = new PlaceVO();
+        String[] tokens = vo.getTitle().split(" ", 2);
+        String maintitle = tokens[0];
+        String subtitle = tokens[1];
+        vo.setTitle(maintitle);
+        vo.setSubtitle(subtitle);
+        System.out.println(maintitle);
+        System.out.println(subtitle);*/
+        return PlacesSearch;
+    }
+    @GetMapping("place/place_list_sort.do")
+    @ResponseBody
+    public List<PlaceVO> placeListSort(@RequestParam("sort") String sort) {
+        System.out.println("sort의 값" + sort);
+        List<PlaceVO> placeListSort = service.placeListSort(sort);
+        for (PlaceVO vo : placeListSort) {
+            String[] tokens = vo.getTitle().split(" ", 2);
+            String title = tokens[0];
+            String subtitle = tokens[1];
+            vo.setTitle(title);
+            vo.setSubtitle(subtitle);
+            System.out.println(title);
+            System.out.println(subtitle);
+
+            String[] images = vo.getImage().split(",");
+            String image = images[0];
+            vo.setImage(image);
+            System.out.println(image);
+        }
+        return placeListSort;
     }
 }
