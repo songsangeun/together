@@ -37,17 +37,17 @@ public class CommunityController {
 		   MultipartFile list=vo.getFiles();
 		   if(list==null)//업로드가 안된 상태
 		   {
-			   vo.setFilename("");
+			   vo.setFilename("default.jpg"); 
 			   vo.setFilesize(0);
 		   }
 		   else// 업로드가 된 상태 a.jpg,b.jpg,c.jpg
 		   {
-			   String path="C:\\springDev\\springStudy\\project2\\together\\project\\src\\main\\webapp\\resources\\static\\image\\upload";
+			   String path="C:\\Users\\user\\OneDrive\\바탕 화면\\project2\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\project\\resources\\static\\image\\upload\\";
 			   File file=new File(path+list.getOriginalFilename());//업로드
 				   try
 				   {
 				      list.transferTo(file);
-				   }catch(Exception ex) {}
+				   }catch(Exception ex) {ex.printStackTrace();}
 			   
 			   vo.setFilename(file.getName());
 			   vo.setFilesize((int)file.length());

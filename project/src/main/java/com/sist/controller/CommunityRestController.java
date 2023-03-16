@@ -10,9 +10,12 @@ import org.apache.ibatis.annotations.Select;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +23,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.sist.vo.*;
 import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonArrayFormatVisitor;
 import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonObjectFormatVisitor;
+import com.sist.global.security.annotation.LoginMember;
+import com.sist.global.security.vo.AuthMemberVO;
 import com.sist.service.*;
 
 @RestController
@@ -69,6 +74,7 @@ public class CommunityRestController {
 			obj.put("name", vo.getName());
 			obj.put("dbday", vo.getDbday());
 			obj.put("type", vo.getType());
+			obj.put("filename", vo.getFilename());
 			if(i==0)
 			{
 				obj.put("curpage", page);
@@ -133,6 +139,20 @@ public class CommunityRestController {
 		  return res;
 	  }
 	  
+	  @PostMapping("community/write")
+	    public void cm_write(@RequestBody CommunityReplyVO communityReplyVO, @LoginMember Authentication authentication)
+	    {
+	    	AuthMemberVO principal=(AuthMemberVO)authentication.getPrincipal();
+	    	// hrno는 시퀀스로 가져옴
+	    	// nno는 고객센터 글에서 보내주고 
+	    	service.cmReplySave(communityReplyVO);
+	    }
+	    
+	    @GetMapping("community/reply")
+	    public List<CommunityReplyVO> cm_reply(@RequestParam("cno") int cno)
+	    {
+	    	return service.cmReplyData(cno);
+	    }
 	  
 	 
 

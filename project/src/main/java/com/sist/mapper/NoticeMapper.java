@@ -40,5 +40,11 @@ public interface NoticeMapper {
 	@Select("SELECT nno,title,content,TO_CHAR(created_at,'YYYY-MM-DD') as dbday,hit "
 			+"FROM pet_notice_2_1 "
 			+"WHERE nno=#{nno}")
+	
 	public NoticeVO noticeDetailData(int nno);
+	@Delete("DELETE FROM pet_notice_2_1 "
+			+"WHERE nno=#{nno}")
+	public void noticeDelete(int nno);
+	
+	
 }

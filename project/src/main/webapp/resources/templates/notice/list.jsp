@@ -17,17 +17,39 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<style type="text/css">
+.button2{
+  background-color:transparent;
+  border: 1px solid;
+  color: #477A7B;
+  border-color: #dfe9e8;
+  border-radius: 50px;
+}
+</style>
 <body>
 <jsp:include page="../fragments/header.jsp"/>
 <div class="wrapper row3 rows">
   <main class="container clear">
-   <table class="table">
+  <div class="row rows">
+   <table class="table" style="background-color: #dfe9e8;">
+    <tr class="text-center"> 
+     <td>
+       <h1><b style="color:#477A7B;">투개더 공지사항</b></h1>
+       <p>투개더에서 새로운 소식을 알려드립니다.</p>
+     </td>
+    </tr>
+    <sec:authorize access="hasRole('ROLE_ADMIN')">
+     <table class="table">
     <tr>
      <td>
       <a href="../notice/insert.do" class="btn btn-sm btn-primary">새글</a>
      </td>
     </tr>
    </table>
+     </sec:authorize>
+   </table>
+  </div>
+   
    <table class="table">
     <thead>
      <tr> 
@@ -46,9 +68,9 @@
      </tr>
      <tr> 
       <td colspan="5" class="text-right">
-       <input type=button value="이전" class="btn btn-sm btn-danger" v-on:click="prev()">
+       <input type=button value="이전" class="button2" v-on:click="prev()">
         {{curpage}} page / {{totalpage}} pages
-       <input type=button value="다음" class="btn btn-sm btn-warning" v-on:click="next()">
+       <input type=button value="다음" class="button2" v-on:click="next()">
       </td>
      </tr>
     </tbody>

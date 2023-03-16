@@ -93,5 +93,20 @@ public class CommunityService {
 	   {
 		   return mapper.communityFileInfoData(cno);
 	   }
+	   
+	 //댓글
+	 // 해당 게시글 db에 댓글 저장(관리자가 댓글 달고 저장) 관리자만
+	 //@Insert("INSERT INTO pet_HELP_REPLY_2_1 (hrno,nno,msg) VALUES (PET_HELP_REPLY.NEXTVAL, #{nno},#{msg})")
+	 public void cmReplySave(CommunityReplyVO vo)
+	 {
+	 	mapper.cmReplySave(vo);
+	 }
+	 		    
+	 // 관리자가 작성한 게시글 내용 가져오기(관리자가 작성한 댓글 가져오기) 일반 사용자도 볼수있게
+	// @Select("SELECT * FROM PET_COMMUNITY_REPLY_2_1 WHERE cno=#{cno}")
+	  public List<CommunityReplyVO> cmReplyData(int cno)
+	 {
+	 	return mapper.cmReplyData(cno);
+	 }
 	 
 }
