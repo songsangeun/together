@@ -79,7 +79,7 @@ FILENAME            VARCHAR2(4000)
 	@Select("SELECT pwd FROM pet_community_2_1 " 
 			+"WHERE cno=#{cno}")
 	public String communityGetPassword(int no);
-	
+	 
 	@Update("UPDATE pet_community_2_1 SET "
 			+"name=#{name},title=#{title},content=#{content} "
 			+"WHERE cno=#{cno}")
@@ -94,10 +94,10 @@ FILENAME            VARCHAR2(4000)
 	
 	// 댓글
     // 해당 게시글 db에 댓글 저장(관리자가 댓글 달고 저장) 관리자만
-    @Insert("INSERT INTO pet_COMMUNITY_REPLY_2_1 (crno,cno,msg) VALUES (PET_COMMUNITY_REPLY.NEXTVAL, #{cno},#{msg})")
+    @Insert("INSERT INTO pet_COMMUNITY_REPLY_2_1 (crno,cno,msg) VALUES (PET_COMMUNITY_REPLY.NEXTVAL,#{cno},#{msg})")
     public void cmReplySave(CommunityReplyVO vo);
     
     // 관리자가 작성한 게시글 내용 가져오기(관리자가 작성한 댓글 가져오기) 일반 사용자도 볼수있게
-    @Select("SELECT * FROM PET_HELP_REPLY_2_1 WHERE nno=#{nno}")
-    public CustomerReplyVO csReplyData(int nno);
+    @Select("SELECT * FROM PET_COMMUNITY_REPLY_2_1 WHERE cno=#{cno}")
+    public List<CommunityReplyVO> cmReplyData(int cno);
 }

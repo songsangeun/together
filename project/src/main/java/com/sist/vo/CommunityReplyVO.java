@@ -1,12 +1,9 @@
 package com.sist.vo;
-/*
- *  CRNO    NOT NULL NUMBER       
-	CNO              NUMBER       
-	MSG     NOT NULL CLOB         
-	STATE            VARCHAR2(50) 
-	REGDATE          DATE         
- 
- */
+
+/*CRNO    NOT NULL NUMBER 
+CNO              NUMBER 
+MSG     NOT NULL CLOB   
+REGDATE          DATE */
  
 
 import java.util.*;
@@ -17,6 +14,6 @@ import lombok.Setter;
 @Setter
 public class CommunityReplyVO {
 	private int crno,cno;
-	private String msg,state;
+	private String msg;
 	private Date regdate;
 }

@@ -37,7 +37,7 @@ public class CommunityController {
 		   MultipartFile list=vo.getFiles();
 		   if(list==null)//업로드가 안된 상태
 		   {
-			   vo.setFilename(""); 
+			   vo.setFilename("default.jpg"); 
 			   vo.setFilesize(0);
 		   }
 		   else// 업로드가 된 상태 a.jpg,b.jpg,c.jpg

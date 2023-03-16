@@ -65,6 +65,7 @@
         <td colspan="3">{{community_detail.title}}</td>
       </tr>
       <tr>
+        <td><img :src="'/image/upload/'+community_detail.filename" style="width:200px;height:200px"></td>
         <td colspan="4" class="text-left" valign="top" height="200"><pre style="white-space: pre-wrap;background-color: white;border: none;">{{community_detail.content}}</pre></td>
       </tr>
       <tr>
@@ -87,23 +88,38 @@
         </td>
       </tr>
     </table>
-  </main>
-</div>
+        <sec:authorize access="isAuthenticated()">
     <div class="form-group">
-                <textarea class="form-control" v-model="content" id="exampleFormControlTextarea1" rows="4"
+                <textarea class="form-control" id="exampleFormControlTextarea1" v-model="msg" rows="4"
                           placeholder="댓글을 입력해주세요."></textarea>
                 <div class="mt-3 d-flex justify-content-end">
-                    <button class="btn btn-outline-secondary" type="button" v-on:click="writeReply()">등록</button>
+                    <button class="btn btn-outline-secondary" type="button" v-on:click="write()">등록</button>
                 </div>
-            </div>
+            </div>  
+     </sec:authorize>
+     <!-- 댓글 폼 -->
+         <div class="row">
+        <div class="col-md-4 p-3">
+                <div class="card mb-3 border-0 shadow-sm" v-for="r in reply_list">
+                    <div class="card-body mt-2 p-0">
+                        <p class="card-text text-dark">{{r.msg}}</p>
+                    </div>
+                </div>
+        </div>
+    </div>
+  </main>
+</div>
 </div>
 <script>
   new Vue({
      el:'.rows',
-     data:{
+     data:{ 
+    	cmReply:{},
         cno:${cno},
-        community_detail:{}
-     },
+        community_detail:{},
+        msg:'',
+        reply_list:[]
+        },
      mounted:function(){
         let _this=this
         axios.get("/community/detail_vue.do",{
@@ -111,10 +127,43 @@
               cno:this.cno
            }
         }).then(function(response){
+        	console.log(response.data)
            _this.community_detail=response.data
         })
-     }
-  })
+     },
+     methods:{
+		  list:function(){
+			  let _this=this
+			  this.cno=new URLSearchParams(location.search).get('cno')
+			  axios.get('/community/reply',{
+				  params:{
+					 cno:this.cno
+				  }
+			  }).then(function(response){
+				  console.log(response)
+				  _this.reply_list=response.data
+			  	  
+			  })
+		  },
+		  write:function(){
+			  let _this=this
+			  this.cno=new URLSearchParams(location.search).get('cno')
+			  let data={
+				   cno:this.cno,
+				   msg:this.msg
+			  }
+			  axios.post('/community/write',JSON.stringify(data),{
+				  headers:{
+					  'Content-type':'application/json'
+				  }
+			  }).then(function(response){
+				  _this.msg=''
+				  _this.list()
+			  })
+		  }
+	  }
+		  
+})
 </script>
 <jsp:include page="../fragments/footer.jsp"/>
 </body>
