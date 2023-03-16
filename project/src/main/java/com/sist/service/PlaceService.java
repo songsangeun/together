@@ -8,6 +8,7 @@ import com.sist.vo.CommunityVO;
 import com.sist.vo.PlaceVO;
 import com.sist.vo.PlacejjimVO;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,15 +21,23 @@ public class PlaceService {
 
     @Autowired
     private PlaceMapper mapper;
-
     public List<PlaceVO> PlaceListData() {
         return mapper.PlaceListData();
     }
 
-    public List<PlaceVO> placeDetailData(int pno) {
+    public PlaceVO placeDetailData(int pno) {
+        mapper.PlaceHitIncrement(pno);
         return mapper.placeDetailData(pno);
     }
-
+    public List<PlaceVO> PlaceLisTInfinite(@Param("page") int page) {
+        return mapper.PlaceLisTInfinite(page);
+    }
+    public List<PlaceVO> PlacesSearch(@Param("address") String address, @Param("category") String category, @Param("title") String title) {
+        return mapper.PlacesSearch(address, category, title);
+    }
+    public List<PlaceVO> placeListSort(String sort) {
+        return mapper.placeListSort(sort);
+    }
     public Pagination placeBookMark(int mno, String category, int page) {
         int totalCount = mapper.placeLikeCount(mno, category);
         int start = (9 * page) - (9 - 1);
