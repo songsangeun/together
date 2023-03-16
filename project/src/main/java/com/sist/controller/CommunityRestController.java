@@ -69,6 +69,7 @@ public class CommunityRestController {
 			obj.put("name", vo.getName());
 			obj.put("dbday", vo.getDbday());
 			obj.put("type", vo.getType());
+			obj.put("filename", vo.getFilename());
 			if(i==0)
 			{
 				obj.put("curpage", page);

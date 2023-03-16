@@ -21,13 +21,26 @@
 <jsp:include page="../fragments/header.jsp"/>
 <div class="wrapper row3 rows">
   <main class="container clear">
-   <table class="table">
+  <div class="row rows">
+   <table class="table" style="background-color: #dfe9e8;">
+    <tr class="text-center"> 
+     <td>
+       <h1><b style="color:#477A7B;">투개더 공지사항</b></h1>
+       <p>투개더에서 새로운 소식을 알려드립니다.</p>
+     </td>
+    </tr>
+    <sec:authorize access="hasRole('ROLE_ADMIN')">
+     <table class="table">
     <tr>
      <td>
       <a href="../notice/insert.do" class="btn btn-sm btn-primary">새글</a>
      </td>
     </tr>
    </table>
+     </sec:authorize>
+   </table>
+  </div>
+   
    <table class="table">
     <thead>
      <tr> 

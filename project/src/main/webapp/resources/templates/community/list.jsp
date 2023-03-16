@@ -48,7 +48,7 @@
    <table class="table" style="background-color: #dfe9e8;">
     <tr class="text-center"> 
      <td>
-       <h1><b style="color:#477A7B;">커뮤니티 혜택</b></h1>
+       <h1><b style="color:#477A7B;">투개더 커뮤니티</b></h1>
        <p>투개더에서 우리 반려동물에 대한 이야기를 공유해보세요.</p>
      </td>
     </tr>
@@ -76,20 +76,19 @@
    <table class="table">
     <thead>
      <tr>
-      <th width=5% class="text-center">번호</th>
+      <th width=5% class="text-center"></th>
       <th></th>
-      <th width=15% class="text-center">타입</th>
-      <th width=20% class="text-center">제목</th>
-      <th width=15% class="text-center">닉네임</th>
-      <th width=20% class="text-center">작성일</th>
-<!--       <th width=10% class="text-center">파일</th>
- -->      <th width=10% class="text-center">조회수</th>
+      <th width=15% class="text-center"></th>
+      <th width=20% class="text-center"></th>
+      <th width=15% class="text-center"></th>
+      <th width=20% class="text-center"></th>
+       <th width=10% class="text-center"></th>
      </tr>
     </thead>
     <tbody>
      <tr v-for="vo in community_list">
       <td width=10% class="text-center">{{vo.cno}}</td>
-      <td><img :src="'/image/upload/'+vo.filename"></td>
+      <td><img :src="'/image/upload/'+vo.filename" style="width:100px;height:100px"></td>
       <td width=15% class="text-center">{{vo.type}}</td>
       <td width=20%><a :href="'../community/detail.do?cno='+vo.cno">{{vo.title}}</a></td>
       <td width=15% class="text-center">{{vo.name}}</td>

@@ -61,4 +61,9 @@ public class NoticeService {
 		return mapper.noticeDetailData(nno);
 	}
 
+	public void noticeDelete(int nno)
+  	{
+  		mapper.noticeDelete(nno);
+  	}
+
 }

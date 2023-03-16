@@ -24,14 +24,9 @@
    <table class="table" style="background-color: #dfe9e8;">
     <tr class="text-center"> 
      <td>
-       <h1><b style="color:#477A7B;">커뮤니티 혜택</b></h1>
-       <p>투개더에서 우리 반려동물에 대한 이야기를 공유해보세요.</p>
+       <h1><b style="color:#477A7B;">투개더 공지사항</b></h1>
+       <p>투개더에서 새로운 소식을 알려드립니다.</p>
      </td>
-    </tr>
-     <tr class="text-center">
-      <td>
-       <a href="../notice/insert.do" class="btn btn-md" style="background-color:transparent;color:white;border-color: white">커뮤니티에 글쓰기</a>
-      </td>
     </tr>
    </table>  
  </div>
@@ -60,6 +55,9 @@
       
       <tr>
         <td colspan="4" class="text-right">
+          <sec:authorize access="hasRole('ROLE_ADMIN')">
+           <a :href="'../notice/delete.do?nno='+notice_detail.nno" class="btn btn-xs btn-success">삭제</a>
+          </sec:authorize>
           <a href="../notice/list.do" class="btn btn-xs btn-info">목록</a>
         </td>
       </tr>
