@@ -43,14 +43,14 @@ public interface CustomerMapper {
     List<CustomerVO> csBoardListData(@Param("page") int page);
 
     // 페이지네이션 (10개씩 페이지 나누기)
-    @Select("SELECT CEIL(COUNT(*)/10.0) FROM PET_HELP_2_1")
+    @Select("SELECT COUNT(*) FROM PET_HELP_2_1")
     int csBoardTotalPage();
 
     // 게시판 데이터 삽입
     
     @Insert("INSERT INTO PET_HELP_2_1 (nno,subject,content,pwd,mno,name) "
     		+ "VALUES (PET_HELP_SEQ.NEXTVAL ,#{vo.subject}, #{vo.content}, #{vo.pwd}, #{mno}, #{nickname})")
-    void csBoardInserst(@Param("vo") CustomerVO vo,@Param("mno") int mno, @Param("nickname") String name);
+    void csBoardInsert(@Param("vo") CustomerVO vo,@Param("mno") int mno, @Param("nickname") String name);
 
     // 조회수 증가
     @Update("UPDATE PET_HELP_2_1 SET "
@@ -70,7 +70,7 @@ public interface CustomerMapper {
 
     // 게시글 수정하기
     @Update("UPDATE PET_HELP_2_1 SET "
-            + "name=#{name},subject=#{subject},content=#{content} "
+            + "subject=#{subject},content=#{content} "
             + "WHERE nno=#{nno}")
     void csBoardUpdate(CustomerVO vo);
 

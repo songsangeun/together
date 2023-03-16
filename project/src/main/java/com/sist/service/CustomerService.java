@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.sist.vo.CustomerReplyVO;
 import com.sist.vo.CustomerVO;
 import com.sist.mapper.CustomerMapper;
+import com.sist.util.Pagination;
 
 @Service
 public class CustomerService {
@@ -23,10 +24,14 @@ public class CustomerService {
 				+"FROM (SELECT nno,subject,name,createdAt,hit "
 				+"FROM PET_HELP_2_1 ORDER BY nno DESC)) "
 				+"WHERE num BETWEEN #{start} AND #{end}")*/
-		public List<CustomerVO> csBoardListData(int page)
+	// 페이징 처리
+		public Pagination csBoardListData(int page)
 		{
 			int start = (10*page) - (10-1);
-			return mapper.csBoardListData(start-1);
+			int totalCount = mapper.csBoardTotalPage();
+			List<CustomerVO> items = mapper.csBoardListData(start-1);
+			
+			return new Pagination(items, page, totalCount, 7);
 		}
 		
 		// 페이지네이션 (10개씩 페이지 나누기)
@@ -41,9 +46,9 @@ public class CustomerService {
 				statement="SELECT NVL(MAX(nno)+1,1) as nno FROM PET_HELP_2_")
 		@Insert("INSERT INTO spring_board VALUES("
 				+"{nno}, #{name}, #{subject}, #{content}, #{pwd}, SYSDATE,0)")*/
-		public void csBoardInserst(CustomerVO vo, int mno, String nickname)
+		public void csBoardInsert(CustomerVO vo, int mno, String nickname)
 		{
-			mapper.csBoardInserst(vo, mno, nickname);
+			mapper.csBoardInsert(vo, mno, nickname);
 		}
 		
 		// 조회수 증가

@@ -230,20 +230,20 @@ h1{
  <div class="wrapper row3 rows">
   <main class="container clear">
    <div class="pageTopWrap">
-     <div class="pageTitle">커뮤니티</div>
+     <div class="pageTitle">고객센터</div>
      <div class="pageNav">
       <ul>
         <li class="active">
-          <a href="#">~~~</a>
+          <a href="/customer/list">고객센터</a>
         </li>
         <li>
-          <a href="#">QNA</a>
+          <a href="/community/list.do">커뮤니티</a>
         </li>
         <li>
-          <a href="#">FAQ</a>
+          <a href="/customer/faq">FAQ</a>
         </li>
         <li>
-          <a href="#">고객센터</a>
+          <a href="/notice/list.do">공지사항</a>
         </li>
        </ul>
      </div>
@@ -269,23 +269,43 @@ h1{
      <tbody>
        <tr v-for="vo in cs_list">
          <td width=10% class="text-center">{{vo.nno}}</td>
-         <td width=15% class="text-center">{{vo.name}}</td>
-         <td width=45%><a :href="'/customer/detail?nno='+vo.nno">{{vo.subject}}</a></td>
+         <td width=45% class="text-center">{{vo.name}}</td>
+         <td width=15%><a :href="'/customer/detail?nno='+vo.nno">{{vo.subject}}</a></td>
          <td width=20% class="text-center">{{vo.dbday}}</td>
          <td width=10% class="text-center">{{vo.hit}}</td>
        </tr>
       
-       
-       <tr>
-         <td colspan="5" class="text-center">
-           <input type=button value="이전" class="pBtn" v-on:click="prev()">
-             {{curpage}} page / {{totalpage}} pages
-           <input type=button value="다음" class="nBtn" v-on:click="next()">
-         </td>
-       </tr>
+
+
      </tbody>
    </table>
-
+           <div class="mt-5">
+        <div class="d-flex justify-content-center">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <div>
+                        <li class="page-item disabled" v-if="isFirst">
+                            <button class="page-link" type="button" v-on:click="prevPage()">&laquo;</button>
+                        </li>
+                        <li class="page-item" v-else>
+                            <button class="page-link" type="button" v-on:click="prevPage()">&laquo;</button>
+                        </li>
+                    </div>
+                    <div class="p-2 d-flex justify-content-center">
+                        {{ page }} / {{ totalPage }}
+                    </div>
+                    <div>
+                        <li class="page-item disabled" v-if="isLast">
+                            <button class="page-link" type="button" v-on:click="nextPage()">&raquo;</button>
+                        </li>
+                        <li class="page-item" v-else>
+                            <button class="page-link" type="button" v-on:click="nextPage()">&raquo;</button>
+                        </li>
+                    </div>
+                </ul>
+            </nav>
+        </div>
+    </div>
    </main>
   </div>
   </div>
@@ -293,36 +313,44 @@ h1{
   new Vue({
 	 el:'.rows',
 	 data:{
-		 cs_list:[],
-		 curpage:1,
-		 totalpage:0
+		 page:1,
+		 totalCount:'',
+		 totalPage:'',
+		 isFirst:'',
+		 isLast:'',
+		 cs_list: []
+		 
+		 
 	 },
 	 mounted:function(){
-		 this.send()
+		 this.send(1)
 		 
 	 },
 	 methods:{
-		 send:function(){
+		 send:function(page){
 			 let _this=this
 			 axios.get("/customer/list_vue.do",{
 				 params:{
-					 page:this.curpage
+					 page:page
 				 }
 			 }).then(function(response){
 				 console.log(response.data)
-				 _this.cs_list=response.data
-				 _this.curpage=response.data[0].curpage
-				 _this.totalpage=response.data[0].totalpage
+				 _this.cs_list=response.data.items
+                 _this.totalCount = response.data.totalItem;
+                 _this.page = response.data.page;
+                 _this.isFirst= response.data.first;
+                 _this.isLast= response.data.last;
+                 _this.totalPage = response.data.totalPage;
 			 }) 	
 		 },
-		 prev:function(){
-			  this.curpage=this.curpage>1?this.curpage-1:this.curpage
-			  this.send()
-		  },
-		  next:function(){
-			  this.curpage=this.curpage<this.totalpage?this.curpage+1:this.curpage
-			  this.send()
-		  }
+		 nextPage: function () {
+             this.page = this.page + 1;
+             this.send(this.page);
+         },
+         prevPage: function () {
+             this.page = this.page - 1;
+             this.send(this.page);
+         }
 		 
 	 }
   })

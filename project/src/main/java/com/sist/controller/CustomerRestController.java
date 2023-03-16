@@ -19,6 +19,7 @@ import com.sist.vo.CustomerVO;
 import com.sist.global.security.annotation.LoginMember;
 import com.sist.global.security.vo.AuthMemberVO;
 import com.sist.service.CustomerService;
+import com.sist.util.Pagination;
 
 @RestController
 @RequestMapping("/customer")
@@ -56,7 +57,7 @@ public class CustomerRestController {
             i++;
         }*/
         //return arr.toJSONString();
-    	public List<CustomerVO> test(@RequestParam(value="page", defaultValue = "1") int page)
+    	public Pagination test(@RequestParam(value="page", defaultValue = "1") int page)
     	{
     		page = (page <= 0) ? 1 :page;
     		return service.csBoardListData(page);
@@ -68,7 +69,7 @@ public class CustomerRestController {
     	AuthMemberVO principal = (AuthMemberVO)auth.getPrincipal();
     	String nickname = principal.getNickname();
     	int mno = principal.getMno();
-        service.csBoardInserst(vo, mno, nickname);
+        service.csBoardInsert(vo, mno, nickname);
         System.out.println("ss");
         return "ok";
     }
@@ -89,18 +90,8 @@ public class CustomerRestController {
     }
 
     @GetMapping("/update_vue.do")
-    public String cs_update(int nno) {
-        CustomerVO vo = service.csBoardDetailData(nno);
-
-        JSONObject obj = new JSONObject();
-        obj.put("nno", vo.getNno());
-        obj.put("subject", vo.getSubject());
-        obj.put("name", vo.getName());
-        //obj.put("dbday", vo.getDbday());
-        //obj.put("hit", vo.getHit());
-        obj.put("content", vo.getContent());
-
-        return obj.toJSONString();
+    public CustomerVO cs_update(int nno) {
+        return service.csBoardDetailData(nno);
     }
 
     @GetMapping("/update_ok_vue.do")

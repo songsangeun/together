@@ -70,10 +70,18 @@ h1{
 
 <div>
  <div class="container">
- <h1>커뮤니티</h1>
   <div class="row">
-   <table class="table">
-    <tr>
+   <table class="table" style="background-color: #dfe9e8;">
+    <tr class="text-center">
+    <td>
+      <h1><b style="color:#477A78;">FAQ</h1>
+      <p>투개더에서 자주 묻는 질문들을 모아모아~</p>
+      
+    </td>
+    </tr>
+    </table>
+    <div class="container">
+    <div class="row">
      <div class="pill-nav">
   <a class="active" href="#home">자주묻는질문</a>
   <a class="text-center" href="#news">이용안내</a>
@@ -150,11 +158,66 @@ h1{
 </div>
 </div>
 <div id="news">
-hello
+<button class="accordion">[리뷰관리] 내가 작성한 리뷰들은 어디서 보나요?
+</button>
+<div class="panel">
+  <p> 로그인 후 메뉴의 방문후기를 클릭하면 작성한 장소들의 리뷰가 리스트로 보여집니다.
+  </p>
 </div>
+<button class="accordion">[리뷰관리] 내가 작성한 리뷰들은 어디서 보나요?
+</button>
+<div class="panel">
+  <p> 로그인 후 메뉴의 방문후기를 클릭하면 작성한 장소들의 리뷰가 리스트로 보여집니다.
+  </p>
+</div>
+<button class="accordion">[리뷰관리] 내가 작성한 리뷰들은 어디서 보나요?
+</button>
+<div class="panel">
+  <p> 로그인 후 메뉴의 방문후기를 클릭하면 작성한 장소들의 리뷰가 리스트로 보여집니다.
+  </p>
+</div>
+<button class="accordion">[리뷰관리] 내가 작성한 리뷰들은 어디서 보나요?
+</button>
+<div class="panel">
+  <p> 로그인 후 메뉴의 방문후기를 클릭하면 작성한 장소들의 리뷰가 리스트로 보여집니다.
+  </p>
+</div>
+<button class="accordion">[리뷰관리] 내가 작성한 리뷰들은 어디서 보나요?
+</button>
+<div class="panel">
+  <p> 로그인 후 메뉴의 방문후기를 클릭하면 작성한 장소들의 리뷰가 리스트로 보여집니다.
+  </p>
+</div>
+</div>
+<div id="contact">
+ <button class="accordion">[리뷰관리] 내가 작성한 리뷰들은 어디서 보나요?
+</button>
+<div class="panel">
+  <p> 로그인 후 메뉴의 방문후기를 클릭하면 작성한 장소들의 리뷰가 리스트로 보여집니다.
+  </p>
+</div>
+<button class="accordion">[리뷰관리] 내가 작성한 리뷰를 삭제하고 싶어요!
+</button>
+<div class="panel">
+  <p> 마이페이지나 리뷰를 썼던 페이지에서 삭제가 가능합니다.
+  </p>
+</div>
+<button class="accordion">[리뷰관리] 리뷰 작성시 중간 저장을 할 수 있나요?
+</button>
+<div class="panel">
+  <p> 리뷰 작성시 중간 저장 기능은 따로 있지 않습니다!
+  </p>
+</div>
+<button class="accordion">[리뷰관리] 
+</button>
+<div class="panel">
+  <p> [마이페이지] > 설정(회원명 옆 톱니바퀴 모양) > [회원탈퇴] 에서 탈퇴 가능합니다.(보류)
+  </p>
+</div>
+</div>
+
      </td>
     </tr>
-   </table>
   </div>
  </div>
 </div>
