@@ -1,72 +1,29 @@
 package com.sist.service;
+
 import java.util.*;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.SelectKey;
-import org.apache.ibatis.annotations.Update;
+import com.sist.util.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sist.mapper.ReviewMapper;
 import com.sist.vo.ReviewVO;
+
 @Service
 public class ReviewService {
-	@Autowired
-	private ReviewMapper mapper;
-	/* @Select("SELECT prno,pno,mno,content,TO_CHAR(created_at,'YYYY-MM-DD') as created_at,writer num "
-			+"FROM (SELECT prno,pno,mno,content,created_at,write,rownum as num "
-			+"FROM pet_place_review_2_1) "
-			+"WHERE num BETWEEN #{start} AND #{end}") */
-	public List<ReviewVO> reviewListData(int page)
-	{
-		int start=(10*page)-(10-1);
-		return mapper.reviewListData(start-1);
-	}
-	
-	// 총 페이지
-	//@Select("SELECT CEIL(COUNT(*)/20.0) FROM pet_place_review_2_1")
-	public int reviewTotalPage()
-	{
-		return mapper.reviewTotalPage();
-	}
-	
-	// 글쓰기
-	/* @SelectKey(keyProperty="no",resultType=int.class,before=true,
-				statement="SELECT NVL(MAX(no)+1,1) as no FROM pet_place_review_2_1")
-	@Insert("INSERT INTO pet_place_review_2_1 VALUES("
-			+"#{writer},#{prno},#{pno},#{mno},#{content},SYSDATE,0") */
-	public void reviewInsert(ReviewVO vo, int mno, String writer)
-	{
-		mapper.reviewInsert(vo,mno,writer);
-	}
-	
-	// 상세
-	/* @Select("SELECT prno,pno,mno,content,TO_CHAR(regdate,'YYYY-MM-DD') as created_at "
-			+"FROM pet_place_review_2_1 "
-			+"WHERE prno=#{prno}") */
-	public ReviewVO reviewDetailData(int prno)
-	{
-		return mapper.reviewDetailData(prno);
-	}
-	
-	// 삭제
-	/* @Delete("DELETE FROM pet_place_review_2_1 "
-			+"WHERE prno=#{prno}") */
-	public void reviewDelete(int prno)
-	{
-		mapper.reviewDelete(prno);
-	}
-	
-	// 수정
-	/* @Update("UPDATE pet_place_review_2_1 SET "
-			+"mno=#{mno},content=#{content} "
-			+"WHERE prno=#{prno}") */
-	public void reviewUpdate(ReviewVO vo)
-	{
-		mapper.reviewUpdate(vo);
-	}
+
+    @Autowired
+    private ReviewMapper mapper;
+
+    public Pagination reviewListData(int page, int pno) {
+        int start = (10 * page) - (10 - 1);
+        List<ReviewVO> items = mapper.reviewListData(start - 1, pno);
+        int totalCount = mapper.reviewTotalPage();
+        return new Pagination(items, page, totalCount, 7);
+    }
+
+    public void reviewInsert(ReviewVO reviewVO, String nickname) {
+        mapper.reviewInsert(reviewVO, nickname);
+    }
 
 }

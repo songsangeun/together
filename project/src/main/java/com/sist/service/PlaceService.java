@@ -5,6 +5,7 @@ import com.sist.util.Pagination;
 import com.sist.vo.BestTipVO;
 import com.sist.vo.CommunityReplyVO;
 import com.sist.vo.CommunityVO;
+import com.sist.vo.PlaceReviewVO;
 import com.sist.vo.PlaceVO;
 import com.sist.vo.PlacejjimVO;
 
@@ -51,7 +52,7 @@ public class PlaceService {
 
     public Pagination reviewList(int mno, String category, int page) {
         int start = (10 * page) - (10 - 1);
-        if (category.equals("besettip")) {
+        if (category.equals("besttip")) {
             int totalCount = mapper.bestTipReviewLikeCount(mno);
             List<BestTipVO> list = mapper.bestTipList(mno, start - 1);
             return new Pagination(list, page, totalCount, BLOCK_SIZE);
@@ -65,7 +66,7 @@ public class PlaceService {
         int start = (10 * page) - (10 - 1);
         if (category.equals("tour")) {
             int totalCount = mapper.placeReviewCount(mno);
-            List<CommunityVO> list = mapper.communityList(mno, start - 1);
+            List<PlaceReviewVO> list = mapper.placeReviewList(mno, start - 1);
             return new Pagination(list, page, totalCount, BLOCK_SIZE);
         }
         int totalCount = mapper.communityCount(mno);
