@@ -43,7 +43,7 @@
         padding: 10px 17px;
         color: #fff;
         margin: 10px;
-        background: #1f135c;
+        background: #59135c73;
         text-decoration: none;
         border: 1px;
         border-radius: 60px;
@@ -73,20 +73,21 @@
         height: 35px;
         line-height: 35px;
         border-radius: 20px;
-        color: #477A7B;
+        color: black;
         text-decoration: none;
     }
 
     .search_keyword:hover {
-        background: #477A7B;
+        background: #59135c73;
         color: #fff;
         text-decoration: none;
     }
 
     .s21_best_m_top {
         width: 100%;
-        background: url(http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/best/top_bgr2.png) top center no-repeat;
+        background-color: #FF9B8E;
         min-height: 300px;
+        background-size: 100%;
     }
 
     .s21_top_tbox {
