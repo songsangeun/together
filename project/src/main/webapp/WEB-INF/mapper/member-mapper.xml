@@ -39,4 +39,10 @@
         WHERE
             email = #{email}
     </select>
+    <delete id="delete" parameterType="int">
+        DELETE FROM
+            PET_MEMBER_2_1
+        WHERE
+            mno = #{mno}
+    </delete>
 </mapper>
