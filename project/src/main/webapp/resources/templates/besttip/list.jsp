@@ -3,7 +3,8 @@
 <style>
     .s21_best_m_top {
         width: 100%;
-        background: url(http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/best/top_bgr2.png) top center no-repeat;
+        /* background: url(http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/best/top_bgr2.png) top center no-repeat; */
+        background-color: #FF9B8E;
         min-height: 300px;
         background-size: 100%;
     }
@@ -172,19 +173,62 @@
         transition: background-color .3s;
         margin: 0 4px;
     }
-    .button
-    {
-    	position: absolute;
-    	background-color:#fde5e6;
-    	color: #;
+    .button1{
+    	background-color:#fff;
+    	color: #10152B;
     	border:none;
     	border-radius:10px;
 		padding: 5px;
+		float: right;
+		margin: 0px 5px 0px;
+		margin-left: auto;
     }
-    
+    .button2{
+    	background-color:#fff;
+    	color: #10152B;
+    	border:none;
+    	border-radius:10px;
+		padding: 5px;
+		float: right;
+		margin: 0px 5px 0px;
+    }
+    .button3{
+
+    	background-color:#fff;
+    	color: #10152B;
+    	border:none;
+    	border-radius:10px;
+		padding: 5px;
+		float: right;
+		margin: 0px 5px 0px;
+    }
+    .button4{
+
+    	background-color:#fff;
+    	color: #10152B;
+    	border:none;
+    	border-radius:10px;
+		padding: 5px;
+		float: right;
+		margin: 0px 5px 0px;
+    }
+    .button5{
+    	background-color:#fff;
+    	color: #10152B;
+    	border:none;
+    	border-radius:10px;
+		padding: 5px;
+		float: right;
+		margin: 0px 5px 0px;
+    }
+    .col-md-4{
+    	border: 1px solid grey;
+
+
 </style>
 <body>
 <jsp:include page="../fragments/header.jsp"/>
+<!-- 상단 배너 시작 -->
 <div class="s21_best_m_top pr">
     <div class="s21_top_tbox">
         <div class="s21_top_tbox_left">
@@ -195,13 +239,19 @@
                 <input type="hidden" id="m2Code" name="m2Code" value="tip">
                 <input type="hidden" id="mode" name="mode" value="tiplist">
                 <input type="hidden" id="page" name="page" value="0">
-                
-    				<button type="button" class="button">눈물</button>
-                
+                <div class="category_btn" style="display: block; width: 300px; height: 10px;">
+    				<button type="button" class="button1">눈물</button>
+    				<button type="button" class="button2">산책</button>
+    				<button type="button" class="button3">음식</button>
+    				<button type="button" class="button4">예방법</button>
+    				<button type="button" class="button5">슬개골</button>
+                </div>
             </form>
         </div>
     </div>
 </div>
+<!-- 상단 배너 끝 -->
+
 <div class="container mt-5" id="app">
     <div class="row">
         <div class="col-md-4 p-3" v-for="vo in besttip_list">
