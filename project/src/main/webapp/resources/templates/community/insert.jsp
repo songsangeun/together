@@ -5,7 +5,7 @@
 <style type="text/css">
 .s21_best_m_top {
         width: 100%;
-        background: url(http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/best/top_bgr2.png) top center no-repeat;
+        background-color: #FF9B8E;
         min-height: 300px;
         background-size: 100%;
     }
@@ -82,20 +82,22 @@ h1{
    text-align: center;
    cursor: pointer;
    font-weight: 500;
-   line-height: 50px;
-   width: 200px;
+   /* line-height: 50px; */
+   width: 100px;
    background-color:transparent;
+   /* border-color: #FF9B8E; */
 }
 .btn2{
  /*  background-color: #fff; */
    /* color: #477a7b; */
    /* border: 1px solid #477a7b; */
+   /* border-color: #FF9B8E; */
    padding: 0 10px;
    display :inline-block;
    cursor: pointer;
    font-weight: 500;
-   line-height: 50px;
-   width: 200px;
+   /* line-height: 50px; */
+   width: 100px;
    background-color:transparent;
 }
 #addBtn{
