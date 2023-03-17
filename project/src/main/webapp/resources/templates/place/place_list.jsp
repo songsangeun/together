@@ -43,9 +43,9 @@
         padding: 10px 17px;
         color: #fff;
         margin: 10px;
-        background: #477A7B;
+        background: #1f135c;
         text-decoration: none;
-        border: 1px solid #E0E0E0;
+        border: 1px;
         border-radius: 60px;
         font-size: 13px;
         max-width: 100%;
@@ -57,9 +57,9 @@
 
     .s21_tour_search_button:hover {
         background: #f3f3f3;
-        color: #477A7B;
+        color: black;
         text-decoration: none;
-        border: 1px solid #E0E0E0;
+        border: 1px;
     }
 
     .search_keyword {
@@ -83,160 +83,110 @@
         text-decoration: none;
     }
 
-    /* 슬라이드 이미지를 감싸는 div의 스타일 */
-    #slideshow {
-        position: relative;
+    .s21_best_m_top {
         width: 100%;
-        height: 400px;
-        margin: auto;
+        background: url(http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/best/top_bgr2.png) top center no-repeat;
+        min-height: 300px;
     }
 
-    /* 각 이미지의 스타일 */
-    #slideshow img {
-        position: absolute;
-        top: 0;
-        left: 0;
+    .s21_top_tbox {
+        width: 1260px;
+        margin: 0px auto;
+    }
+
+    .s21_top_tbox h3 {
         width: 100%;
-        height: 100%;
+        text-align: center;
+        color: #fff;
+        font-size: 45px;
+        font-weight: 300;
+        padding: 50px 0 0 0px;
+        letter-spacing: -0.03em;
     }
 
-    /* 이전/다음 버튼의 스타일 */
-    .prev, .next {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 30px;
-        font-weight: bold;
-        padding: 10px;
-        cursor: pointer;
+    .s21_top_tbox h3 span {
+        color: #fff;
+        font-size: 45px;
+        font-weight: 400;
     }
 
-    /* 이전 버튼의 위치 */
-    .prev {
-        left: 0;
+    .s21_h3_line_l {
+        width: 30px;
+        height: 3px;
+        background: #fff;
+        margin: 15px 10px;
+        text-align: left;
     }
 
-    /* 다음 버튼의 위치 */
-    .next {
-        right: 0;
+    .s21_h3_text_l {
+        font-size: 16px;
+        color: #fff;
+        font-weight: 200;
+        opacity: 0.7;
+        text-align: left;
+        line-height: 26px;
+        padding-left: 10px;
+        letter-spacing: -0.05em;
+    }
+    .s21_tour_m_top h3 {
+        width: 100%;
+        text-align: center;
+        color: #453221;
+        font-size: 45px;
+        font-weight: 300;
+        padding: 80px 0 0 0;
+        letter-spacing: -0.03em;
     }
 
-    .talent_list .thumb {
-        overflow: hidden;
-        position: relative;
-        max-width: 210px;
-        height: 140px;
-        margin-bottom: 12px;
-        border-radius: 6px;
-        background-position: center;
-        background-size: cover;
-    }
-
-    .talent_list .talent_info {
-        display: flex;
-        align-items: center;
-        position: relative;
-    }
-
-    .talent_list .talent_info .user {
-        padding-left: 16px;
-        font-weight: bold;
-        font-size: 11px;
-        background: url(https://front-img.taling.me/Content/app3/img/icon/icClasscardWish@2x.png) no-repeat left/12px 12px;
-    }
 </style>
-<script>
-    window.onload = function () {
-        var slideIndex = 1;
-        showSlides(slideIndex);
 
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-
-        function showSlides(n) {
-            var i;
-            var slides = document.getElementById("slideshow").getElementsByTagName("img");
-            if (n > slides.length) {
-                slideIndex = 1
-            }
-            if (n < 1) {
-                slideIndex = slides.length
-            }
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            slides[slideIndex - 1].style.display = "block";
-        }
-
-        setInterval(function () {
-            plusSlides(1);
-        }, 3000);
-
-        // 이전/다음 버튼 이벤트 리스너 추가
-        var prevButton = document.getElementsByClassName("prev")[0];
-        var nextButton = document.getElementsByClassName("next")[0];
-        prevButton.addEventListener("click", function () {
-            plusSlides(-1);
-        });
-        nextButton.addEventListener("click", function () {
-            plusSlides(1);
-        });
-    }
-</script>
 <body>
 <jsp:include page="../fragments/header.jsp"/>
 <!-- 슬라이드 이미지를 감싸는 div -->
-<div id="slideshow">
-    <!-- 이미지 목록 -->
-    <img src="/image/place_image/dog2.jpeg">
-    <img src="/image/place_image/dog2.jpeg">
-    <img src="/image/place_image/dog3.jpeg">
-    <img src="/image/place_image/dog4.jpeg">
-    <img src="/image/place_image/dog5.jpeg">
-</div>
-
-<!-- 이전/다음 버튼 -->
-<div class="prev" onclick="plusSlides(-1)">&#10094;</div>
-<div class="next" onclick="plusSlides(1)">&#10095;</div>
 
 <div class="container app">
-    <div class="s21_sm_search">
-        <div class="d-flex justify-content-center">
-            <div class="d-flex justify-content-center city_select">
-                <select id="region-select" ref="selectedRegion" v-model="selectedRegion" class="form-select"
-                        aria-label="Default select example">
-                    <option value="전국">전국</option>
-                    <option v-for="region in regions" :value="region">{{ region }}</option>
-                </select>
-                <select id="city-select" ref="selectedCity" v-model="selectedCity" class="form-select"
-                        aria-label="Default select example">
-                    <option value="시군선택">시군선택</option>
-                    <option v-for="city in cities[selectedRegion]" :value="city">{{ city }}</option>
-                </select>
-                <select class="form-select" aria-label="Default select example" ref="category" v-model="category">
-                    <option value="0">여행지선택</option>
-                    <option value="관광지">관광지</option>
-                    <option value="음식점">음식점</option>
-                    <option value="숙소">숙소</option>
-                    <option value="캠핑">캠핑</option>
-                    <option value="쇼핑">쇼핑</option>
-                    <option value="호텔링">호텔링</option>
-                </select>
-                <input type="text" class="s21_SearchInput" name="sch_text" id="sch_text" placeholder="여행지명을 입력하세요"
-                       ref="title" v-model="title">
-                <button type="button" class="s21_tour_search_button" v-on:click="find()">검색하기</button>
+    <div class="s21_best_m_top pr">
+        <div class="s21_top_tbox">
+            <p class="s21_h3_line_l"></p>
+            <h3 class="s21_tour_h3 ">오늘까지
+                <span class="number" id="number1" data-cnt="9736">9736</span>개의 <span>전국</span>여행정보
+            </h3>
+            <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-center city_select">
+                    <select id="region-select" ref="selectedRegion" v-model="selectedRegion" class="form-select"
+                            aria-label="Default select example">
+                        <option value="전국">전국</option>
+                        <option v-for="region in regions" :value="region">{{ region }}</option>
+                    </select>
+                    <select id="city-select" ref="selectedCity" v-model="selectedCity" class="form-select"
+                            aria-label="Default select example">
+                        <option value="시군선택">시군선택</option>
+                        <option v-for="city in cities[selectedRegion]" :value="city">{{ city }}</option>
+                    </select>
+                    <select class="form-select" aria-label="Default select example" ref="category" v-model="category">
+                        <option value="0">여행지선택</option>
+                        <option value="관광지">관광지</option>
+                        <option value="음식점">음식점</option>
+                        <option value="숙소">숙소</option>
+                        <option value="캠핑">캠핑</option>
+                        <option value="쇼핑">쇼핑</option>
+                        <option value="호텔링">호텔링</option>
+                    </select>
+                    <input type="text" class="s21_SearchInput" name="sch_text" id="sch_text" placeholder="여행지명을 입력하세요"
+                           ref="title" v-model="title">
+                    <button type="button" class="s21_tour_search_button" v-on:click="find()">검색하기</button>
+                </div>
             </div>
-        </div>
-        <div class="d-flex justify-content-center">
-            <strong style="margin: 5px;">추천검색어</strong>
-        </div>
-        <div class="d-flex justify-content-center">
-            <p>
-                <a href="/product/search.html?keyword=UFO 넥카라" class="search_keyword">UFO 넥카라</a>
-                <a href="/product/search.html?keyword=꿀잠방석" class="search_keyword">꿀잠방석</a>
-                <a href="/product/search.html?keyword=논슬립 슬라이드 계단" class="search_keyword">논슬립 슬라이드 계단</a>
-            </p>
+            <div class="d-flex justify-content-center">
+                <strong style="margin: 5px;">추천검색어</strong>
+            </div>
+            <div class="d-flex justify-content-center">
+                <p>
+                    <a href="/product/search.html?keyword=UFO 넥카라" class="search_keyword">UFO 넥카라</a>
+                    <a href="/product/search.html?keyword=꿀잠방석" class="search_keyword">꿀잠방석</a>
+                    <a href="/product/search.html?keyword=논슬립 슬라이드 계단" class="search_keyword">논슬립 슬라이드 계단</a>
+                </p>
+            </div>
         </div>
     </div>
 
@@ -248,23 +198,6 @@
                 v-on:click="sort1('hit')">조회순
         </button>
     </div>
-    <%--<div v-for="item in searchList" :key="item.id" class="col-md-3">
-        <li class="swiper-slide swiper-slide-active" style="width: 210px; margin-right: 15px;">
-            <a :href="'../place/place_detail.do?pno=' + item.pno">
-                <img :src="item.image">
-            <div class="thumb lazyloaded" style="background-image: url(&quot;//img.taling.me/Content/Uploads/Images/b8fd2c6e36ed2c459171ce1afc7d7f1d98e97626.jpg&quot;);"></div>
-            <div class="card_cnt">
-                <h3 class="talent_title">{{ item.title }}</h3>
-                <div class="talent_info">
-                    &lt;%&ndash;<span class="user">{{}}</span>&ndash;%&gt;
-                    <span class="reward_badge" style="background-image:url('//front-img.taling.me/Content/app3/img/icon/icClasscardReview@2x.png')">조회수{{}}</span>
-                </div>
-            </div>
-            </a>
-            <button type="button" class="btn_wish " onclick="updateWish(this,36694);"></button>
-        </li>
-    </div>
-    <infinite-loading @infinite="infiniteHandler"></infinite-loading>--%>
 
     <div class="row">
         <div v-if="searchList.length > 0">
@@ -273,8 +206,7 @@
                     <a :href="'../place/place_detail.do?pno=' + item.pno">
                         <img :src="item.image" style="height: 211px; width:100%">
                         <div class="caption">
-                            <p>{{ item.title }}</p>
-                            <p style="color: #a6a6a6; font-size: 14px;">{{ item.subtitle }}</p>
+                            <p>{{ item.title.split(' ')[0] }}</p>
                         </div>
                     </a>
                 </div>
@@ -285,11 +217,9 @@
             <div v-for="item in placeList" :key="item.id" class="col-md-3">
                 <div class="thumbnail">
                     <a :href="'../place/place_detail.do?pno=' + item.pno">
-                        <a :href="'../place/place_detail.do?pno=' + item.pno">
                         <img :src="item.image" style="height: 211px; width:100%">
                         <div class="caption">
-                            <p>{{ item.title }}</p>
-                            <p style="color: #a6a6a6; font-size: 14px;">{{ item.subtitle }}</p>
+                            <h4>{{ item.title }}</h4>
                         </div>
                     </a>
                 </div>

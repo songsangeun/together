@@ -17,92 +17,9 @@
             color: #a9a9a9;
         }
 
-        /* 슬라이드 이미지를 감싸는 div의 스타일 */
-        #slideshow {
-            position: relative;
-            width: 100%;
-            height: 400px;
-            margin: auto;
-        }
-
-        /* 각 이미지의 스타일 */
-        #slideshow img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* 이전/다음 버튼의 스타일 */
-        .prev, .next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 30px;
-            font-weight: bold;
-            padding: 10px;
-            cursor: pointer;
-        }
-
-        /* 이전 버튼의 위치 */
-        .prev {
-            left: 0;
-        }
-
-        /* 다음 버튼의 위치 */
-        .next {
-            right: 0;
-        }
-
-        .tabs {
-            opacity: 1;
-            color: #477a7b;
-            border-color: #477a7b;
-            border-bottom-color: transparent;
-            background: #fff;
-        }
     </style>
 </head>
-<script>
-    window.onload = function () {
-        var slideIndex = 1;
-        showSlides(slideIndex);
 
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-
-        function showSlides(n) {
-            var i;
-            var slides = document.getElementById("slideshow").getElementsByTagName("img");
-            if (n > slides.length) {
-                slideIndex = 1
-            }
-            if (n < 1) {
-                slideIndex = slides.length
-            }
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            slides[slideIndex - 1].style.display = "block";
-        }
-
-        setInterval(function () {
-            plusSlides(1);
-        }, 3000);
-
-        // 이전/다음 버튼 이벤트 리스너 추가
-        var prevButton = document.getElementsByClassName("prev")[0];
-        var nextButton = document.getElementsByClassName("next")[0];
-        prevButton.addEventListener("click", function () {
-            plusSlides(-1);
-        });
-        nextButton.addEventListener("click", function () {
-            plusSlides(1);
-        });
-    }
-</script>
 <body>
 <jsp:include page="../fragments/header.jsp"/>
 <div class="wrapper row3 rows" id="app">
@@ -111,37 +28,36 @@
         <div class="two_third first">
             <table class="table">
                 <tr>
-                    <td v-for="img in place_detail.image.split(',')" id="slideshow">
-                        <img :src="img" style="width: 500px; height: 370px;">
-                    </td>
-                </tr>
-
-                <!-- 이전/다음 버튼 -->
-                <div class="prev" onclick="plusSlides(-1)">&#10094;</div>
-                <div class="next" onclick="plusSlides(1)">&#10095;</div>
-                <tr>
                     <td colspan="2">
-                        <h3><span id="name">{{place_detail.title}}</span>&nbsp;<span class="subtitle">{{place_detail.subtitle}}</span>
+                        <h3><span id="name">{{place_detail.title}}</span>&nbsp;
+                            <span class="subtitle">{{place_detail.subtitle}}</span>
                         </h3>
                     </td>
                 </tr>
                 <tr>
-                    <th width=20%>주소</th>
+                    <%--<td v-for="img in place_detail.image.split(',')">
+                        <img :src="img" style="width: 500px; height: 370px;">
+                    </td>--%>
+                    <td><img :src="place_detail.image.split(',')[0]" style="width: 500px; height: 370px;"></td>
+                    <td><img :src="place_detail.image.split(',')[1]" style="width: 500px; height: 370px;"></td>
+                </tr>
+                <tr>
+                    <th width=20%  style="text-align: right">주소 : </th>
                     <td width=80%>
                         {{place_detail.address}}<br>
                     </td>
                 </tr>
                 <tr>
-                    <th width=20%>전화</th>
+                    <th width=20%  style="text-align: right">전화 : </th>
                     <td width=80%>{{place_detail.tel}}</td>
                 </tr>
                 <tr>
-                    <th width=20%>홈페이지</th>
+                    <th width=20%  style="text-align: right">홈페이지 : </th>
                     <td width=80%>{{place_detail.homepage}}</td>
                 </tr>
                 <tr>
-                    <th width=20%>영업시간</th>
-                    <td width=80%>{{place_detail.openhour}}</td>
+                    <th width=20%  style="text-align: right">영업시간 : </th>
+                    <td width=80%>{{place_detail.openHour}}</td>
                 </tr>
                 <tr>
                     <td colspan="2" class="text-right">
@@ -153,16 +69,27 @@
                 <b-tabs content-class="mt-3" align="center">
                     <b-tab title="기본정보" active>
                         <tr>
-                            <td style="display: flex; flex-direction: column;">
-                                <img v-for="content in place_detail.content.split(',')" :src="content"
-                                     style="width: 100%; padding-bottom: 15px;">
+                            <td class="d-flex justify-content-center">
+                                <img v-for="content in place_detail.content.split(',')" :src="content" style="width: 70%; padding-bottom: 15px;">
                             </td>
                         </tr>
                     </b-tab>
                     <b-tab title="위치정보">
-                        <div class="one_third">
-                            <div id="map" style="width:50%;height:350px;"></div>
-                        </div>
+                        <table class="table">
+                            <tr>
+                                <th width=20%>주소</th>
+                                <td width=80%>
+                                    {{place_detail.address}}<br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th width=20%>전화</th>
+                                <td width=80%>{{place_detail.tel}}</td>
+                            </tr>
+                            <div class="one_third">
+                                <div id="map" style="width:50%;height:350px;"></div>
+                            </div>
+                        </table>
                     </b-tab>
                     <b-tab title="리뷰">
                         <div id="review">
@@ -233,6 +160,8 @@
         </div>
     </main>
 </div>
+
+
 <script>
     new Vue({
         el: '#app',

@@ -115,14 +115,6 @@ public class PlaceController {
         System.out.println("입력된 검색 키워드 : " + selectedRegion + " " + selectedCity + " " + category + " " + title);
         List<PlaceVO> PlacesSearch = service.PlacesSearch(address, category, title);
 
-        /*PlaceVO vo = new PlaceVO();
-        String[] tokens = vo.getTitle().split(" ", 2);
-        String maintitle = tokens[0];
-        String subtitle = tokens[1];
-        vo.setTitle(maintitle);
-        vo.setSubtitle(subtitle);
-        System.out.println(maintitle);
-        System.out.println(subtitle);*/
 
         return PlacesSearch;
     }
