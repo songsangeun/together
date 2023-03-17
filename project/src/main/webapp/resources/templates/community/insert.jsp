@@ -1,34 +1,82 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:include page="../fragments/head.jsp"/>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 <style type="text/css">
+.s21_best_m_top {
+        width: 100%;
+        background: url(http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/best/top_bgr2.png) top center no-repeat;
+        min-height: 300px;
+        background-size: 100%;
+    }
+
+    .pr {
+        position: relative;
+    }
+
+    .s21_top_tbox {
+        width: 1260px;
+        margin: 0px auto;
+    }
+
+    .s21_top_tbox_left {
+        float: left;
+        width: 40%;
+        text-align: left;
+    }
+
+    .s21_top_tbox h3 {
+        width: 100%;
+        text-align: left;
+        color: #fff;
+        font-size: 45px;
+        font-weight: 300;
+        padding: 50px 0 0 0px;
+        letter-spacing: -0.03em;
+    }
+
+    .s21_top_tbox h3 span {
+        color: #fff;
+        font-size: 45px;
+        font-weight: 400;
+    }
+
+    .s21_h3_line_l {
+        width: 30px;
+        height: 3px;
+        background: #fff;
+        margin: 15px 10px;
+        text-align: left;
+    }
+
+    .s21_h3_text_l {
+        font-size: 16px;
+        color: #fff;
+        font-weight: 200;
+        opacity: 0.7;
+        text-align: left;
+        line-height: 26px;
+        padding-left: 10px;
+        letter-spacing: -0.05em;
+    }
 .container{
-   margin-top: 70px;
+   margin-top: 30px;
 }
 .row{
    margin: 0px auto;
-   width:700px;
+   width:1000px;
 }
 h1{
    text-align: center;
-}
-.select_box{
+} 
+/* .select_box{
    background-color: #dfe9e8;
    color: #477A7B;
-}
+} */
 .btn1{
-   background-color: #477a7b;
-   color: #fff;
-   border: 1px solid #477a7b;
+   /* background-color: #FFF0F0; */
+   /* color: #fff; */
+    /* border-color: #FFBCB9; */
    padding: 0 10px;
    display :inline-block;
    text-align: center;
@@ -36,17 +84,19 @@ h1{
    font-weight: 500;
    line-height: 50px;
    width: 200px;
+   background-color:transparent;
 }
 .btn2{
-  background-color: #fff;
-   color: #477a7b;
-   border: 1px solid #477a7b;
+ /*  background-color: #fff; */
+   /* color: #477a7b; */
+   /* border: 1px solid #477a7b; */
    padding: 0 10px;
    display :inline-block;
    cursor: pointer;
    font-weight: 500;
    line-height: 50px;
    width: 200px;
+   background-color:transparent;
 }
 #addBtn{
   background-color: #7FFFD4;
@@ -54,12 +104,33 @@ h1{
 #removeBtn{
   background-color: #AFFFEE;
 }
+/* .row rows{
+  width:700px;
+} */
 </style>
-<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
-
+<!-- <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script> -->
 </head>
 <body>
 <jsp:include page="../fragments/header.jsp"/>
+   <div class="s21_best_m_top pr">
+    <div class="s21_top_tbox">
+        <div class="s21_top_tbox_left">
+            <h3 class=""><span>투개더 커뮤니티</span></h3>
+            <p class="s21_h3_line_l"></p>
+            <p class="s21_h3_text_l">하트독에서 우리 반려견에 대한 이야기를 공유해보세요.</p>
+            <!-- <form id="frmSetData" name="frmSetData" method="POST" onsubmit="return false;">
+                <input type="hidden" id="m2Code" name="m2Code" value="tip">
+                <input type="hidden" id="mode" name="mode" value="tiplist">
+                <input type="hidden" id="page" name="page" value="0">
+                
+    				<button type="button" class="button">눈물</button>
+                
+            </form> -->
+            
+        </div>
+    </div>
+</div>
+
    <div class="container">
      <div class="row">
       <form method=post action="insert_ok.do" enctype="multipart/form-data">
