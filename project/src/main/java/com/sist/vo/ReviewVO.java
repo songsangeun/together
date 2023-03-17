@@ -10,7 +10,7 @@ import java.util.Date;
 public class ReviewVO {
 
     private int pno;
-    
+
     private int prno;
 
     private String content;
@@ -18,9 +18,7 @@ public class ReviewVO {
     private Date createdAt;
 
     private int mno;
-    
+
     private String writer;
-    
-    
 
 }

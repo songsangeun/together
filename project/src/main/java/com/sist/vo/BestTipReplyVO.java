@@ -1,6 +1,7 @@
 package com.sist.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,7 +21,7 @@ public class BestTipReplyVO {
 
     private String content;
 
-    @JsonFormat(pattern = "YYYY-MM-DD")
+    @JsonFormat(pattern = "yyyy-MM-DD", timezone = "Asia/Seoul")
     private Date regDate;
 
 }

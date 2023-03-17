@@ -45,4 +45,8 @@ public class MemberService {
         }
     }
 
+    public void memberOut(int mno) {
+        memberMapper.delete(mno);
+    }
+
 }

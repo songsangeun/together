@@ -7,8 +7,6 @@ import com.sist.service.PlaceService;
 import com.sist.util.Pagination;
 import com.sist.vo.MemberVO;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -52,6 +50,14 @@ public class MemberController {
             return "member/mypage-comment";
         }
         return "member/mypage-bookmark";
+    }
+
+    @GetMapping("/mypage/out")
+    public String myPageInfo(@LoginMember Authentication authentication, Model model) {
+        AuthMemberVO principal = (AuthMemberVO) authentication.getPrincipal();
+        MemberVO vo = memberService.profile(principal.getUsername());
+        model.addAttribute("member", vo);
+        return "member/mypage-out";
     }
 
     @PostMapping("/signup")
@@ -125,6 +131,13 @@ public class MemberController {
         page = (page <= 0) ? 1 : page;
         AuthMemberVO principal = (AuthMemberVO) authentication.getPrincipal();
         return placeService.writeList(principal.getMno(), category, page);
+    }
+
+    @PostMapping("/out")
+    @ResponseBody
+    public void memberOut(@LoginMember Authentication authentication) {
+        AuthMemberVO principal = (AuthMemberVO) authentication.getPrincipal();
+        memberService.memberOut(principal.getMno());
     }
 
 }

@@ -1,19 +1,23 @@
 package com.sist.vo;
 
-/*CRNO    NOT NULL NUMBER 
-CNO              NUMBER 
-MSG     NOT NULL CLOB   
-REGDATE          DATE */
- 
+import java.util.Date;
 
-import java.util.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Getter;
 import lombok.Setter;
+
 @Getter
 @Setter
 public class CommunityReplyVO {
-	private int crno,cno;
-	private String msg;
-	private Date regdate;
+
+    private int crno;
+
+    private int cno;
+
+    private String msg;
+
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
+    private Date regdate;
+
 }

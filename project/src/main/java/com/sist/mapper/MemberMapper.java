@@ -11,6 +11,8 @@ public interface MemberMapper {
 
     void save(MemberVO memberVO);
 
+    void delete(int mno);
+
     Optional<MemberVO> findById(int mno);
 
     Optional<MemberVO> findByEmail(String email);

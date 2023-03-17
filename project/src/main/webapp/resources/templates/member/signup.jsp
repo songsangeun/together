@@ -1,16 +1,47 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <jsp:include page="../fragments/head.jsp"/>
+<style>
+    .signup-box {
+        top: -20px;
+        width: 600px;
+        border-radius: 40px;
+        background-color: #fff;
+        position: relative;
+        box-shadow: 1px 1px 1px 1px rgb(207, 207, 207, 0.6);
+    }인
+</style>
 <body>
 <jsp:include page="../fragments/header.jsp"/>
-<div class="container" id="app">
-    <div class="text-center mb-5">
-        <div class="mb-3 mt-3">
-            <h1>회원가입</h1>
+<div class="text-center p-1 container-fluid"
+     style="background: url('http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/schedule/top_bgr_n2.png');">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <img src="http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/member/top_left_img.png">
+            </div>
+            <div class="p-5">
+                <h1 class="text-light">
+                    <strong class="display-5">투개더 회원가입</strong>
+                </h1>
+                <p class="text-light mt-3">
+                    반려견과 함께 행복한 여행!
+                    <br/>
+                    투개더 회원가입 후 지금 바로 떠나보세요.
+                </p>
+            </div>
+            <div>
+                <img src="http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/member/top_right_img.png">
+            </div>
         </div>
-        <div class="m-auto" style="width: 400px;">
-            <form>
-                <div>
-                    <input type="text" v-model="name" class="form-control form-control-lg" @blur="nameCheck()" placeholder="이름">
+    </div>
+</div>
+<div class="container" id="app">
+    <div class="d-flex justify-content-center">
+        <div class="signup-box">
+            <div class="p-5">
+                <form>
+                    <input type="text" v-model="name" class="form-control form-control-lg" @blur="nameCheck()"
+                           placeholder="이름">
                     <div class="text-left">
                         <span class="text-success" v-if="isNameValid">
                             <small>{{ nameMessage }}</small>
@@ -19,55 +50,64 @@
                             <small>{{ nameMessage }}</small>
                         </span>
                     </div>
-                </div>
-                <div class="mt-4">
-                    <input type="text" v-model="nickname" class="form-control form-control-lg" @blur="nicknameCheck()" placeholder="닉네임">
-                    <div class="text-left">
-                        <span class="text-success" v-if="isNicknameValid">
-                            <small>{{ nicknameMessage }}</small>
-                        </span>
-                        <span class="text-danger" v-else>
-                            <small>{{ nicknameMessage }}</small>
-                        </span>
+                    <div class="mt-4">
+                        <input type="text" v-model="nickname" class="form-control form-control-lg"
+                               @blur="nicknameCheck()" placeholder="닉네임">
+                        <div class="text-left">
+                            <span class="text-success" v-if="isNicknameValid">
+                                <small>{{ nicknameMessage }}</small>
+                            </span>
+                            <span class="text-danger" v-else>
+                                <small>{{ nicknameMessage }}</small>
+                            </span>
+                        </div>
                     </div>
-                </div>
-                <div class="mt-4">
-                    <input type="text" v-model="email" class="form-control form-control-lg" @blur="emailCheck()" placeholder="아이디(이메일)">
-                    <div class="text-left">
-                        <span class="text-success" v-if="isEmailValid">
-                            <small>{{ emailMessage }}</small>
-                        </span>
-                        <span class="text-danger" v-else>
-                            <small>{{ emailMessage }}</small>
-                        </span>
+                    <div class="mt-4">
+                        <input type="text" v-model="email" class="form-control form-control-lg" @blur="emailCheck()"
+                               placeholder="아이디(이메일)">
+                        <div class="text-left">
+                            <span class="text-success" v-if="isEmailValid">
+                                <small>{{ emailMessage }}</small>
+                            </span>
+                            <span class="text-danger" v-else>
+                                <small>{{ emailMessage }}</small>
+                            </span>
+                        </div>
                     </div>
-                </div>
-                <div class="mt-4">
-                    <input type="password" v-model="password1" class="form-control form-control-lg" @blur="password1Check()" placeholder="비밀번호">
-                    <div class="text-left">
-                        <span class="text-success" v-if="isPassword1Valid">
-                            <small>{{ password1Message }}</small>
-                        </span>
-                        <span class="text-danger" v-else>
-                            <small>{{ password1Message }}</small>
-                        </span>
+                    <div class="mt-4">
+                        <input type="password" v-model="password1" class="form-control form-control-lg"
+                               @blur="password1Check()" placeholder="비밀번호">
+                        <div class="text-left">
+                            <span class="text-success" v-if="isPassword1Valid">
+                                <small>{{ password1Message }}</small>
+                            </span>
+                            <span class="text-danger" v-else>
+                                <small>{{ password1Message }}</small>
+                            </span>
+                        </div>
                     </div>
-                </div>
-                <div class="mt-4">
-                    <input type="password" v-model="password2" class="form-control form-control-lg" @blur="password2Check()" placeholder="비밀번호 확인">
-                    <div class="text-left">
-                        <span class="text-success" v-if="isPassword2Valid">
-                            <small>{{ password2Message }}</small>
-                        </span>
-                        <span class="text-danger" v-else>
-                            <small>{{ password2Message }}</small>
-                        </span>
+                    <div class="mt-4">
+                        <input type="password" v-model="password2" class="form-control form-control-lg"
+                               @blur="password2Check()" placeholder="비밀번호 확인">
+                        <div class="text-left">
+                            <span class="text-success" v-if="isPassword2Valid">
+                                <small>{{ password2Message }}</small>
+                            </span>
+                            <span class="text-danger" v-else>
+                                <small>{{ password2Message }}</small>
+                            </span>
+                        </div>
                     </div>
+                    <div class="mt-4">
+                        <button type="button" class="btn btn-lg btn-primary btn-block" v-on:click="signup()">가입하기
+                        </button>
+                    </div>
+                </form>
+                <hr>
+                <div class="text-center">
+                    이미 회원이신가요? <a href="/member/login">로그인</a>
                 </div>
-                <div class="mt-4">
-                    <button type="button" class="btn btn-lg btn-primary btn-block" v-on:click="signup()">가입하기</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>

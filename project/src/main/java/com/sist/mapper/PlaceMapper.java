@@ -1,10 +1,7 @@
 package com.sist.mapper;
 
 import com.sist.vo.*;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.Map;
@@ -44,6 +41,20 @@ public interface PlaceMapper {
 			"FROM pet_place_2_1 " +
 			"WHERE address LIKE '%'||#{address}||'%' AND category LIKE '%'||#{category}||'%' AND title LIKE '%'||#{title}||'%'")
 	public List<PlaceVO> PlacesSearch(@Param("address") String address, @Param("category") String category, @Param("title") String title);
+	//찜취소
+	/*@Delete("DELETE FROM gg_allJjim_4 "
+			+"WHERE pjno=#{pjno} and pno=#{pjno}")
+	public void PlaceJjimDelete(int pjno,int no);*/
+	/*@Results({
+			@Result(property = "dvo.dname",column = "dname"),
+			@Result(property = "dvo.loc",column = "loc")
+	})*/
+	@Insert("INSERT INTO pet_place_jjim_2_1 (pjno, image, title, create_at, pno, mno, category) " +
+			"SELECT (SELECT NVL(MAX(pjno)+1,1) FROM pet_place_jjim_2_1), p.image, p.title, SYSDATE, p.pno, m.mno, p.category " +
+			"FROM pet_place_2_1 p, pet_member_2_1 m " +
+			"WHERE p.pno = #{pno} AND m.mno = #{mno}")
+	public int addJjim(@Param("pno") int pno, @Param("mno") int mno);
+
 
 	@Select("select pno, title, image " +
 			"FROM pet_place_2_1 " +

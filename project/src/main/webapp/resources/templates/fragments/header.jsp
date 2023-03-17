@@ -10,26 +10,21 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="justify-content-start">
                                     <a href="/">
-                                        <h1>LOGO</h1>
+                                        <img src="/image/tog_logo.jpg">
                                     </a>
                                 </div>
                                 <nav class="d-flex justify-content-center">
                                     <ul id="navigation">
                                         <li class="m-0">
-                                           <a href="../place/place_list.do">여행지정보</a>
+                                            <a href="../notice/list.do">공지사항</a>
+                                        </li>
+                                        <li>
+                                            <a href="../place/place_list.do">여행지정보</a>
                                         </li>
                                         <li>
                                             <a href="/">여행앨범
                                                 <i class="ti-angle-down"></i>
                                             </a>
-                                            <ul class="submenu">
-                                                <li>
-                                                    <a href="/">여행노트</a>
-                                                </li>
-                                                <li>
-                                          <a href="../notice/list.do">공지사항</a>
-                                        </li>
-                                            </ul>
                                         </li>
                                         <li><a href="../community/list.do">커뮤니티 <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
@@ -37,18 +32,12 @@
                                                     <a href="/besttip/list">베스트팁</a>
                                                 </li>
                                                 <li>
-                                                    <a href="/review/review_list">리뷰모음</a>
-                                                </li>
-                                                <li>
-                                                    <a href="/">Q&A</a>
-                                                </li>
-                                                <li>
                                                     <a href="/customer/faq">FAQ</a>
                                                 </li>
-                                                 <li>
+                                                <li>
                                                     <a href="/customer/list">고객센터</a>
                                                 </li>
-                                                
+
                                             </ul>
                                         </li>
                                     </ul>
@@ -67,8 +56,10 @@
                                                     </li>
                                                     <hr class="m-0">
                                                     <li>
-                                                        <a href="#" class="text-danger small" onclick="document.getElementById('logout-form').submit()">로그아웃</a>
-                                                        <form class="m-0" id="logout-form" action="/member/logout" method="post"></form>
+                                                        <a href="#" class="text-danger small"
+                                                           onclick="document.getElementById('logout-form').submit()">로그아웃</a>
+                                                        <form class="m-0" id="logout-form" action="/member/logout"
+                                                              method="post"></form>
                                                     </li>
                                                 </ul>
                                             </li>
