@@ -54,7 +54,8 @@
         .next {
             right: 0;
         }
-        .tabs{
+
+        .tabs {
             opacity: 1;
             color: #477a7b;
             border-color: #477a7b;
@@ -104,7 +105,7 @@
 </script>
 <body>
 <jsp:include page="../fragments/header.jsp"/>
-<div class="wrapper row3 rows">
+<div class="wrapper row3 rows" id="app">
     <main class="container clear">
         <div style="height: 20px"></div>
         <div class="two_third first">
@@ -153,7 +154,8 @@
                     <b-tab title="기본정보" active>
                         <tr>
                             <td style="display: flex; flex-direction: column;">
-                                <img v-for="content in place_detail.content.split(',')" :src="content" style="width: 100%; padding-bottom: 15px;">
+                                <img v-for="content in place_detail.content.split(',')" :src="content"
+                                     style="width: 100%; padding-bottom: 15px;">
                             </td>
                         </tr>
                     </b-tab>
@@ -163,71 +165,68 @@
                         </div>
                     </b-tab>
                     <b-tab title="리뷰">
-                      <!-- 리스트창 -->
-						<div class="wrapper row3 rows">
-  							<main class="container clear review">
-    							<table class="table">
-							      <tr>
-							        <td>
-							          <input type=button value="리뷰쓰기" class="btn btn-sm btn-primary"
-	                style="height: 105px" @click="Write()">
-							        </td>
-							      </tr>
-							    </table>
-							    <!-- insert창 -->
-							    <table class="table">
-							     <thead>
-							      <tr>
-							        <th width=10% class="text-center">번호</th>
-							        <th width=55% class="text-center">장소</th>
-							        <th width=15% class="text-center">작성자</th>
-							        <th width=20% class="text-center">작성일</th>
-							      </tr>
-							     </thead>
-							     <tbody>
-							       <tr v-for="vo in review_list">
-							        <td width=10% class="text-center">{{vo.prno}}</td>
-							        <td width=55%><a :href="'../review/review_detail.do?prno='+vo.prno">{{vo.pno}}</a></td>
-							        <td width=15% class="text-center">{{vo.writer}}</td>
-							        <td width=20% class="text-center">{{vo.createdAt}}</td>
-							      </tr>
-							      <tr>
-							        <td colspan="5" class="text-right">
-							         <input type=button value="이전"  class="btn btn-sm btn-danger" v-on:click="prev()">
-							          {{curpage}} page / {{totalpage}} pages
-							         <input type=button value="다음"  class="btn btn-sm btn-warning" v-on:click="next()">
-							        </td>
-							      </tr>
-							     </tbody>
-							    </table>
-							    <!-- 수정 -->
-							    <table class="table">
-							      <tr>
-							        <th width=20%>작성자</th>
-							        <td width=80%><input type=text size="15" class="input-sm" v-model="writer" :value="writer"></td>
-							      </tr>
-							      <tr>
-							        <th width=20%>내용</th>
-							        <td width=80%><textarea rows="10" cols="55" v-model="content">{{content}}</textarea></td>
-							      </tr>
-							      <tr>
-							        <td colspan="2" class="text-center">
-							         <input type=button value="수정하기" class="btn btn-sm btn-primary" v-on:click="update()">
-							         <input type=button value="취소" class="btn btn-sm btn-info" onclick="javascript:history.back()">
-							        </td>
-							      </tr>
-							    </table>
-							    <!-- 삭제 -->
-							    <table class="table">
-							      <tr>
-							        <td class="text-center">
-							          <input type=button value="삭제" class="btn btn-sm btn-danger" v-on:click="del()">
-							          <input type=button value="취소" class="btn btn-sm btn-danger"  onclick="javascript:history.back()">
-							        </td>
-							      </tr>
-							    </table>
-							  </main>
-							</div>
+                        <div id="review">
+                            <div class="m-auto" style="max-width: 800px;">
+                                <div class="form-group">
+                                    <textarea class="form-control" v-model="reply_content" id="exampleFormControlTextarea1"
+                                              rows="4"
+                                              placeholder="댓글을 입력해주세요."></textarea>
+                                    <div class="mt-3 d-flex justify-content-end">
+                                        <button class="btn btn-outline-secondary" type="button"
+                                                v-on:click="placeReplyWrite()">등록
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="mt-3" v-for="vo in place_reply_list">
+                                    <div class="d-flex justify-content-start align-items-center mt-3">
+                                        <div class="mr-3">
+                                            {{ vo.writer }}
+                                        </div>
+                                        <div class="text-secondary">
+                                            <small>{{ vo.regDate }}</small>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3">
+                                        <p>{{ vo.content }}</p>
+                                    </div>
+                                </div>
+                                <div class="mt-5 mb-3">
+                                    <div class="d-flex justify-content-center">
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination">
+                                                <div>
+                                                    <li class="page-item disabled" v-if="isFirst">
+                                                        <button class="page-link" type="button" v-on:click="prevPage()">
+                                                            &laquo;
+                                                        </button>
+                                                    </li>
+                                                    <li class="page-item" v-else>
+                                                        <button class="page-link" type="button" v-on:click="prevPage()">
+                                                            &laquo;
+                                                        </button>
+                                                    </li>
+                                                </div>
+                                                <div class="p-2 d-flex justify-content-center">
+                                                    {{ page }} / {{ totalPage }}
+                                                </div>
+                                                <div>
+                                                    <li class="page-item disabled" v-if="isLast">
+                                                        <button class="page-link" type="button" v-on:click="nextPage()">
+                                                            &raquo;
+                                                        </button>
+                                                    </li>
+                                                    <li class="page-item" v-else>
+                                                        <button class="page-link" type="button" v-on:click="nextPage()">
+                                                            &raquo;
+                                                        </button>
+                                                    </li>
+                                                </div>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </b-tab>
                 </b-tabs>
             </div>
@@ -236,12 +235,18 @@
 </div>
 <script>
     new Vue({
-        el: '.rows',
+        el: '#app',
         data: {
             pno:${pno},
             place_detail: [],
+            place_reply_list: [],
             count: 0,
-            content:''
+            content: '',
+            reply_content: '',
+            totalCount: '',
+            totalPage: '',
+            isFirst: '',
+            isLast: '',
         },
         mounted: function () {
             let _this = this
@@ -253,25 +258,24 @@
                 console.log(response.data)
                 _this.place_detail = response.data
 
-                if(window.kakao && window.kakao.maps)
-                {
+                if (window.kakao && window.kakao.maps) {
                     _this.initMap();
-                }
-                else
-                {
+                } else {
                     _this.addScript();
                 }
             })
+            this.pno = new URLSearchParams(location.search).get('pno');
+            this.placeReplyList(1, this.pno);
         },
-        methods:{
-            addScript:function(){
-                const script=document.createElement("script")
+        methods: {
+            addScript: function () {
+                const script = document.createElement("script")
                 // /!* global kakao *!/
                 script.onload = () => kakao.maps.load(this.initMap)
-                script.src='http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=b18319530b6d6d62d5c86a8807893413&libraries=services'
+                script.src = 'http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=b18319530b6d6d62d5c86a8807893413&libraries=services'
                 document.head.appendChild(script)
             },
-            initMap:function(){
+            initMap: function () {
                 //let name=this.food_detail.name;
                 var mapContainer = document.getElementById('map'), // 지도를 표시할 div
                     mapOption = {
@@ -286,7 +290,7 @@
                 var geocoder = new kakao.maps.services.Geocoder();
 
                 // 주소로 좌표를 검색합니다
-                geocoder.addressSearch(this.place_detail.address, function(result, status) {
+                geocoder.addressSearch(this.place_detail.address, function (result, status) {
 
                     // 정상적으로 검색이 완료됐으면
                     if (status === kakao.maps.services.Status.OK) {
@@ -302,7 +306,7 @@
                         // 인포윈도우로 장소에 대한 설명을 표시합니다
 
                         var infowindow = new kakao.maps.InfoWindow({
-                            content: '<div style="width:150px;text-align:center;padding:6px 0;">'+$('#name').text()+'</div>'
+                            content: '<div style="width:150px;text-align:center;padding:6px 0;">' + $('#name').text() + '</div>'
                         });
                         infowindow.open(map, marker);
 
@@ -310,35 +314,41 @@
                         map.setCenter(coords);
                     }
                 })
+            },
+            placeReplyList: function (page, pno) {
+                let _this = this;
+                axios.get('/review/review_list_vue', {
+                    params: {
+                        page: page,
+                        pno: pno
+                    }
+                }).then(function (response) {
+                    _this.place_reply_list = response.data.items;
+                    _this.totalCount = response.data.totalItem;
+                    _this.page = response.data.page;
+                    _this.isFirst = response.data.first;
+                    _this.isLast = response.data.last;
+                    _this.totalPage = response.data.totalPage;
+                })
+            },
+            placeReplyWrite: function () {
+                let _this = this;
+                this.pno = new URLSearchParams(location.search).get('pno');
+                let data = {
+                    content: this.reply_content,
+                    pno: this.pno
+                }
+                axios.post('/review/review_insert_vue', JSON.stringify(data), {
+                    headers: {
+                        "content-type": 'application/json'
+                    }
+                }).then(function (response) {
+                    _this.reply_content = '';
+                    _this.placeReplyList(1, _this.pno);
+                })
             }
         }
-    })
-    
-    new Vue({
-  	  el:'.review',
-  	  data:{
-  		  content:'',
-  		  pno:{pno}
-  	  },
-  	  methods:{
-  		  write:function(){
-  			  let _this=this;
-  			  let data = {
-  					  content:this.content,
-  					  pno:this.pno
-  			  }
-  			  axios.post('/review/review_insert_vue',JSON.stringify(data),{
-  				  headers:{
-  					  "content-type":'application/json'
-  				  }
-  			  }).then(function(response){
-  				  _this.content="";
-  				  _this.review_list=result.data;
-  			  })
-  		  }
-  	  }
-    })
-    
+    });
 </script>
 <jsp:include page="../fragments/footer.jsp"/>
 </body>
