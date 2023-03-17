@@ -62,11 +62,144 @@
         color: white;
         text-align: center;
     }
+    .s21_best_m_top {
+        width: 100%;
+        /* background: url(http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/best/top_bgr2.png) top center no-repeat; */
+        background-color: #FF9B8E;
+        min-height: 300px;
+        background-size: 100%;
+    }
+    .pr {
+        position: relative;
+    }
+    .s21_top_tbox {
+        width: 1260px;
+        margin: 0px auto;
+    }
+
+    .s21_top_tbox_left {
+        float: left;
+        width: 40%;
+    }
+    .s21_top_tbox_left {
+        float: left;
+        width: 40%;
+        text-align: left;
+    }
+
+    .s21_top_tbox h3 {
+        width: 100%;
+        text-align: left;
+        color: #fff;
+        font-size: 45px;
+        font-weight: 300;
+        padding: 50px 0 0 0px;
+        letter-spacing: -0.03em;
+    }
+
+    .s21_top_tbox h3 {
+        color: #fff;
+        font-size: 45px;
+        font-weight: 400;
+    }
+    .s21_h3_line_l {
+        width: 30px;
+        height: 3px;
+        background: #fff;
+        margin: 15px 10px;
+        text-align: left;
+    }
+
+    .s21_h3_text_l {
+        font-size: 16px;
+        color: #fff;
+        font-weight: 200;
+        opacity: 0.7;
+        text-align: left;
+        line-height: 26px;
+        padding-left: 10px;
+        letter-spacing: -0.05em;
+    }
+    .button1{
+    	background-color:#fff;
+    	color: #10152B;
+    	border:none;
+    	border-radius:10px;
+		padding: 5px;
+		float: right;
+		margin: 0px 5px 0px;
+		margin-left: auto;
+    }
+    .button2{
+    	background-color:#fff;
+    	color: #10152B;
+    	border:none;
+    	border-radius:10px;
+		padding: 5px;
+		float: right;
+		margin: 0px 5px 0px;
+    }
+    .button3{
+
+    	background-color:#fff;
+    	color: #10152B;
+    	border:none;
+    	border-radius:10px;
+		padding: 5px;
+		float: right;
+		margin: 0px 5px 0px;
+    }
+    .button4{
+
+    	background-color:#fff;
+    	color: #10152B;
+    	border:none;
+    	border-radius:10px;
+		padding: 5px;
+		float: right;
+		margin: 0px 5px 0px;
+    }
+    .button5{
+    	background-color:#fff;
+    	color: #10152B;
+    	border:none;
+    	border-radius:10px;
+		padding: 5px;
+		float: right;
+		margin: 0px 5px 0px;
+    }
+    .col-md-4{
+    	border: 1px solid grey;
+	}
+	h1{
+		
+	}
 </style>
 <body>
 <jsp:include page="../fragments/header.jsp"/>
 <div class="p-0 container-fluid">
-    <div class="text-center"
+	<div class="s21_best_m_top pr">
+    <div class="s21_top_tbox">
+        <div class="s21_top_tbox_left">
+            <h3 class=""><span>베스트팁</span></h3>
+            <p class="s21_h3_line_l"></p>
+            <p class="s21_h3_text_l">소중한 내반려견과 앞으로 더 잘 지내기 위한 팁을 소개합니다.</p>
+            <form id="frmSetData" name="frmSetData" method="POST" onsubmit="return false;">
+                <input type="hidden" id="m2Code" name="m2Code" value="tip">
+                <input type="hidden" id="mode" name="mode" value="tiplist">
+                <input type="hidden" id="page" name="page" value="0">
+                <div class="category_btn" style="display: block; width: 300px; height: 10px;">
+    				<button type="button" class="button1">눈물</button>
+    				<button type="button" class="button2">산책</button>
+    				<button type="button" class="button3">음식</button>
+    				<button type="button" class="button4">예방법</button>
+    				<button type="button" class="button5">슬개골</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+    <!-- <div class="text-center"
          style="background: url('http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/best/top_bgr.png')">
         <div class="container">
             <div class="d-flex justify-content-center align-items-center">
@@ -80,7 +213,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 <div class="container" id="app">
     <div class="p-3 mt-3">
