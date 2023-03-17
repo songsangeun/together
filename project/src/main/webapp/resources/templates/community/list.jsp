@@ -138,7 +138,7 @@
     <tbody>
      <tr v-for="vo in community_list">
       <td width=10% class="text-center">{{vo.cno}}</td>
-      <td><img :src="'/image/upload/'+vo.filename" style="width:100px;height:100px"></td>
+      <td><img :src="'/image/upload/'+vo.filename" style="width:150px;height:150px"></td>
       <td width=15% class="text-center">{{vo.type}}</td>
       <td width=20%><a :href="'../community/detail.do?cno='+vo.cno">{{vo.title}}</a></td>
       <td width=15% class="text-center">{{vo.name}}</td>
