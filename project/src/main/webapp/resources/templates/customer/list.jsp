@@ -7,13 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <jsp:include page="../fragments/head.jsp"/>
-<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
-    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
-    <!-- Add this after vue.js -->
-    <script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
-    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 <style type="text/css">
 .container{
 	margin-top:50px;
@@ -26,157 +20,25 @@ h1{
 	text-align: center;
 }
 .plusBtn{
-
+ background: #b88ce9;
+    color: #fff;
+    border: 1px solid #b88ce9;
+    float: center;
+}
+.plusBtn:hover{
+	
+    color: #c68ce9;
+    background: #F7F9F9;
+    border-color: #c68ce9;
 }
 
-.xans-board-search {
-    padding: 20px 0 20px 10px;
-    color: #2e2e2e;
-}
 
-.xans-board-search .boardSearch {
-    display: block;
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-.xans-board-search p {
-    margin: 0 0 10px;
-    padding: 0 0 0;
-}
-
-.xans-board-search .category select {
-    margin: 0 4px 0 0;
-    width: 150px;
-}
-
-.xans-board-search .category select#product_category_depth1 {
-    margin: 0 5px 0 10px;
-}
-
-.xans-board-search select {
-    margin: 0 1% 0 0;
-    width: 32.33333333%;
-    float: left;
-}
-
-.xans-board-search select#search_date {
-    margin: 0 1% 0 0;
-    width: 32.33333333%
-}
-
-.xans-board-search select#search_key {
-    margin: 0 1% 0 0;
-    width: 32.33333333%
-}
-
-.xans-board-search input#search {
-    margin: 0 0 0 0;
-    width: 33.33333333%
-}
-
-.xans-board-search .boardSearch a {
-    margin: 10px 0 0;
-    vertical-align: middle;
-}
-
-.searchBar {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-#searchQueryInput {
-  width: 100%;
-  height: 2.8rem;
-  background: #f5f5f5;
-  outline: none;
-  border: none;
-  border-radius: 1.625rem;
-  padding: 0 3.5rem 0 1.5rem;
-  font-size: 18px;
-}
-
-#searchQuerySubmit {
-  width: 3.5rem;
-  height: 2.8rem;
-  margin-left: -3.5rem;
-  background: none;
-  border: none;
-  outline: none;
-}
-
-#searchQuerySubmit:hover {
-  cursor: pointer;
-}
-
-.pageTopWrap {
-    position: relative;
-    width: 100%;
-    padding: 0 0 0;
-    margin: 0 0;
-    background: #dfe9e8;
-}
-
-.pageTopMargin {
-    height: 30px;
-    width: 100%;
-    background: #dfe9e8;
-    margin: 0 0 30px;
-}
-
-.pageTopWrap.gray {
-    background: #fafafa;
-}
-
-.pageTopWrap.white {
-    background: #fff;
-}
-
-.sectionT,.pageTitle,.titleArea h2,.bestTitle {
-    position: relative;
-    display: block;
-    font-size: 30px;
-    font-weight: 600;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
-    color: #477A7B;
-    margin: 0 0 30px;
-    padding: 0 10px;
-    line-height: 1.2em;
-}
-
-.per_10 {
-	width:10%;
-	float:left;
-}
-
-.pconly {
-	display: block !important;
-}
-.per_50 {
-	width:50%;
-	float:left;
-}
-
-.per_20 {
-	width: 20%;
-	float: left;
-}
-
-.pageSubtitle {
-    padding-bottom: 10px;
-    border-bottom: 1px solid #e8e8e8;
-    margin: 0 0 30px;
-}
 
 .pageNav {
     position: relative;
     margin: 0 auto 30px;
     padding: 10px 0;
+    
 }
 
 .pageNav ul {
@@ -185,6 +47,7 @@ h1{
     list-style: none;
     text-align: center;
     font-size: 0;
+    
 }
 
 .pageNav ul li {
@@ -204,33 +67,98 @@ h1{
     font-size: 15px;
     font-weight: 500;
     background: #f3f3f3;
-    color: #477A7B;
+    color: #c68ce9;
     list-style: none;
     border-radius: 50px;
 }
 
 .pageNav ul li a:hover,.pageNav ul li.active a {
-    background: #477A7B;
+    background: #c68ce9;
     color: #fff;
 }
 
-.pBtn{
 
+.p-5{
+	padding: 2rem!important;
 }
+.s21_best_m_top {
+     width: 100%;
+        background-color:#ff9b8e; 
+        min-height: 300px;
+        background-size: 100%;
+    }
 
-.nBtn{
+    .pr {
+        position: relative;
+    }
 
-}
+    .s21_top_tbox {
+        width: 1260px;
+        margin: 0px auto;
+    }
+
+    .s21_top_tbox_left {
+        float: left;
+        width: 40%;
+        text-align: left;
+    }
+
+    .s21_top_tbox h3 {
+        width: 100%;
+        text-align: left;
+        color: #fff;
+        font-size: 45px;
+        font-weight: 300;
+        padding: 50px 0 0 0px;
+        letter-spacing: -0.03em;
+    }
+
+    .s21_top_tbox h3 span {
+        color: #fff;
+        font-size: 45px;
+        font-weight: 400;
+    }
+
+    .s21_h3_line_l {
+        width: 30px;
+        height: 3px;
+        background: #fff;
+        margin: 15px 10px;
+        text-align: left;
+    }
+
+    .s21_h3_text_l {
+        font-size: 16px;
+        color: #fff;
+        font-weight: 200;
+        opacity: 0.7;
+        text-align: left;
+        line-height: 26px;
+        padding-left: 10px;
+        letter-spacing: -0.05em;
+    }
 </style>
 </head>
 
 <body>
 <jsp:include page="../fragments/header.jsp"/>
+
 <div id="wrap">
+
  <div class="wrapper row3 rows">
-  <main class="container clear">
-   <div class="pageTopWrap">
-     <div class="pageTitle">고객센터</div>
+ <div class="s21_best_m_top pr">
+    <div class="s21_top_tbox">
+        <div class="s21_top_tbox_left">
+            <h3 class=""><span>투개더 고객센터</span></h3>
+            <p class="s21_h3_line_l"></p>
+            <p class="s21_h3_text_l">투개더에 궁금한 점이 있으신가요?</p>
+            <div style="width: 2px"></div>
+            
+            <td>
+      <sec:authorize access="isAuthenticated()">
+       <a href="/customer/insert" class="plusBtn">문의 작성하기</a>
+      </sec:authorize>
+     </td>
      <div class="pageNav">
       <ul>
         <li class="active">
@@ -247,32 +175,56 @@ h1{
         </li>
        </ul>
      </div>
+     
+        </div>
+    </div>
+</div>
+  <main class="container clear">
+   <div class="pageTopWrap">
+   
+     <!-- <div class="pageTitle">고객센터</div> 
+     <!--  <div class="p-0 container-fluid">
+    <div class="text-center" style="background: url('http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/album/top_bgr.png')">
+        <div class="container">
+                <div class="p-5">
+                    <h1 class="text-light">
+                        <strong>투개더 고객센터</strong>
+                    </h1>
+                    <p class="text-light mt-3">
+                        투개더에 궁금한 점이 있으신가요?
+                        <br/>
+                        <tr>
+     
+    </tr>    
+                    </p>
+
+                </div>
+                                         
+        </div>
+    </div>
+</div>
+     -->
+
    </div>
-   <tr>
-     <td>
-      <sec:authorize access="isAuthenticated()">
-       <a href="../customer/insert" class="plusBtn" style="background-color:transparent;color:black;border-color: black">글쓰기</a>
-      </sec:authorize>
-     </td>
-    </tr> 
+
    <table class="table">
      <thead>
      	
        <tr>
-         <th width=10% class="text-center">번호</th>
-         <th width=45% class="text-center">작성자</th>
-         <th width=15% class="text-center">제목</th>
-         <th width=20% class="text-center">작성일</th>
-         <th width=10% class="text-center">조회수</th>
+         <th width=10% class="p-4 text-center">번호</th>
+         <th width=15% class="p-4 text-center">작성자</th>
+         <th width=35% class="p-4 text-center">제목</th>
+         <th width=20% class="p-4 text-center">작성일</th>
+         <th width=20% class="p-4 text-center">조회수</th>
        </tr>
      </thead>
      <tbody>
        <tr v-for="vo in cs_list">
-         <td width=10% class="text-center">{{vo.nno}}</td>
-         <td width=45% class="text-center">{{vo.name}}</td>
-         <td width=15%><a :href="'/customer/detail?nno='+vo.nno">{{vo.subject}}</a></td>
-         <td width=20% class="text-center">{{vo.dbday}}</td>
-         <td width=10% class="text-center">{{vo.hit}}</td>
+         <td width=10% class="p-4 text-center">{{vo.nno}}</td>
+         <td width=15% class="p-4 text-center">{{vo.name}}</td>
+         <td width=35% class="p-4"><a :href="'/customer/detail?nno='+vo.nno">{{vo.subject}}</a></td>
+         <td width=20% class="p-4 text-center">{{vo.dbday}}</td>
+         <td width=20% class="p-4 text-center">{{vo.hit}}</td>
        </tr>
       
 
