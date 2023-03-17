@@ -24,8 +24,8 @@
   <main class="container clear">
     <table class="table">
       <tr>
-        <th width="20%">이름</th>
-        <td width="80%"><input type="text" size="15" class="input-sm" v-model="name" :value="name"></td>
+        <th width="20%">작성자</th>
+        <td width="80%">${vo.name}</td>
       </tr>
       <tr>
         <th width="20%">제목</th>
@@ -41,7 +41,7 @@
       </tr>
       <tr>
         <td colspan="2" class="text-center">
-          <input type="button" value="수정" class="btn btn-sm btn-primary" v-on:click="update()">
+          <input type="button" value="수정" class="btn btn-sm btn-primary" v-on:click="update('${vo.pwd}')">
           <input type="button" value="취소" class="btn btn-sm btn-info" onclick="javascript:history.back()">
         </td>
       </tr>
@@ -50,7 +50,7 @@
 </div>
 </div>
 <script>
-new Vue({
+ new Vue({
     el:'.rows',
     data:{
        name:'',
@@ -59,7 +59,7 @@ new Vue({
        pwd:'',
        nno:${nno}
     },
-    mounted:function(){
+     mounted:function(){
        
           let _this=this;
           axios.get('/customer/update_vue.do',{
@@ -71,14 +71,15 @@ new Vue({
               _this.subject=response.data.subject
               _this.content=response.data.content
           }) 
-    },
+    }, 
     methods:{
-   	 update:function(){
+   	 update:function(pwd){
    		 let _this=this;
+   		  
+   		   
             axios.get('/customer/update_ok_vue.do',{
                params:{
                  nno:this.nno,
-                 name:this.name,
                  subject:this.subject,
                  content:this.content,
                  pwd:this.pwd
@@ -87,18 +88,20 @@ new Vue({
             	let res=response.data;
             	if(res==='yes')
             	{
-            		location.href="/customer/detail.do?nno="+_this.nno
+            		location.href="/customer/detail?nno="+_this.nno
             	}
             	else
             	{
-            		alert('비밀번호가 틀립니다!!')
-            		_this.pwd=''
-            		_this.$refs.pwd.focus() //
+              		alert('비밀번호를 확인해주세요!!')
+              		_this.pwd=''
+              		_this.$refs.pwd.focus()
+              		 
             	}
+            	
             }) 
    	 }
     }
- })
+ }) 
 </script>
 <jsp:include page="../fragments/footer.jsp"/>
 </body>

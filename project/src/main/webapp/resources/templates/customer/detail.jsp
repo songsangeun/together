@@ -50,7 +50,7 @@
                 <div class="mt-3 d-flex justify-content-end">
                     <button class="btn btn-outline-secondary" type="button" v-on:click="write()">등록</button>
                 </div>
-            </div>  
+             </div>
      </sec:authorize>
      <!-- 댓글 폼 -->
          <div class="row">
@@ -62,6 +62,7 @@
                 </div>
         </div>
     </div>
+     
   </main>
 </div>
 </div>
@@ -75,7 +76,7 @@ new Vue({
 	  },
 	  mounted:function(){
 		  this.list()
-
+		
 	  },
 	  methods:{
 		  list:function(){

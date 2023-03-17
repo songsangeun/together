@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>베스트팁</title>
+<title>투개더</title>
 </head>
 <style>
 .slider_textt h3{

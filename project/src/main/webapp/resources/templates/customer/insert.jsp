@@ -13,17 +13,18 @@
 
 
 .wBtn{
-font-weight: 500;
     background: #477a7b;
     color: #fff;
     border: 1px solid #477a7b;
     height: 50px;
     line-height: 50px;
     padding: 0 10px;
-    width: 100%;
+    width: 50%;
     display: block;
     text-align: center;
     cursor: pointer;
+    float: left;
+    clear:both;
 }
 .cBtn{
 	background: #fff;
@@ -33,65 +34,21 @@ font-weight: 500;
 	height: 50px;
 	line-height:50px;
 	padding: 0 10px;
-	width: 100%;
+	width: 50%;
 	text-align:text-center;
 	cursor:pointer;
 }
 body{
 	display: block;
 }
-.ec-base-button{
-	padding:10px 0;
-	text-align:center;
-}
-.per_50{
-	width:50%;
-	float:left;
-}
-.btnB {
-    
-    font-weight: 500;
-    background: #477a7b;
-    color: #fff;
-    border: 1px solid #477a7b;
-    height: 50px;
-    line-height: 50px;
-    padding: 0 10px;
-    width: 100%;
-    display: block;
-    text-align: center;
-    cursor: pointer;
+
+.select_box{
+   background-color: #dfe9e8;
+   color: #477A7B;
 }
 
-.btnB:hover {
-    color: #fff;
-    background: #296566;
-    border-color: #296566;
-}
 
-.btnW {
-    
-    font-weight: 500;
-    background: #fff;
-    color: #477a7b;
-    border: 1px solid #477a7b;
-    height: 50px;
-    line-height: 50px;
-    padding: 0 10px;
-    width: 100%;
-    display: block;
-    text-align: center;
-    cursor: pointer;
-}
-
-.btnW.soldBtn,.btnW.soldBtn:hover {
-    color: #ccc;
-    border: 1px solid #ddd;
-    cursor: not-allowed;
-    background: #f8f8f8;
-}
-
-.btnW:hover {
+.Wbtn:hover {
     color: #477a7b;
     background: #F7F9F9;
     border-color: #477a7b;
@@ -165,8 +122,19 @@ $(function(){
 </tbody>
 <tbody class="">-->
 <div class="wrapper row3 rows">
-  <main class="container clear">
+  <main class="container">
     <table class="table">
+    <tr>
+        <th width=100%>문의유형</th>
+         <td width=85%>
+          <select class="select_box" name="type" style="width:100%;height:35px;border:none">
+           <option value="cs_user">이용관련문의</option>
+           <option value="cs_loca">장소관련문의</option>
+           <option value="cs_ad">광고관련문의</option>
+           <option value="cs_my">회원관련문의</option>
+          </select>
+         </td>
+       </tr>
       <tr>
         <th width=20%>작성자</th>
         <td width=80%><sec:authentication property="principal.nickname"/></td>
@@ -177,7 +145,7 @@ $(function(){
       </tr>
       <tr>
         <th width=20%>내용</th>
-        <td width=80%><textarea rows="10" cols="55" v-model="content"></textarea></td>
+        <td width=80%><textarea rows="10" cols="105" v-model="content"></textarea></td>
       </tr>
       <tr>
 <th scope="row">첨부파일1</th>
@@ -204,7 +172,7 @@ $(function(){
       
       <tr>
         <td colspan="2" class="text-center">
-         <input type=button value="글쓰기" class="wbtn" v-on:click="write()">
+         <input type=submit value="글쓰기" class="wbtn" v-on:click="write()">
          <input type=button value="취소" class="cBtn" onclick="javascript:history.back()">
         </td>
       </tr>

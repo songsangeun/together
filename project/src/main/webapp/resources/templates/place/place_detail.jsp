@@ -163,7 +163,71 @@
                         </div>
                     </b-tab>
                     <b-tab title="리뷰">
-
+                      <!-- 리스트창 -->
+						<div class="wrapper row3 rows">
+  							<main class="container clear review">
+    							<table class="table">
+							      <tr>
+							        <td>
+							          <input type=button value="리뷰쓰기" class="btn btn-sm btn-primary"
+	                style="height: 105px" @click="Write()">
+							        </td>
+							      </tr>
+							    </table>
+							    <!-- insert창 -->
+							    <table class="table">
+							     <thead>
+							      <tr>
+							        <th width=10% class="text-center">번호</th>
+							        <th width=55% class="text-center">장소</th>
+							        <th width=15% class="text-center">작성자</th>
+							        <th width=20% class="text-center">작성일</th>
+							      </tr>
+							     </thead>
+							     <tbody>
+							       <tr v-for="vo in review_list">
+							        <td width=10% class="text-center">{{vo.prno}}</td>
+							        <td width=55%><a :href="'../review/review_detail.do?prno='+vo.prno">{{vo.pno}}</a></td>
+							        <td width=15% class="text-center">{{vo.writer}}</td>
+							        <td width=20% class="text-center">{{vo.createdAt}}</td>
+							      </tr>
+							      <tr>
+							        <td colspan="5" class="text-right">
+							         <input type=button value="이전"  class="btn btn-sm btn-danger" v-on:click="prev()">
+							          {{curpage}} page / {{totalpage}} pages
+							         <input type=button value="다음"  class="btn btn-sm btn-warning" v-on:click="next()">
+							        </td>
+							      </tr>
+							     </tbody>
+							    </table>
+							    <!-- 수정 -->
+							    <table class="table">
+							      <tr>
+							        <th width=20%>작성자</th>
+							        <td width=80%><input type=text size="15" class="input-sm" v-model="writer" :value="writer"></td>
+							      </tr>
+							      <tr>
+							        <th width=20%>내용</th>
+							        <td width=80%><textarea rows="10" cols="55" v-model="content">{{content}}</textarea></td>
+							      </tr>
+							      <tr>
+							        <td colspan="2" class="text-center">
+							         <input type=button value="수정하기" class="btn btn-sm btn-primary" v-on:click="update()">
+							         <input type=button value="취소" class="btn btn-sm btn-info" onclick="javascript:history.back()">
+							        </td>
+							      </tr>
+							    </table>
+							    <!-- 삭제 -->
+							    <table class="table">
+							      <tr>
+							        <td class="text-center">
+							          <input type=button value="삭제" class="btn btn-sm btn-danger" v-on:click="del()">
+							          <input type=button value="취소" class="btn btn-sm btn-danger"  onclick="javascript:history.back()">
+							        </td>
+							      </tr>
+							    </table>
+							  </main>
+							</div>
                     </b-tab>
                 </b-tabs>
             </div>
@@ -176,7 +240,8 @@
         data: {
             pno:${pno},
             place_detail: [],
-            count: 0
+            count: 0,
+            content:''
         },
         mounted: function () {
             let _this = this
@@ -244,10 +309,36 @@
                         // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
                         map.setCenter(coords);
                     }
-                });
+                })
             }
         }
     })
+    
+    new Vue({
+  	  el:'.review',
+  	  data:{
+  		  content:'',
+  		  pno:{pno}
+  	  },
+  	  methods:{
+  		  write:function(){
+  			  let _this=this;
+  			  let data = {
+  					  content:this.content,
+  					  pno:this.pno
+  			  }
+  			  axios.post('/review/review_insert_vue',JSON.stringify(data),{
+  				  headers:{
+  					  "content-type":'application/json'
+  				  }
+  			  }).then(function(response){
+  				  _this.content="";
+  				  _this.review_list=result.data;
+  			  })
+  		  }
+  	  }
+    })
+    
 </script>
 <jsp:include page="../fragments/footer.jsp"/>
 </body>

@@ -74,11 +74,12 @@ public class CustomerController {
         return "customer/detail";
     }
 
-    @GetMapping("/update")
-    public String cs_update(int nno, Model model) {
-        model.addAttribute("nno", nno);
-        return "customer/update";
-    }
+	
+	  @GetMapping("/update") public String cs_update(int nno, Model model) {
+	  model.addAttribute("nno", nno); CustomerVO vo=service.csBoardDetailData(nno);
+	  service.csBoardDetailData(nno); model.addAttribute("vo", vo); return
+	  "customer/update"; }
+	
 
     @GetMapping("/delete")
     public String cs_delete(int nno, Model model) {
