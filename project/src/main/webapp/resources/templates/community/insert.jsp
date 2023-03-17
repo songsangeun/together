@@ -5,7 +5,7 @@
 <style type="text/css">
 .s21_best_m_top {
         width: 100%;
-        background: url(http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/best/top_bgr2.png) top center no-repeat;
+        background-color: #FF9B8E;
         min-height: 300px;
         background-size: 100%;
     }

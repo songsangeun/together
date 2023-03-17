@@ -4,7 +4,7 @@
 <style>
     .s21_best_m_top {
         width: 100%;
-        background: url(http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/best/top_bgr2.png) top center no-repeat;
+        background-color: #FF9B8E;
         min-height: 300px;
         background-size: 100%;
     }
@@ -215,8 +215,8 @@
     </tr>
     <tr>
      <td colspan="2" class="text-center">
-      <input type=button value="글쓰기" class="btn btn-sm btn-primary" v-on:click="write()">
-      <input type=button value="취소" class="btn btn-sm btn-info" onclick="javascript:history.back()">
+      <input type=button value="글쓰기" class="btn btn-sm" style="background-color: " v-on:click="write()">
+      <input type=button value="취소" class="btn btn-sm" onclick="javascript:history.back()">
      </td>
     </tr>
    </table>
