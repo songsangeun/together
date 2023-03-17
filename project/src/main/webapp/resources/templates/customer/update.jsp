@@ -6,20 +6,78 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
-<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
-<script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
-<script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery.js"></script>
-<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<style type="text/css">
+  .s21_best_m_top {
+        width: 100%;
+        background-color: #FF9B8E;
+        min-height: 300px;
+        background-size: 100%;
+    }
+
+    .pr {
+        position: relative;
+    }
+
+    .s21_top_tbox {
+        width: 1260px;
+        margin: 0px auto;
+    }
+
+    .s21_top_tbox_left {
+        float: left;
+        width: 40%;
+        text-align: left;
+    }
+
+    .s21_top_tbox h3 {
+        width: 100%;
+        text-align: left;
+        color: #fff;
+        font-size: 45px;
+        font-weight: 300;
+        padding: 50px 0 0 0px;
+        letter-spacing: -0.03em;
+    }
+
+    .s21_top_tbox h3 span {
+        color: #fff;
+        font-size: 45px;
+        font-weight: 400;
+    }
+
+    .s21_h3_line_l {
+        width: 30px;
+        height: 3px;
+        background: #fff;
+        margin: 15px 10px;
+        text-align: left;
+    }
+
+    .s21_h3_text_l {
+        font-size: 16px;
+        color: #fff;
+        font-weight: 200;
+        opacity: 0.7;
+        text-align: left;
+        line-height: 26px;
+        padding-left: 10px;
+        letter-spacing: -0.05em;
+    }
+
+</style>
 <body>
 <jsp:include page="../fragments/header.jsp"/>
 <div>
+<div class="s21_best_m_top pr">
+    <div class="s21_top_tbox">
+        <div class="s21_top_tbox_left">
+            <h3 class=""><span>투개더 고객센터</span></h3>
+            <p class="s21_h3_line_l"></p>
+            <p class="s21_h3_text_l">1:1 문의글 수정</p>
+            
+        </div>
+    </div>
+</div>
 <div class="wrapper row3 rows">
   <main class="container clear">
     <table class="table">

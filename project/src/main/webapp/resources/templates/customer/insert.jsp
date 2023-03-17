@@ -6,16 +6,70 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 <style type="text/css">
+   .s21_best_m_top {
+        width: 100%;
+        background-color: #FF9B8E;
+        min-height: 300px;
+        background-size: 100%;
+    }
+
+    .pr {
+        position: relative;
+    }
+
+    .s21_top_tbox {
+        width: 1260px;
+        margin: 0px auto;
+    }
+
+    .s21_top_tbox_left {
+        float: left;
+        width: 40%;
+        text-align: left;
+    }
+
+    .s21_top_tbox h3 {
+        width: 100%;
+        text-align: left;
+        color: #fff;
+        font-size: 45px;
+        font-weight: 300;
+        padding: 50px 0 0 0px;
+        letter-spacing: -0.03em;
+    }
+
+    .s21_top_tbox h3 span {
+        color: #fff;
+        font-size: 45px;
+        font-weight: 400;
+    }
+
+    .s21_h3_line_l {
+        width: 30px;
+        height: 3px;
+        background: #fff;
+        margin: 15px 10px;
+        text-align: left;
+    }
+
+    .s21_h3_text_l {
+        font-size: 16px;
+        color: #fff;
+        font-weight: 200;
+        opacity: 0.7;
+        text-align: left;
+        line-height: 26px;
+        padding-left: 10px;
+        letter-spacing: -0.05em;
+    }
 
 
 .wBtn{
-    background: #477a7b;
+    background: #FF9B8E;
     color: #fff;
-    border: 1px solid #477a7b;
+    border: 1px solid #FF9B8E;
     height: 50px;
     line-height: 50px;
     padding: 0 10px;
@@ -28,9 +82,9 @@
 }
 .cBtn{
 	background: #fff;
-	color:#477a7b;
+	color:#FF9B8E;
 	display:block;
-	border: 1px solid #477a7b;
+	border: 1px solid #FF9B8E;
 	height: 50px;
 	line-height:50px;
 	padding: 0 10px;
@@ -42,16 +96,12 @@ body{
 	display: block;
 }
 
-.select_box{
-   background-color: #dfe9e8;
-   color: #477A7B;
-}
 
 
 .Wbtn:hover {
-    color: #477a7b;
+    color: #FF9B8E;
     background: #F7F9F9;
-    border-color: #477a7b;
+    border-color: #FF9B8E;
 }
 
 .btnB.inlineblock,.btnW.inlineblock {
@@ -71,6 +121,9 @@ body{
 	height:40px;
 	line-height:40px;
 	
+}
+#ask_bok{
+	line-height: 36px;
 }
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
@@ -121,10 +174,22 @@ $(function(){
 </tr>
 </tbody>
 <tbody class="">-->
+
+<div class="s21_best_m_top pr">
+    <div class="s21_top_tbox">
+        <div class="s21_top_tbox_left">
+            <h3 class=""><span>투개더 고객센터 </span></h3>
+            <p class="s21_h3_line_l"></p>
+            <p class="s21_h3_text_l">궁금하신 내용을 작성해주세요!</p>
+            
+        </div>
+    </div>
+</div>
 <div class="wrapper row3 rows">
-  <main class="container">
-    <table class="table">
-    <tr>
+  <main class="container">             
+                        <div style="width: 2px"></div>
+    <table class="table" id="ask_box">
+    <!-- <tr>
         <th width=100%>문의유형</th>
          <td width=85%>
           <select class="select_box" name="type" style="width:100%;height:35px;border:none">
@@ -134,7 +199,7 @@ $(function(){
            <option value="cs_my">회원관련문의</option>
           </select>
          </td>
-       </tr>
+       </tr>  -->
       <tr>
         <th width=20%>작성자</th>
         <td width=80%><sec:authentication property="principal.nickname"/></td>

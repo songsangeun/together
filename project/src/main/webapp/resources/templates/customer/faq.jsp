@@ -33,7 +33,7 @@
 }
 .row{
 	margin:0px auto;
-	width: 900px;
+	width: 100%;
 	
 }
 h1{
@@ -64,22 +64,79 @@ h1{
   color: white;
   text-align: center;
 }
+
+    .s21_best_m_top {
+        width: 100%;
+        background-color:#ff9b8e;
+        min-height: 300px;
+        background-size: 100%;
+    }
+
+    .pr {
+        position: relative;
+    }
+
+    .s21_top_tbox {
+        width: 1260px;
+        margin: 0px auto;
+    }
+
+    .s21_top_tbox_left {
+        float: left;
+        width: 40%;
+        text-align: left;
+    }
+
+    .s21_top_tbox h3 {
+        width: 100%;
+        text-align: left;
+        color: #fff;
+        font-size: 45px;
+        font-weight: 300;
+        padding: 50px 0 0 0px;
+        letter-spacing: -0.03em;
+    }
+
+    .s21_top_tbox h3 span {
+        color: #fff;
+        font-size: 45px;
+        font-weight: 400;
+    }
+
+    .s21_h3_line_l {
+        width: 30px;
+        height: 3px;
+        background: #fff;
+        margin: 15px 10px;
+        text-align: left;
+    }
+
+    .s21_h3_text_l {
+        font-size: 16px;
+        color: #fff;
+        font-weight: 200;
+        opacity: 0.7;
+        text-align: left;
+        line-height: 26px;
+        padding-left: 10px;
+        letter-spacing: -0.05em;
+    }
 </style>
 <body>
 <jsp:include page="../fragments/header.jsp"/>
 
 <div>
- <div class="container">
-  <div class="row">
-   <table class="table" style="background-color: #dfe9e8;">
-    <tr class="text-center">
-    <td>
-      <h1><b style="color:#477A78;">FAQ</h1>
-      <p>투개더에서 자주 묻는 질문들을 모아모아~</p>
-      
-    </td>
-    </tr>
-    </table>
+<div class="s21_best_m_top pr">
+    <div class="s21_top_tbox">
+        <div class="s21_top_tbox_left">
+            <h3 class=""><span>투개더 FAQ</span></h3>
+            <p class="s21_h3_line_l"></p>
+            <p class="s21_h3_text_l">자주 묻는 질문들을 모아모아~</p>
+            
+        </div>
+    </div>
+</div>
+ 
     <div class="container">
     <div class="row">
      <div class="pill-nav">
@@ -156,70 +213,38 @@ h1{
   <p> [마이페이지] > 설정(회원명 옆 톱니바퀴 모양) > [회원탈퇴] 에서 탈퇴 가능합니다.
   </p>
 </div>
-</div>
-<div id="news">
-<button class="accordion">[리뷰관리] 내가 작성한 리뷰들은 어디서 보나요?
+<button class="accordion">[이용문의] 이메일 및 SMS를 더 이상 받고 싶지 않아요
 </button>
 <div class="panel">
-  <p> 로그인 후 메뉴의 방문후기를 클릭하면 작성한 장소들의 리뷰가 리스트로 보여집니다.
+  <p> 이메일 또는 SMS로 받고 있는 혜택정보를 더 이상 받지 않으시려면
+[마이페이지 > 아이디 >  비밀번호 입력 > 나의 정보 > 알림 설정]  수신여부를 변경하세요.
+
+다만, 이미 예약된 메세지는 전송될 수 있는 점 양해 부탁드리며,
+다양한 할인쿠폰과 이벤트 소식을 다시 받길 원하시면 언제든 변경하실 수 있습니다.
   </p>
 </div>
-<button class="accordion">[리뷰관리] 내가 작성한 리뷰들은 어디서 보나요?
+<button class="accordion">[회원문의] 아이디,비밀번호를 잊어버렸어요. 어떻게 해야 하나요?
 </button>
 <div class="panel">
-  <p> 로그인 후 메뉴의 방문후기를 클릭하면 작성한 장소들의 리뷰가 리스트로 보여집니다.
+  <p> 아이디를 잊으신 경우 [로그인 > 아이디 찾기]에서 이름, 이메일주소 또는 휴대폰 번호를 입력하시면 확인이 가능합니다.
+
+비밀번호를 잊으시 경우 [로그인 > 비밀번호 찾기]에서 가입 시 이메일 주소를 입력하시면 비밀번호를 새로 설정할 수 있도록 메일을 전송해 드립니다.
   </p>
 </div>
-<button class="accordion">[리뷰관리] 내가 작성한 리뷰들은 어디서 보나요?
+<button class="accordion">[이용문의] 스티커,보유캐시,할인쿠폰은 어디에서 확인하나요?
 </button>
 <div class="panel">
-  <p> 로그인 후 메뉴의 방문후기를 클릭하면 작성한 장소들의 리뷰가 리스트로 보여집니다.
-  </p>
+  <p> [마이페이지 > 나의 지갑]에서 확인하실 수 있습니다. </p>
 </div>
-<button class="accordion">[리뷰관리] 내가 작성한 리뷰들은 어디서 보나요?
-</button>
-<div class="panel">
-  <p> 로그인 후 메뉴의 방문후기를 클릭하면 작성한 장소들의 리뷰가 리스트로 보여집니다.
-  </p>
-</div>
-<button class="accordion">[리뷰관리] 내가 작성한 리뷰들은 어디서 보나요?
-</button>
-<div class="panel">
-  <p> 로그인 후 메뉴의 방문후기를 클릭하면 작성한 장소들의 리뷰가 리스트로 보여집니다.
-  </p>
-</div>
-</div>
-<div id="contact">
- <button class="accordion">[리뷰관리] 내가 작성한 리뷰들은 어디서 보나요?
-</button>
-<div class="panel">
-  <p> 로그인 후 메뉴의 방문후기를 클릭하면 작성한 장소들의 리뷰가 리스트로 보여집니다.
-  </p>
-</div>
-<button class="accordion">[리뷰관리] 내가 작성한 리뷰를 삭제하고 싶어요!
-</button>
-<div class="panel">
-  <p> 마이페이지나 리뷰를 썼던 페이지에서 삭제가 가능합니다.
-  </p>
-</div>
-<button class="accordion">[리뷰관리] 리뷰 작성시 중간 저장을 할 수 있나요?
-</button>
-<div class="panel">
-  <p> 리뷰 작성시 중간 저장 기능은 따로 있지 않습니다!
-  </p>
-</div>
-<button class="accordion">[리뷰관리] 
-</button>
-<div class="panel">
-  <p> [마이페이지] > 설정(회원명 옆 톱니바퀴 모양) > [회원탈퇴] 에서 탈퇴 가능합니다.(보류)
-  </p>
-</div>
+
 </div>
 
      </td>
     </tr>
   </div>
  </div>
+</div>
+</div>
 </div>
 <script>
 var acc = document.getElementsByClassName("accordion");
