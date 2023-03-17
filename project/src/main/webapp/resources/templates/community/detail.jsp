@@ -1,22 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <jsp:include page="../fragments/head.jsp"/>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
-<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
-<script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
-<script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery.js"></script>
-<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <style type="text/css">
 .btn3{
   position: relative;
@@ -31,42 +15,90 @@
   list-style: none;
   border-radius: 50px;
 } 
+.s21_best_m_top {
+        width: 100%;
+        background-color: #FF9B8E;
+        min-height: 300px;
+        background-size: 100%;
+    }
+
+    .pr {
+        position: relative;
+    }
+
+    .s21_top_tbox {
+        width: 1260px;
+        margin: 0px auto;
+    }
+
+    .s21_top_tbox_left {
+        float: left;
+        width: 40%;
+        text-align: left;
+    }
+
+    .s21_top_tbox h3 {
+        width: 100%;
+        text-align: left;
+        color: #fff;
+        font-size: 45px;
+        font-weight: 300;
+        padding: 50px 0 0 0px;
+        letter-spacing: -0.03em;
+    }
+
+    .s21_top_tbox h3 span {
+        color: #fff;
+        font-size: 45px;
+        font-weight: 400;
+    }
+
+    .s21_h3_line_l {
+        width: 30px;
+        height: 3px;
+        background: #fff;
+        margin: 15px 10px;
+        text-align: left;
+    }
+
+    .s21_h3_text_l {
+        font-size: 16px;
+        color: #fff;
+        font-weight: 200;
+        opacity: 0.7;
+        text-align: left;
+        line-height: 26px;
+        padding-left: 10px;
+        letter-spacing: -0.05em;
+    }
 </style>
 <body>
 <jsp:include page="../fragments/header.jsp"/>
- <div class="container">
-  <div class="p-0 container-fluid">
-    <div class="text-center" style="background: url('http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/community/top_bgr.jpg')">
-        <div class="container">
-         <div class="d-flex justify-content-between align-items-center">
-          <div>
-            <img src="http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/community/top_left_img.png">
-          </div>
-                <div class="p-5">
-                    <h1 class="text-light">
-                        <strong>투개더 커뮤니티</strong>
-                    </h1>
-                    <p class="text-light mt-3">
-                        투개더에서 우리 반려견에 대한 이야기를 공유해보세요.
-                        <br/>
-                   
-                    </p>
-                    <sec:authorize access="isAuthenticated()">
+    <div class="s21_best_m_top pr">
+    <div class="s21_top_tbox">
+        <div class="s21_top_tbox_left">
+            <h3 class=""><span>투개더 커뮤니티</span></h3>
+            <p class="s21_h3_line_l"></p>
+            <p class="s21_h3_text_l">하트독에서 우리 반려견에 대한 이야기를 공유해보세요.</p>
+            <!-- <form id="frmSetData" name="frmSetData" method="POST" onsubmit="return false;">
+                <input type="hidden" id="m2Code" name="m2Code" value="tip">
+                <input type="hidden" id="mode" name="mode" value="tiplist">
+                <input type="hidden" id="page" name="page" value="0">
+                
+    				<button type="button" class="button">눈물</button>
+                
+            </form> -->
+            <sec:authorize access="isAuthenticated()">
      <tr class="text-center">
       <td>
        <a href="../community/insert.do" class="btn btn-md" style="background-color:transparent;color:white;border-color: white">커뮤니티에 글쓰기</a>
       </td>
     </tr>
      </sec:authorize>
-                    
-                </div>
-                <div>
-                    <img src=	"http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/community/top_right_img.png">
-                </div>
-          </div>
         </div>
     </div>
 </div>
+ <div class="container">
   <div style="height: 20px"></div>
 <div class="wrapper row3 rows">
   <main class="container clear">
@@ -99,8 +131,8 @@
       </tr>
       <tr>
         <td colspan="4" class="text-right">
-          <a :href="'../community/update.do?cno='+cno" class="btn btn-xs btn-danger">수정</a>
-          <a :href="'../community/delete.do?cno='+cno" class="btn btn-xs btn-success">삭제</a>
+          <a :href="'../community/update.do?cno='+cno" class="btn btn-xs btn-default">수정</a>
+          <a :href="'../community/delete.do?cno='+cno" class="btn btn-xs btn-default">삭제</a>
           <a href="../community/list.do" class="btn btn-xs btn-info">목록</a>
         </td>
       </tr>
