@@ -82,22 +82,20 @@ h1{
    text-align: center;
    cursor: pointer;
    font-weight: 500;
-   /* line-height: 50px; */
-   width: 100px;
+   line-height: 50px;
+   width: 200px;
    background-color:transparent;
-   /* border-color: #FF9B8E; */
 }
 .btn2{
  /*  background-color: #fff; */
    /* color: #477a7b; */
    /* border: 1px solid #477a7b; */
-   /* border-color: #FF9B8E; */
    padding: 0 10px;
    display :inline-block;
    cursor: pointer;
    font-weight: 500;
-   /* line-height: 50px; */
-   width: 100px;
+   line-height: 50px;
+   width: 200px;
    background-color:transparent;
 }
 #addBtn{
