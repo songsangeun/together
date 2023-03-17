@@ -161,7 +161,7 @@
                     </b-tab>
                     <b-tab title="위치정보">
                         <div class="one_third">
-                            <div id="map" style="width:100%;height:350px;"></div>
+                            <div id="map" style="width:50%;height:350px;"></div>
                         </div>
                     </b-tab>
                     <b-tab title="리뷰">
@@ -272,7 +272,7 @@
                 const script = document.createElement("script")
                 // /!* global kakao *!/
                 script.onload = () => kakao.maps.load(this.initMap)
-                script.src = 'http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=b18319530b6d6d62d5c86a8807893413&libraries=services'
+                script.src = 'http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=ce7e1ba0d693dbff7b0aa170789fd3c0&libraries=services'
                 document.head.appendChild(script)
             },
             initMap: function () {

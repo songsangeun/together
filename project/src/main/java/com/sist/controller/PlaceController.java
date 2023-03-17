@@ -4,14 +4,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.sist.global.security.annotation.LoginMember;
+import com.sist.global.security.vo.AuthMemberVO;
+import org.apache.ibatis.annotations.Param;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.sist.service.*;
 import com.sist.vo.*;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -118,6 +123,7 @@ public class PlaceController {
         vo.setSubtitle(subtitle);
         System.out.println(maintitle);
         System.out.println(subtitle);*/
+
         return PlacesSearch;
     }
     @GetMapping("place/place_list_sort.do")
@@ -140,5 +146,10 @@ public class PlaceController {
             System.out.println(image);
         }
         return placeListSort;
+    }
+    @PostMapping("place/place_addJjim.do")
+    public int addJjim(@LoginMember Authentication authentication, @Param("pno") int pno) {
+        PlacejjimVO principal = (PlacejjimVO) authentication.getPrincipal();
+        return service.addJjim(pno, principal.getMno());
     }
 }

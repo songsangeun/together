@@ -120,6 +120,30 @@
     .next {
         right: 0;
     }
+
+    .talent_list .thumb {
+        overflow: hidden;
+        position: relative;
+        max-width: 210px;
+        height: 140px;
+        margin-bottom: 12px;
+        border-radius: 6px;
+        background-position: center;
+        background-size: cover;
+    }
+
+    .talent_list .talent_info {
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+
+    .talent_list .talent_info .user {
+        padding-left: 16px;
+        font-weight: bold;
+        font-size: 11px;
+        background: url(https://front-img.taling.me/Content/app3/img/icon/icClasscardWish@2x.png) no-repeat left/12px 12px;
+    }
 </style>
 <script>
     window.onload = function () {
@@ -223,21 +247,55 @@
         <button type="button" style="margin: 5px;" class="s21_tour_search_button" ref="hit"
                 v-on:click="sort1('hit')">조회순
         </button>
-        <!-- 찜 카운트순 -->
     </div>
-    <div class="row">
-        <div v-for="item in placeList" :key="item.id" class="col-md-3">
-            <div class="thumbnail">
-                <a :href="'../place/place_detail.do?pno=' + item.pno">
-                    <img :src="item.image" style="height: 211px; width:100%">
-                    <div class="caption">
-                        <p>{{ item.title }}</p>
-                        <p style="color: #a6a6a6; font-size: 14px;">{{ item.subtitle }}</p>
-                    </div>
-                </a>
+    <%--<div v-for="item in searchList" :key="item.id" class="col-md-3">
+        <li class="swiper-slide swiper-slide-active" style="width: 210px; margin-right: 15px;">
+            <a :href="'../place/place_detail.do?pno=' + item.pno">
+                <img :src="item.image">
+            <div class="thumb lazyloaded" style="background-image: url(&quot;//img.taling.me/Content/Uploads/Images/b8fd2c6e36ed2c459171ce1afc7d7f1d98e97626.jpg&quot;);"></div>
+            <div class="card_cnt">
+                <h3 class="talent_title">{{ item.title }}</h3>
+                <div class="talent_info">
+                    &lt;%&ndash;<span class="user">{{}}</span>&ndash;%&gt;
+                    <span class="reward_badge" style="background-image:url('//front-img.taling.me/Content/app3/img/icon/icClasscardReview@2x.png')">조회수{{}}</span>
+                </div>
             </div>
+            </a>
+            <button type="button" class="btn_wish " onclick="updateWish(this,36694);"></button>
+        </li>
+    </div>
+    <infinite-loading @infinite="infiniteHandler"></infinite-loading>--%>
+
+    <div class="row">
+        <div v-if="searchList.length > 0">
+            <div v-for="item in searchList" :key="item.id" class="col-md-3">
+                <div class="thumbnail">
+                    <a :href="'../place/place_detail.do?pno=' + item.pno">
+                        <img :src="item.image" style="height: 211px; width:100%">
+                        <div class="caption">
+                            <p>{{ item.title }}</p>
+                            <p style="color: #a6a6a6; font-size: 14px;">{{ item.subtitle }}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <infinite-loading @infinite="infiniteHandler"></infinite-loading>
         </div>
-        <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+        <div v-else>
+            <div v-for="item in placeList" :key="item.id" class="col-md-3">
+                <div class="thumbnail">
+                    <a :href="'../place/place_detail.do?pno=' + item.pno">
+                        <a :href="'../place/place_detail.do?pno=' + item.pno">
+                        <img :src="item.image" style="height: 211px; width:100%">
+                        <div class="caption">
+                            <p>{{ item.title }}</p>
+                            <p style="color: #a6a6a6; font-size: 14px;">{{ item.subtitle }}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+        </div>
     </div>
 </div>
 <jsp:include page="../fragments/footer.jsp"/>
@@ -246,7 +304,10 @@
         el: '.app',
         data: {
             placeList: [],
+            searchList: [],
             page: 1, // 현재 페이지
+            loading: false, // 데이터 로딩 상태
+            hasMore: true, // 추가 데이터 존재 여부
             selectedRegion: '전국',
             selectedCity: '시군선택',
             category: '여행지선택',
@@ -262,7 +323,66 @@
                     '성북구', '송파구', '양천구', '영등포구', '용산구', '은평구', '종로구', '중구',
                     '중랑구'
                 ],
-
+                '경기도': [
+                    '수원시', '성남시', '의정부시', '안양시', '부천시', '광명시', '평택시', '동두천시', '안산시',
+                    '고양시', '과천시', '구리시', '남양주시', '오산시', '시흥시', '군포시', '의왕시', '하남시', '용인시',
+                    '파주시', '이천시', '안성시', '김포시', '화성시', '광주시', '양주시', '포천시', '여주시', '연천시',
+                    '가평시', '양평시'
+                ],
+                '인천시': [
+                    '계양구', '남동구', '동구', '미추홀구', '부평구', '서구', '연수구', '옹진구',
+                    '중구'
+                ],
+                '강원도': [
+                    '춘천시', '원주시', '강릉시', '동해시', '태백시', '속초시', '삼척시', '홍천시', '횡성시', '영월시',
+                    '평창시', '정선시'
+                ],
+                '충청남도': [
+                    '천안시', '공주시', '보령시', '아산시', '서산시', '논산시', '계룡시', '당진시', '금산시', '부여시',
+                    '서천시', '연기시', '예산시', '청양시', '태안시', '홍성시'
+                ],
+                '세종특별자치시': [
+                    '조치원읍', '연기면', '연동면', '부강면', '금남면', '장군면', '연서면', '전의면', '전동면', '소정면', '한솔동', '도담동'
+                    , '아름동', '종촌동', '고운동', '보람동', '새롬동', '대평동', '소담동', '다정동', '해밀동', '반곡동'
+                ],
+                '대전광역시': [
+                    '동구', '중구', '서구', '유성구', '대덕구'
+                ],
+                '충청북도': [
+                    '청주시', '충주시', '제천시', '보은시', '옥천시', '영동시', '진천시', '괴산시', '음성시', '단양시'
+                ],
+                '경상북도': [
+                    '포항시', '경산시', '경주시', '구미시', '김천시', '문경시', '상주시', '안동시', '영주시', '영천시',
+                    '칠곡시', '예천시', '울진시', '의성시', '청도시', '청송시', '칠곡시'
+                ],
+                '대구광역시': [
+                    '중구', '동구', '서구', '남구', '북구', '수성구', '달서구', '달성군'
+                ],
+                '전라북도': [
+                    '전주시', '군산시', '익산시', '정읍시', '김제시', '남원시', '고창시', '부안시'
+                ],
+                '전라남도': [
+                    '목포시', '여수시', '순천시', '나주시', '광양시', '담양시', '곡성시', '구례시', '고흥시', '보성시',
+                    '화순시', '장흥시', '강진시', '해남시', '영암시', '무안시', '함평시', '영광시', '장성시', '완도시',
+                    '진도시', '신안시'
+                ],
+                '광주광역시': [
+                    '동구', '서구', '남구', '북구', '광산구'
+                ],
+                '경상남도': [
+                    '창원시', '김해시', '진주시', '양산시', '거제시', '통영시', '사천시', '밀양시', '함안시', '거창시',
+                    '창녕시', '고성시', '남해시', '하동시', '산청시', '함양시', '합천시'
+                ],
+                '부산광역시': [
+                    '중구', '서구', '동구', '영도구', '부산진구', '동래구', '남구', '북구', '강서구',
+                    '해운대구', '사하구', '금정구', '연제구', '수영구', '사상구', '기장군'
+                ],
+                '울산광역시': [
+                    '중구', '남구', '동구', '북구', '울주군'
+                ],
+                '제주특별자치도': [
+                    '제주시', '서귀포시'
+                ]
             },
         },
         mounted: function () {
@@ -300,7 +420,6 @@
                 })
             },
             find: function () {
-                console.log(1)
                 let _this = this;
                 this.placeList = [];
                 axios.get("/place/place_search_vue.do", {
@@ -312,7 +431,18 @@
                     }
                 }).then(function (response) {
                     console.log(response.data)
-                    _this.placeList = response.data;
+                    _this.searchList = response.data;
+                })
+            },
+            addJjim: function () {
+                let _this = this;
+                axios.get("/place/place_addJjim.do", {
+                    params: {
+                        pno: this.pno
+                    }
+                }).then(function (response) {
+                    console.log(response.data)
+                    _this.searchList = response.data;
                 })
             }
         }

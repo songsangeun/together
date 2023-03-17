@@ -39,6 +39,11 @@ public class PlaceService {
     public List<PlaceVO> placeListSort(String sort) {
         return mapper.placeListSort(sort);
     }
+    //찜 추가
+    public int addJjim(@Param("pno") int pno, @Param("mno") int mno) {
+        return mapper.addJjim(pno, mno);
+    }
+
     public Pagination placeBookMark(int mno, String category, int page) {
         int totalCount = mapper.placeLikeCount(mno, category);
         int start = (9 * page) - (9 - 1);
@@ -73,5 +78,6 @@ public class PlaceService {
         List<CommunityVO> list = mapper.communityList(mno, start - 1);
         return new Pagination(list, page, totalCount, BLOCK_SIZE);
     }
+
 
 }
