@@ -35,22 +35,39 @@
 <body>
 <jsp:include page="../fragments/header.jsp"/>
  <div class="container">
-  <div class="row">
-   <table class="table" style="background-color: #dfe9e8;">
-    <tr class="text-center"> 
-     <td>
-       <h1><b style="color:#477A7B;">커뮤니티 혜택</b></h1>
-       <p>투개더에서 우리 반려동물에 대한 이야기를 공유해보세요.</p>
-     </td>
-    </tr>
+  <div class="p-0 container-fluid">
+    <div class="text-center" style="background: url('http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/community/top_bgr.jpg')">
+        <div class="container">
+         <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <img src="http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/community/top_left_img.png">
+          </div>
+                <div class="p-5">
+                    <h1 class="text-light">
+                        <strong>투개더 커뮤니티</strong>
+                    </h1>
+                    <p class="text-light mt-3">
+                        투개더에서 우리 반려견에 대한 이야기를 공유해보세요.
+                        <br/>
+                   
+                    </p>
+                    <sec:authorize access="isAuthenticated()">
      <tr class="text-center">
       <td>
        <a href="../community/insert.do" class="btn btn-md" style="background-color:transparent;color:white;border-color: white">커뮤니티에 글쓰기</a>
       </td>
     </tr>
-   </table>  
- </div>
-  
+     </sec:authorize>
+                    
+                </div>
+                <div>
+                    <img src=	"http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/community/top_right_img.png">
+                </div>
+          </div>
+        </div>
+    </div>
+</div>
+  <div style="height: 20px"></div>
 <div class="wrapper row3 rows">
   <main class="container clear">
     <table class="table">
@@ -65,7 +82,7 @@
         <td colspan="3">{{community_detail.title}}</td>
       </tr>
       <tr>
-        <td><img :src="'/image/upload/'+community_detail.filename" style="width:200px;height:200px"></td>
+        <td><img :src="'/image/upload/'+community_detail.filename" style="width:250px;height:250px"></td>
         <td colspan="4" class="text-left" valign="top" height="200"><pre style="white-space: pre-wrap;background-color: white;border: none;">{{community_detail.content}}</pre></td>
       </tr>
       <tr>
