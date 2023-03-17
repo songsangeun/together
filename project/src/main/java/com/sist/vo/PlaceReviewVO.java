@@ -1,5 +1,7 @@
 package com.sist.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +19,7 @@ public class PlaceReviewVO {
 
     private String content;
 
+    @JsonFormat(pattern = "yyyy-MM-DD", timezone = "Asia/Seoul")
     private Date regDate;
 
     private int mno;

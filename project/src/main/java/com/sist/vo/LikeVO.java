@@ -6,9 +6,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class LikeVO {
-	private int bno;
-	
-	private int mno;
-	
-	private int like;
+
+    private int bno;
+
+    private int mno;
+
+    private int like;
+
 }
