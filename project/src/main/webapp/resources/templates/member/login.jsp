@@ -16,28 +16,27 @@
         border-radius: 100px;
     }
 </style>
-<body>
+<body class="d-flex flex-column h-100">
 <jsp:include page="../fragments/header.jsp"/>
-<div class="p-0 container-fluid">
-    <div class="text-center" style="background: url('http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/schedule/top_bgr_n2.png')">
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center">
-                <div>
-                    <img src="http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/member/top_left_img.png">
-                </div>
-                <div class="p-5">
-                    <h1 class="text-light">
-                        <strong>투개더 로그인</strong>
-                    </h1>
-                    <p class="text-light mt-3">
-                        반려견과 함께 행복한 여행!
-                        <br/>
-                        투개더 로그인 후 지금 바로 떠나보세요.
-                    </p>
-                </div>
-                <div>
-                    <img src="http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/member/top_right_img.png">
-                </div>
+<div class="text-center p-1 container-fluid"
+     style="background: url('http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/schedule/top_bgr_n2.png');">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <img src="http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/member/top_left_img.png">
+            </div>
+            <div class="p-5">
+                <h1 class="text-light">
+                    <strong class="display-5">투개더 로그인</strong>
+                </h1>
+                <p class="text-light mt-3">
+                    반려견과 함께 행복한 여행!
+                    <br/>
+                    투개더 로그인 후 지금 바로 떠나보세요.
+                </p>
+            </div>
+            <div>
+                <img src="http://appdata.hungryapp.co.kr/images/hatdog/img/pc_img/member/top_right_img.png">
             </div>
         </div>
     </div>
@@ -65,42 +64,6 @@
                 <hr>
                 <div class="text-center">
                     아직 회원이 아니신가요? <a href="/member/signup">회원가입</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="d-flex justify-content-center">
-        <div class="mb-3">
-            <div class="text-center">
-                <h1>SNS 간편로그인</h1>
-                <p>
-                    <small class="text-secondary">※ 별도 회원가입 없이 구글, 네이버, 카카오 계정으로도 로그인이 가능 합니다.</small>
-                </p>
-                <div class="d-flex justify-content-between mt-4 mb-4">
-                    <div class="sns-login">
-                        <a href="#">
-                            <img src="http://appdata.hungryapp.co.kr/images/hatdog/img/login/icon_sns_g.png" style="background-color: #e16758">
-                            <p style="color: #e16758">
-                                구글
-                            </p>
-                        </a>
-                    </div>
-                    <div class="sns-login">
-                        <a href="#">
-                            <img src="http://appdata.hungryapp.co.kr/images/hatdog/img/login/icon_sns_n.png" style="background-color: #00d037">
-                            <p style="color:#00d037;">
-                                네이버
-                            </p>
-                        </a>
-                    </div>
-                    <div class="sns-login">
-                        <a href="#">
-                            <img src="http://appdata.hungryapp.co.kr/images/hatdog/img/login/icon_sns_k.png" style="background-color: #fae100">
-                            <p style="color:#fae100;">
-                                카카오톡
-                            </p>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
